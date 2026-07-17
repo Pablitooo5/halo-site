@@ -1,7 +1,7 @@
-# Déploiement Netlify — site 100 % statique, aucun build nécessaire.
+# Déploiement Netlify — build Vite (React + Tailwind)
 [build]
-  publish = "."
-  command = ""
+  command = "npm run build"
+  publish = "dist"
 
 [[headers]]
   for = "/*"
@@ -11,11 +11,6 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
 
 [[headers]]
-  for = "/css/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/js/*"
+  for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"

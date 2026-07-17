@@ -1,392 +1,52 @@
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Halo — Votre fiche Google, optimisée et animée chaque mois · Bordeaux</title>
-<meta name="description" content="Halo optimise votre fiche Google Business, l'anime chaque mois et fait grimper vos avis. Service local à Bordeaux, sans engagement. Recevez votre audit gratuit." />
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Halo — Votre fiche Google, optimisée et animée chaque mois · Bordeaux</title>
+    <meta name="description" content="Halo optimise votre fiche Google Business, l'anime chaque mois et fait grimper vos avis. Service local à Bordeaux, sans engagement. Recevez votre audit gratuit." />
 
-<!-- Open Graph -->
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Halo — Votre fiche Google, optimisée et animée chaque mois" />
-<meta property="og:description" content="On optimise votre fiche Google, on l'anime chaque mois et on fait grimper vos avis. Vous récupérez les appels. Bordeaux · sans engagement." />
-<meta property="og:locale" content="fr_FR" />
-<meta property="og:site_name" content="Halo" />
-<meta property="og:url" content="https://halo.example" />
-<link rel="canonical" href="https://halo.example" />
-<meta property="og:image" content="og-image.svg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Halo — votre fiche Google, optimisée chaque mois. Bordeaux." />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Halo — Votre fiche Google, optimisée et animée chaque mois" />
-<meta name="twitter:description" content="On optimise votre fiche Google, on l'anime chaque mois et on fait grimper vos avis. Bordeaux · sans engagement." />
-<meta name="twitter:image" content="og-image.svg" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Halo — Votre fiche Google, optimisée et animée chaque mois" />
+    <meta property="og:description" content="On optimise votre fiche Google, on l'anime chaque mois et on fait grimper vos avis. Vous récupérez les appels. Bordeaux · sans engagement." />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Halo" />
+    <meta property="og:url" content="https://halo.example" />
+    <link rel="canonical" href="https://halo.example" />
+    <meta property="og:image" content="/og-image.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Halo — votre fiche Google, optimisée chaque mois. Bordeaux." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Halo — Votre fiche Google, optimisée et animée chaque mois" />
+    <meta name="twitter:description" content="On optimise votre fiche Google, on l'anime chaque mois et on fait grimper vos avis. Bordeaux · sans engagement." />
+    <meta name="twitter:image" content="/og-image.svg" />
 
-<!-- Favicon -->
-<link rel="icon" href="favicon.svg" type="image/svg+xml" />
-<meta name="theme-color" content="#0B1120" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0B1120" />
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="css/styles.css" />
-
-<!-- JSON-LD LocalBusiness -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Halo",
-  "description": "Gestion de fiches Google Business : optimisation, animation mensuelle, gestion et collecte d'avis, supports NFC/QR.",
-  "areaServed": "Bordeaux et alentours",
-  "address": { "@type": "PostalAddress", "addressLocality": "Bordeaux", "addressCountry": "FR" },
-  "email": "halo.contact@gmail.com",
-  "url": "https://halo.example"
-}
-</script>
-
-<!-- ===================== NAV ===================== -->
-<header class="nav" id="top">
-  <a class="nav__brand" href="#top" aria-label="Halo — accueil">
-    <span class="nav__ring" aria-hidden="true"></span>
-    <span class="nav__name">Halo</span>
-  </a>
-  <nav class="nav__links" aria-label="Navigation principale">
-    <a href="#probleme">Le problème</a>
-    <a href="#offre">L'offre</a>
-    <a href="#tarifs">Tarifs</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <a href="#contact" class="btn btn--accent nav__cta">Audit gratuit</a>
-  <button class="nav__burger" aria-label="Ouvrir le menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</header>
-
-<!-- ===================== HERO ===================== -->
-<main>
-<section class="hero" id="hero">
-  <div class="hero__glow" aria-hidden="true"></div>
-
-  <div class="hero__text">
-    <p class="hero__eyebrow">Fiches Google Business · Bordeaux</p>
-    <h1 class="hero__title">
-      Vos clients vous cherchent sur Google.<br />
-      <span class="hero__title-accent">C'est le concurrent qui apparaît.</span>
-    </h1>
-    <p class="hero__subtitle">
-      Halo optimise votre fiche Google, l'anime chaque mois et fait grimper vos avis.
-      Vous récupérez les appels.
-    </p>
-    <div class="hero__cta">
-      <a href="#contact" class="btn btn--accent btn--lg">Recevoir mon audit gratuit</a>
-      <a href="#etapes" class="btn btn--ghost btn--lg">Voir comment ça marche</a>
-    </div>
-    <ul class="hero__trust">
-      <li>Sans engagement</li>
-      <li>Résultats mesurés chaque mois</li>
-      <li>Vous restez propriétaire de votre fiche</li>
-    </ul>
-  </div>
-
-  <div class="hero__visual" id="hero-visual">
-    <div class="hero__stars" id="hero-stars" aria-hidden="true"></div>
-    <div class="hero__halo" aria-hidden="true"></div>
-    <div class="badge-float">
-      <div class="badge-persp">
-        <div class="badge" id="badge">
-          <div class="badge__face badge__face--front">
-            <img
-              src="assets/badge-front.webp"
-              srcset="assets/badge-front-500.webp 500w, assets/badge-front.webp 800w"
-              sizes="(max-width: 860px) 240px, 400px"
-              width="800" height="1200"
-              alt="Fiche Google Business Halo : SEO, référencement, visibilité — noté 4,9 sur 5 avec 512 avis, Bordeaux."
-              fetchpriority="high" decoding="async"
-            />
-          </div>
-          <div class="badge__face badge__face--back" aria-hidden="true">
-            <img
-              src="assets/badge-back.webp"
-              srcset="assets/badge-back-500.webp 500w, assets/badge-back.webp 800w"
-              sizes="(max-width: 860px) 240px, 400px"
-              width="800" height="1200"
-              alt="" decoding="async"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 2 · LE PROBLÈME ===================== -->
-<section class="section" id="probleme">
-  <div class="section__head reveal">
-    <p class="section__eyebrow">Le problème</p>
-    <h2 class="section__title">46 % des recherches Google sont locales.<br /><span class="em">Votre fiche décide qui gagne.</span></h2>
-  </div>
-  <div class="stats-grid">
-    <div class="stat reveal">
-      <div class="stat__num">7×</div>
-      <p class="stat__label">plus de clics pour une fiche complète que pour une fiche incomplète.</p>
-    </div>
-    <div class="stat stat--gold reveal">
-      <div class="stat__num">47 %</div>
-      <p class="stat__label">des gens évitent un commerce qui a moins de 20 avis.</p>
-    </div>
-    <div class="stat stat--gold reveal">
-      <div class="stat__num">95 %</div>
-      <p class="stat__label">lisent la réponse du gérant aux avis avant de choisir.</p>
-    </div>
-    <div class="stat reveal">
-      <div class="stat__num">84 %</div>
-      <p class="stat__label">des vues de fiche viennent d'un téléphone mobile.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 3 · L'OFFRE ===================== -->
-<section class="section" id="offre">
-  <div class="section__head reveal">
-    <p class="section__eyebrow">L'offre</p>
-    <h2 class="section__title">Tout ce que Halo gère <span class="em">pour vous.</span></h2>
-  </div>
-  <div class="offer-grid">
-    <article class="card reveal">
-      <div class="icon-badge" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
-      </div>
-      <h3>Optimisation complète</h3>
-      <p>Catégories, description, attributs, services, photos : votre fiche est réglée au millimètre pour apparaître et convaincre.</p>
-    </article>
-
-    <article class="card card--feature reveal">
-      <span class="tag">Notre différence</span>
-      <div class="icon-badge" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-      </div>
-      <h3>Animation mensuelle</h3>
-      <p>Posts réguliers et photos fraîches — on vient photographier votre commerce sur place. C'est ce qui fait vivre la fiche et ce qu'aucun logiciel ne fait.</p>
-    </article>
-
-    <article class="card reveal">
-      <div class="icon-badge icon-badge--gold" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      </div>
-      <h3>Gestion des avis</h3>
-      <p>Réponse à 100 % des avis, collecte de nouveaux avis et signalement des faux. Vos clients voient un commerce attentif.</p>
-    </article>
-
-    <article class="card reveal">
-      <div class="icon-badge" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-      </div>
-      <h3>Supports NFC &amp; QR</h3>
-      <p>De petites plaques à poser au comptoir : le client approche son téléphone et arrive directement sur votre page d'avis. Sans appli, sans effort.</p>
-    </article>
-
-    <article class="card reveal">
-      <div class="icon-badge" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-      </div>
-      <h3>Rapport mensuel</h3>
-      <p>Vues, appels, itinéraires, avis gagnés, position. Vous voyez précisément ce que vous payez — chaque mois.</p>
-    </article>
-
-    <article class="card reveal">
-      <div class="icon-badge" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15l-1.9-4.1L5.5 9l4.6-1.4z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>
-      </div>
-      <h3>Option visibilité IA <span style="color:var(--text-dim);font-weight:500;">(GEO)</span></h3>
-      <p>Être aussi recommandé par ChatGPT et les IA quand vos clients leur demandent le meilleur commerce de la ville.</p>
-    </article>
-  </div>
-</section>
-
-<!-- ===================== 4 · LA DIFFÉRENCE ===================== -->
-<section class="section" id="difference">
-  <div class="section__head reveal">
-    <p class="section__eyebrow">La différence</p>
-    <h2 class="section__title">Ni un logiciel, <span class="em">ni un démarcheur.</span></h2>
-  </div>
-  <div class="compare">
-    <div class="compare__col compare__col--muted reveal">
-      <p class="compare__kicker">Les logiciels à 50 €</p>
-      <h3>Des posts robots</h3>
-      <p>Générés automatiquement, sans regard humain. Et personne, jamais, pour répondre à vos avis.</p>
-    </div>
-    <div class="compare__col compare__col--muted reveal">
-      <p class="compare__kicker">Les grosses agences</p>
-      <h3>Des contrats de 12 à 36 mois</h3>
-      <p>Engagement long, et en face un centre d'appels où vous n'êtes qu'un dossier parmi mille.</p>
-    </div>
-    <div class="compare__col compare__col--halo reveal">
-      <p class="compare__kicker">Halo</p>
-      <h3>Un seul interlocuteur</h3>
-      <p>Sans engagement. Qui vient photographier votre commerce et vous montre, chiffres à l'appui, ce que ça rapporte.</p>
-    </div>
-  </div>
-  <div class="trust-block reveal">
-    <strong>Pas de faux avis. Pas de fausse promesse de position.</strong> Pas de filtrage de vos clients — c'est interdit par Google et ça fait suspendre votre fiche. Halo travaille proprement, c'est le seul moyen de durer.
-  </div>
-</section>
-
-<!-- ===================== 5 · LES TARIFS ===================== -->
-<section class="section" id="tarifs">
-  <div class="section__head reveal">
-    <p class="section__eyebrow">Les tarifs</p>
-    <h2 class="section__title">Des prix clairs, <span class="em">affichés.</span></h2>
-  </div>
-
-  <div class="setup-banner reveal">
-    <div>
-      <span class="setup-price">Setup initial · 290 €</span>
-      <span class="setup-free">— offert dès 6 mois d'abonnement</span>
-    </div>
-    <span class="setup-note">Optimisation complète + shooting photo de départ.</span>
-  </div>
-
-  <div class="plans">
-    <div class="plan reveal">
-      <div class="plan__name">Essentiel</div>
-      <div class="plan__price">149 €<span> / mois</span></div>
-      <ul class="plan__list">
-        <li>4 posts par mois</li>
-        <li>Réponses à vos avis</li>
-        <li>Surveillance de la fiche</li>
-        <li>Rapport mensuel</li>
-      </ul>
-      <a href="#contact" class="btn">Commencer par un audit</a>
-    </div>
-
-    <div class="plan plan--featured reveal">
-      <span class="plan__badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Le plus choisi</span>
-      <div class="plan__name">Performance</div>
-      <div class="plan__price">229 €<span> / mois</span></div>
-      <ul class="plan__list">
-        <li>Tout l'Essentiel, plus :</li>
-        <li>8 posts par mois</li>
-        <li>Collecte active d'avis</li>
-        <li>Suivi de position</li>
-        <li>Audit concurrentiel</li>
-      </ul>
-      <a href="#contact" class="btn btn--accent">Commencer par un audit</a>
-    </div>
-
-    <div class="plan reveal">
-      <div class="plan__name">Premium Photo</div>
-      <div class="plan__price">349 €<span> / mois</span></div>
-      <ul class="plan__list">
-        <li>Tout le Performance, plus :</li>
-        <li>Un passage photo chaque trimestre</li>
-        <li>Des visuels toujours frais</li>
-      </ul>
-      <a href="#contact" class="btn">Commencer par un audit</a>
-    </div>
-  </div>
-
-  <p class="pricing-options reveal">
-    Option visibilité IA <span>+79 €/mois</span> · Supports NFC/QR <span>dès 39 €</span> · <span>Tarif dégressif</span> multi-établissements. Tout sans engagement.
-  </p>
-  <div class="pricing-cta reveal">
-    <a href="#contact" class="btn btn--accent btn--lg">Commencer par un audit gratuit</a>
-  </div>
-</section>
-
-<!-- ===================== 6 · COMMENT ÇA MARCHE ===================== -->
-<section class="section" id="etapes">
-  <div class="section__head reveal">
-    <p class="section__eyebrow">Comment ça marche</p>
-    <h2 class="section__title">Trois étapes, <span class="em">et vous n'avez rien à faire.</span></h2>
-  </div>
-  <div class="steps">
-    <div class="step reveal">
-      <div class="step__num">01</div>
-      <h3>On audite votre fiche</h3>
-      <p>Gratuitement, avec une comparaison à vos concurrents directs. Vous savez exactement où vous en êtes.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step__num">02</div>
-      <h3>On optimise et on anime</h3>
-      <p>Optimisation, posts, photos sur place, avis. Vous n'avez rien à gérer : c'est notre métier.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step__num">03</div>
-      <h3>Vous suivez les résultats</h3>
-      <p>Un rapport clair chaque mois. Sans engagement : vous restez libre, et propriétaire de votre fiche.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 7 · FORMULAIRE D'AUDIT ===================== -->
-<section class="section contact" id="contact">
-  <div class="contact__glow" aria-hidden="true"></div>
-  <div class="section__head reveal">
-    <p class="section__eyebrow">Audit gratuit</p>
-    <h2 class="section__title">Découvrez où vous en êtes. <span class="em">Gratuitement.</span></h2>
-    <p class="section__lead">On analyse votre fiche, on la compare à vos concurrents, et on vous dit quoi améliorer. Sans engagement.</p>
-  </div>
-  <div class="form-wrap reveal">
-    <form class="audit-form" id="audit-form" novalidate>
-      <div class="field">
-        <label for="f-entreprise">Nom de l'entreprise</label>
-        <input id="f-entreprise" name="entreprise" type="text" autocomplete="organization" placeholder="Ex. Boulangerie du Port" required />
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="f-ville">Ville</label>
-          <input id="f-ville" name="ville" type="text" autocomplete="address-level2" placeholder="Bordeaux" required />
-        </div>
-        <div class="field">
-          <label for="f-tel">Téléphone <span class="opt">(optionnel)</span></label>
-          <input id="f-tel" name="telephone" type="tel" autocomplete="tel" placeholder="06 12 34 56 78" />
-        </div>
-      </div>
-      <div class="field">
-        <label for="f-email">Email</label>
-        <input id="f-email" name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required />
-      </div>
-      <button type="submit" class="btn btn--accent btn--lg">Recevoir mon audit</button>
-      <p class="form-note">Réponse sous 48h · Sans engagement · Vos données ne sont pas revendues.</p>
-
-      <div class="form-success" role="status" aria-live="polite">
-        <h3>C'est reçu.</h3>
-        <p>Vous recevez votre audit sous 48h à l'adresse indiquée.</p>
-      </div>
-    </form>
-  </div>
-</section>
-
-</main>
-
-<!-- ===================== 8 · FOOTER ===================== -->
-<footer class="footer">
-  <div class="footer__inner">
-    <div>
-      <div class="footer__brand"><span class="nav__ring" aria-hidden="true"></span> Halo</div>
-      <p class="footer__pitch">On gère votre fiche Google, on l'anime et on fait grimper vos avis. Vous récupérez les appels.</p>
-    </div>
-    <div>
-      <h4>Le service</h4>
-      <a href="#offre">L'offre</a>
-      <a href="#tarifs">Tarifs</a>
-      <a href="#etapes">Comment ça marche</a>
-      <a href="#contact">Audit gratuit</a>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <a href="mailto:halo.contact@gmail.com">halo.contact@gmail.com</a>
-      <span style="color:var(--text-dim);display:block;margin-bottom:8px;">Bordeaux et alentours</span>
-      <a href="legal/mentions.html">Mentions légales</a>
-      <a href="legal/cgv.html">CGV</a>
-      <a href="legal/confidentialite.html">Confidentialité</a>
-    </div>
-  </div>
-  <div class="footer__bottom">
-    <span>© <span id="year">2026</span> Halo · Bordeaux</span>
-    <span class="badge-ne">Sans engagement — vous restez propriétaire de votre fiche.</span>
-  </div>
-</footer>
-
-<script src="js/main.js" defer></script>
+    <!-- JSON-LD LocalBusiness -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Halo",
+        "description": "Gestion de fiches Google Business : optimisation, animation mensuelle, gestion et collecte d'avis, supports NFC/QR.",
+        "areaServed": "Bordeaux et alentours",
+        "address": { "@type": "PostalAddress", "addressLocality": "Bordeaux", "addressCountry": "FR" },
+        "email": "halo.contact@gmail.com",
+        "url": "https://halo.example"
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
