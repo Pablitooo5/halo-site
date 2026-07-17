@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Éditeurs
+.vscode/
+.idea/
+
+# Logs / divers
+*.log
+
+# Outillage design (cache local)
+.impeccable/
+
+# Sources / matériaux de marque (pas destinés au site déployé)
+Design.pdf
+*.zip

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /legal/
+
+Sitemap: https://REMPLACER-PAR-VOTRE-DOMAINE/sitemap.xml
