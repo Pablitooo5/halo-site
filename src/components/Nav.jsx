@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Ring } from "./Icons.jsx";
 
 const links = [
-  { href: "#probleme", label: "Le problème" },
   { href: "#offre", label: "L'offre" },
   { href: "#tarifs", label: "Tarifs" },
   { href: "#contact", label: "Contact" },

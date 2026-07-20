@@ -111,6 +111,137 @@
 .badge-face--back { transform: rotateY(180deg); }
 
 /* ============================================================
+   Scrollytelling (GSAP ScrollTrigger) — actes 1 & 2
+   ============================================================ */
+.scrollhero-stage {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.scrollhero-grid {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr; align-items: center;
+  width: 100%; max-width: 1180px; padding: 0 24px; gap: 12px;
+}
+@media (min-width: 900px) {
+  .scrollhero-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+/* Zone texte (les panneaux se croisent en fondu, empilés) */
+.scrollhero-copy { position: relative; min-height: 220px; order: 2; }
+@media (min-width: 900px) { .scrollhero-copy { order: 0; min-height: 300px; } }
+.sh-text {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  text-align: center;
+}
+@media (min-width: 900px) { .sh-text { text-align: left; } }
+.sh-kicker { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 14px; }
+.sh-title { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.06; font-size: clamp(1.9rem, 4.4vw, 3rem); }
+.sh-num { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1; display: block; margin-bottom: 8px; }
+.sh-num--gold { color: var(--color-gold); }
+.sh-num--accent { color: var(--color-accent); }
+.sh-sub { margin-top: 16px; font-size: clamp(1rem, 1.4vw, 1.18rem); color: var(--color-dim); max-width: 34ch; margin-inline: auto; }
+@media (min-width: 900px) { .sh-sub { margin-inline: 0; } }
+.sh-accent { color: var(--color-accent); }
+
+/* Badge + spotlights */
+.scrollhero-badgewrap {
+  position: relative; z-index: 2; justify-self: center; order: 1;
+  width: clamp(230px, 30vw, 360px);
+  animation: badgeFloat 5s ease-in-out infinite;
+}
+@media (min-width: 900px) { .scrollhero-badgewrap { order: 0; } }
+.scrollhero-persp { perspective: 1500px; }
+.scrollhero-badge {
+  position: relative; width: 100%; aspect-ratio: 800 / 1200;
+  transform-style: preserve-3d; will-change: transform;
+}
+.spot { position: absolute; border-radius: 14px; pointer-events: none; opacity: 0; }
+.spot--stars   { left: 8%;  top: 31%; width: 66%; height: 14%; background: rgba(240,180,41,0.08); box-shadow: 0 0 0 2px rgba(240,180,41,0.75), 0 0 30px 6px rgba(240,180,41,0.45); }
+.spot--photo   { left: 55%; top: 57%; width: 37%; height: 25%; background: rgba(79,143,255,0.08); box-shadow: 0 0 0 2px rgba(79,143,255,0.75), 0 0 30px 6px rgba(79,143,255,0.45); }
+.spot--contact { left: 7%;  top: 80%; width: 47%; height: 12%; background: rgba(79,143,255,0.08); box-shadow: 0 0 0 2px rgba(79,143,255,0.75), 0 0 26px 6px rgba(79,143,255,0.40); }
+
+/* Indicateur de progression */
+.scrollhero-dots {
+  position: absolute; z-index: 5; right: 22px; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 12px; list-style: none; margin: 0; padding: 0;
+}
+@media (max-width: 640px) {
+  .scrollhero-dots { flex-direction: row; right: auto; left: 50%; top: auto; bottom: 20px; transform: translateX(-50%); }
+}
+.scrollhero-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-line); transition: background 0.3s, transform 0.3s; }
+.scrollhero-dot[data-on="true"] { background: var(--color-accent); transform: scale(1.35); box-shadow: 0 0 10px 1px rgba(79,143,255,0.6); }
+
+/* ---- Acte 3 : l'intérieur du badge (la mécanique) ---- */
+.badge-inner {
+  position: absolute; inset: 0; z-index: 3;
+  border-radius: 8%/5.3%;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(79, 143, 255, 0.14), transparent 55%),
+    linear-gradient(170deg, #101a2e, #0d1526);
+  border: 1px solid rgba(79, 143, 255, 0.45);
+  box-shadow: 0 0 0 1px rgba(79, 143, 255, 0.15), 0 0 60px 8px rgba(79, 143, 255, 0.22), inset 0 0 40px rgba(11, 17, 32, 0.8);
+  padding: 9% 8%;
+  display: flex; flex-direction: column; justify-content: space-between;
+  overflow: hidden;
+}
+.badge-inner-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-accent); text-align: center; margin: 0 0 2%;
+}
+.badge-inner-spine {
+  position: absolute; left: 50%; top: 14%; bottom: 8%; width: 2px; transform: translateX(-50%);
+  overflow: visible; pointer-events: none;
+}
+.spine-path { stroke: var(--color-accent); stroke-width: 2; fill: none; filter: drop-shadow(0 0 6px rgba(79, 143, 255, 0.8)); }
+.badge-modules { list-style: none; margin: 0; padding: 0; position: relative; z-index: 1; display: grid; gap: 4.5%; flex: 1; align-content: space-evenly; }
+.module {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(22, 30, 46, 0.92);
+  border: 1px solid var(--color-line);
+  border-radius: 12px; padding: 4.5% 5%;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+.module-dot {
+  flex: none; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--color-accent); box-shadow: 0 0 10px 2px rgba(79, 143, 255, 0.7);
+}
+.module--gold .module-dot { background: var(--color-gold); box-shadow: 0 0 10px 2px rgba(240, 180, 41, 0.7); }
+.module-label { font-size: clamp(0.62rem, 1vw, 0.8rem); font-weight: 600; color: var(--color-ink); line-height: 1.25; }
+.module-bar { margin-top: 5px; height: 4px; border-radius: 2px; background: var(--color-line); overflow: hidden; width: 100%; }
+.module-fill { display: block; height: 100%; width: 100%; transform-origin: left center; background: linear-gradient(90deg, var(--color-accent), #8fb8ff); border-radius: 2px; }
+.module--gold .module-fill { background: linear-gradient(90deg, var(--color-gold), #ffd970); }
+
+/* Acte 4 : badge « allumé » */
+.badge-glow {
+  position: absolute; inset: -6%; z-index: 0; pointer-events: none; border-radius: 12%;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(79, 143, 255, 0.4), transparent 70%);
+  filter: blur(18px);
+}
+
+/* CTA du panneau final */
+.sh-cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-top: 26px; padding: 15px 30px; border-radius: 999px;
+  background: var(--color-accent); color: #06101f;
+  font-weight: 600; font-size: 1.02rem;
+  box-shadow: 0 8px 30px rgba(79, 143, 255, 0.35);
+  transition: transform 0.2s var(--ease-out-soft), box-shadow 0.2s var(--ease-out-soft);
+  align-self: center;
+}
+@media (min-width: 900px) { .sh-cta { align-self: flex-start; } }
+.sh-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(79, 143, 255, 0.5); }
+
+/* Fallback empilé (reduced-motion) */
+.scrollhero-fallback { display: grid; gap: 56px; padding: 40px 24px; place-items: center; }
+.scrollhero-fallback .sh-text { position: static; text-align: center; }
+.scrollhero-fallback .badge-inner { position: static; max-width: 360px; }
+
+/* ============================================================
    prefers-reduced-motion : coupe rotation, lévitation, étoiles filantes
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
