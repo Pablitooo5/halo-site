@@ -111,7 +111,7 @@
 .badge-face--back { transform: rotateY(180deg); }
 
 /* ============================================================
-   Scrollytelling (GSAP ScrollTrigger) — actes 1 & 2
+   Scrollytelling (GSAP ScrollTrigger) — arrivée + zooms réels
    ============================================================ */
 .scrollhero-stage {
   position: relative;
@@ -129,9 +129,11 @@
   .scrollhero-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
 }
 
-/* Zone texte (les panneaux se croisent en fondu, empilés) */
-.scrollhero-copy { position: relative; min-height: 220px; order: 2; }
+/* Zone texte (les panneaux se croisent en fondu, empilés)
+   — au-dessus du badge zoomé, avec ombre pour rester lisible */
+.scrollhero-copy { position: relative; z-index: 4; min-height: 220px; order: 2; }
 @media (min-width: 900px) { .scrollhero-copy { order: 0; min-height: 300px; } }
+.sh-title, .sh-kicker, .sh-sub { text-shadow: 0 2px 18px rgba(7, 11, 22, 0.85), 0 0 40px rgba(7, 11, 22, 0.6); }
 .sh-text {
   position: absolute; inset: 0;
   display: flex; flex-direction: column; justify-content: center;
@@ -146,23 +148,104 @@
 .sh-sub { margin-top: 16px; font-size: clamp(1rem, 1.4vw, 1.18rem); color: var(--color-dim); max-width: 34ch; margin-inline: auto; }
 @media (min-width: 900px) { .sh-sub { margin-inline: 0; } }
 .sh-accent { color: var(--color-accent); }
+.intro-line { display: block; }
 
-/* Badge + spotlights */
+/* Badge : couches (float → zoom → perspective → faces) */
 .scrollhero-badgewrap {
   position: relative; z-index: 2; justify-self: center; order: 1;
   width: clamp(230px, 30vw, 360px);
-  animation: badgeFloat 5s ease-in-out infinite;
 }
 @media (min-width: 900px) { .scrollhero-badgewrap { order: 0; } }
-.scrollhero-persp { perspective: 1500px; }
+.zoom-wrap { will-change: transform; transform-origin: 50% 50%; }
+.scrollhero-persp { position: relative; perspective: 1500px; }
 .scrollhero-badge {
   position: relative; width: 100%; aspect-ratio: 800 / 1200;
-  transform-style: preserve-3d; will-change: transform;
+  container-type: inline-size;
+  will-change: transform, opacity;
 }
-.spot { position: absolute; border-radius: 14px; pointer-events: none; opacity: 0; }
-.spot--stars   { left: 8%;  top: 31%; width: 66%; height: 14%; background: rgba(240,180,41,0.08); box-shadow: 0 0 0 2px rgba(240,180,41,0.75), 0 0 30px 6px rgba(240,180,41,0.45); }
-.spot--photo   { left: 55%; top: 57%; width: 37%; height: 25%; background: rgba(79,143,255,0.08); box-shadow: 0 0 0 2px rgba(79,143,255,0.75), 0 0 30px 6px rgba(79,143,255,0.45); }
-.spot--contact { left: 7%;  top: 80%; width: 47%; height: 12%; background: rgba(79,143,255,0.08); box-shadow: 0 0 0 2px rgba(79,143,255,0.75), 0 0 26px 6px rgba(79,143,255,0.40); }
+.badge-face {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+}
+.front-clip { position: absolute; inset: 0; overflow: hidden; border-radius: 6%; }
+.front-filter { position: absolute; inset: 0; will-change: filter; }
+.front-filter img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 26px 48px rgba(0, 0, 0, 0.5)); }
+.front-ov { position: absolute; inset: 0; pointer-events: none; }
+
+/* Caches (patchs) qui masquent la note / le nb d'avis de l'image
+   — dans .front-filter pour subir le même filtre que la photo */
+.patch { position: absolute; border-radius: 8px; background: #f2f3f5; }
+.patch--note { left: 23.5%; top: 37.2%; width: 18%; height: 10.6%; }
+.patch--avis { left: 23%; top: 50%; width: 17%; height: 4.8%; }
+
+/* Compteurs & étoiles en overlay (au-dessus, non filtrés) */
+.ov-note {
+  position: absolute; left: 23.5%; top: 37.2%; width: 18%; height: 10.6%;
+  display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 700; color: #4173f2;
+  font-size: 12.5cqw; line-height: 1;
+}
+.ov-avis {
+  position: absolute; left: 23%; top: 50%; width: 17%; height: 4.8%;
+  display: grid; place-items: center;
+  font-weight: 500; color: #62686f; font-size: 3.4cqw;
+}
+.ov-star {
+  position: absolute; width: 7.8cqw; aspect-ratio: 1;
+  color: var(--color-gold);
+  filter: drop-shadow(0 0 6px rgba(240, 180, 41, 0.65));
+}
+.ov-star svg { width: 100%; height: 100%; display: block; }
+
+/* Cadres-spotlight : bord lumineux + assombrissement du reste
+   (l'ombre étalée est rognée par .front-clip) */
+.zone-frame {
+  position: absolute; border-radius: 12px; pointer-events: none; opacity: 0;
+  box-shadow: 0 0 0 2px rgba(79, 143, 255, 0.85), 0 0 24px 4px rgba(79, 143, 255, 0.45),
+    0 0 0 9999px rgba(7, 11, 22, 0.58);
+}
+.zone-frame--stars {
+  left: 22.5%; top: 36.5%; width: 64%; height: 17%;
+  box-shadow: 0 0 0 2px rgba(240, 180, 41, 0.9), 0 0 24px 4px rgba(240, 180, 41, 0.5),
+    0 0 0 9999px rgba(7, 11, 22, 0.58);
+}
+.zone-frame--photo { left: 59%; top: 55.5%; width: 28%; height: 20%; }
+.zone-frame--contact { left: 17.5%; top: 72.5%; width: 41.5%; height: 10%; }
+
+/* Miniatures photos qui « remplissent » la fiche (étape photos) */
+.mini {
+  position: absolute; border-radius: 10px; opacity: 0;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+}
+.mini--1 { left: 44%; top: 55.5%; width: 13.5%; aspect-ratio: 4/3; background: linear-gradient(135deg, #8fb8ff 0%, #35507e 60%, #22314e 100%); }
+.mini--2 { left: 44%; top: 66%; width: 13.5%; aspect-ratio: 4/3; background: linear-gradient(150deg, #ffd970 0%, #b07f1e 55%, #5d431a 100%); }
+.mini--3 { left: 60%; top: 76.5%; width: 15%; aspect-ratio: 5/3; background: linear-gradient(120deg, #cfe0ff 0%, #4f8fff 55%, #1e3a6b 100%); }
+
+/* Pulsation sur l'icône d'appel (étape contact) */
+.pulse-ring {
+  position: absolute; left: 16.5%; top: 73%; width: 12cqw; aspect-ratio: 1;
+  border-radius: 50%; opacity: 0; pointer-events: none;
+}
+.pulse-ring::before, .pulse-ring::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  animation: pulseRing 1.6s ease-out infinite;
+}
+.pulse-ring::after { animation-delay: 0.8s; }
+@keyframes pulseRing {
+  0% { transform: scale(0.55); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Flash de mise sous tension (arrivée) */
+.power-flash {
+  position: absolute; left: 50%; top: 50%; width: 130%; aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%; pointer-events: none; opacity: 0; z-index: 4;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(143, 184, 255, 0.55) 28%, rgba(79, 143, 255, 0.25) 48%, transparent 70%);
+  mix-blend-mode: screen;
+}
 
 /* Indicateur de progression */
 .scrollhero-dots {
@@ -175,7 +258,7 @@
 .scrollhero-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-line); transition: background 0.3s, transform 0.3s; }
 .scrollhero-dot[data-on="true"] { background: var(--color-accent); transform: scale(1.35); box-shadow: 0 0 10px 1px rgba(79,143,255,0.6); }
 
-/* ---- Acte 3 : l'intérieur du badge (la mécanique) ---- */
+/* ---- La plongée : l'intérieur du badge (8 réglages) ---- */
 .badge-inner {
   position: absolute; inset: 0; z-index: 3;
   border-radius: 8%/5.3%;
@@ -184,43 +267,64 @@
     linear-gradient(170deg, #101a2e, #0d1526);
   border: 1px solid rgba(79, 143, 255, 0.45);
   box-shadow: 0 0 0 1px rgba(79, 143, 255, 0.15), 0 0 60px 8px rgba(79, 143, 255, 0.22), inset 0 0 40px rgba(11, 17, 32, 0.8);
-  padding: 9% 8%;
-  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 8% 7%;
+  display: flex; flex-direction: column;
   overflow: hidden;
 }
 .badge-inner-title {
   font-family: var(--font-display); font-weight: 700;
   font-size: clamp(0.7rem, 1.1vw, 0.85rem); letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--color-accent); text-align: center; margin: 0 0 2%;
+  color: var(--color-accent); text-align: center; margin: 0 0 6%;
 }
 .badge-inner-spine {
-  position: absolute; left: 50%; top: 14%; bottom: 8%; width: 2px; transform: translateX(-50%);
+  position: absolute; left: 50%; top: 13%; bottom: 6%; width: 2px; transform: translateX(-50%);
   overflow: visible; pointer-events: none;
 }
 .spine-path { stroke: var(--color-accent); stroke-width: 2; fill: none; filter: drop-shadow(0 0 6px rgba(79, 143, 255, 0.8)); }
-.badge-modules { list-style: none; margin: 0; padding: 0; position: relative; z-index: 1; display: grid; gap: 4.5%; flex: 1; align-content: space-evenly; }
+.badge-modules {
+  list-style: none; margin: 0; padding: 0; position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4% 6%;
+  flex: 1; align-content: space-evenly;
+}
 .module {
-  display: flex; align-items: center; gap: 10px;
-  background: rgba(22, 30, 46, 0.92);
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(22, 30, 46, 0.94);
   border: 1px solid var(--color-line);
-  border-radius: 12px; padding: 4.5% 5%;
+  border-radius: 11px; padding: 6% 7%;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 .module-dot {
-  flex: none; width: 9px; height: 9px; border-radius: 50%;
+  flex: none; width: 8px; height: 8px; border-radius: 50%;
   background: var(--color-accent); box-shadow: 0 0 10px 2px rgba(79, 143, 255, 0.7);
 }
 .module--gold .module-dot { background: var(--color-gold); box-shadow: 0 0 10px 2px rgba(240, 180, 41, 0.7); }
-.module-label { font-size: clamp(0.62rem, 1vw, 0.8rem); font-weight: 600; color: var(--color-ink); line-height: 1.25; }
-.module-bar { margin-top: 5px; height: 4px; border-radius: 2px; background: var(--color-line); overflow: hidden; width: 100%; }
+.module-label { font-size: clamp(0.56rem, 0.9vw, 0.74rem); font-weight: 600; color: var(--color-ink); line-height: 1.2; }
+.module-bar { margin-top: 4px; height: 3px; border-radius: 2px; background: var(--color-line); overflow: hidden; width: 100%; }
 .module-fill { display: block; height: 100%; width: 100%; transform-origin: left center; background: linear-gradient(90deg, var(--color-accent), #8fb8ff); border-radius: 2px; }
 .module--gold .module-fill { background: linear-gradient(90deg, var(--color-gold), #ffd970); }
+.module-switch {
+  margin-top: 4px; width: 22px; height: 11px; border-radius: 999px;
+  background: var(--color-line); position: relative; display: block;
+}
+.module-knob {
+  position: absolute; left: 2px; top: 2px; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--color-accent); box-shadow: 0 0 6px rgba(79, 143, 255, 0.8);
+}
+.module--gold .module-knob { background: var(--color-gold); box-shadow: 0 0 6px rgba(240, 180, 41, 0.8); }
 
-/* Acte 4 : badge « allumé » */
+/* Sortie : badge « allumé » */
 .badge-glow {
   position: absolute; inset: -6%; z-index: 0; pointer-events: none; border-radius: 12%;
   background: radial-gradient(60% 60% at 50% 50%, rgba(79, 143, 255, 0.4), transparent 70%);
   filter: blur(18px);
+}
+
+/* Fallback reduced-motion : crops recadrés sur chaque zone */
+.crop {
+  width: min(100%, 420px); aspect-ratio: 16 / 10;
+  border-radius: 16px; border: 1px solid var(--color-line);
+  background-repeat: no-repeat;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
 }
 
 /* CTA du panneau final */
