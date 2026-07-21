@@ -27,9 +27,9 @@ export default function Footer() {
           <h4 className="mb-3.5 text-[0.82rem] uppercase tracking-[0.1em] text-dim">Contact</h4>
           <a href="mailto:halo.contact@gmail.com" className="mb-2 block text-dim transition-colors hover:text-ink">halo.contact@gmail.com</a>
           <span className="mb-2 block text-dim">Bordeaux et alentours</span>
-          <a href="/legal/mentions.html" className="mb-2 block text-dim transition-colors hover:text-ink">Mentions légales</a>
-          <a href="/legal/cgv.html" className="mb-2 block text-dim transition-colors hover:text-ink">CGV</a>
-          <a href="/legal/confidentialite.html" className="mb-2 block text-dim transition-colors hover:text-ink">Confidentialité</a>
+          <a href={`${import.meta.env.BASE_URL}legal/mentions.html`} className="mb-2 block text-dim transition-colors hover:text-ink">Mentions légales</a>
+          <a href={`${import.meta.env.BASE_URL}legal/cgv.html`} className="mb-2 block text-dim transition-colors hover:text-ink">CGV</a>
+          <a href={`${import.meta.env.BASE_URL}legal/confidentialite.html`} className="mb-2 block text-dim transition-colors hover:text-ink">Confidentialité</a>
         </div>
       </div>
       <div className="mx-auto mt-10 flex max-w-[1180px] flex-wrap justify-between gap-x-5 gap-y-2.5 border-t border-line pt-[22px] text-[0.85rem] text-[#64748B]">

@@ -93,6 +93,8 @@ function BadgeInner() {
   );
 }
 
+const B = import.meta.env.BASE_URL; // "/" en dev, "/halo-site/" en prod (Pages)
+
 function Badge3D({ badgeRef }) {
   return (
     <div className="scrollhero-persp" data-persp>
@@ -100,8 +102,8 @@ function Badge3D({ badgeRef }) {
       <div className="scrollhero-badge" ref={badgeRef}>
         <div className="badge-face badge-face--front">
           <img
-            src="/assets/badge-front.webp"
-            srcSet="/assets/badge-front-500.webp 500w, /assets/badge-front.webp 800w"
+            src={`${B}assets/badge-front.webp`}
+            srcSet={`${B}assets/badge-front-500.webp 500w, ${B}assets/badge-front.webp 800w`}
             sizes="(max-width: 900px) 260px, 360px"
             width={800}
             height={1200}
@@ -113,7 +115,7 @@ function Badge3D({ badgeRef }) {
           <span className="spot spot--contact" aria-hidden="true" />
         </div>
         <div className="badge-face badge-face--back" aria-hidden="true">
-          <img src="/assets/badge-back.webp" srcSet="/assets/badge-back-500.webp 500w, /assets/badge-back.webp 800w" sizes="(max-width: 900px) 260px, 360px" width={800} height={1200} alt="" decoding="async" />
+          <img src={`${B}assets/badge-back.webp`} srcSet={`${B}assets/badge-back-500.webp 500w, ${B}assets/badge-back.webp 800w`} sizes="(max-width: 900px) 260px, 360px" width={800} height={1200} alt="" decoding="async" />
         </div>
       </div>
       <BadgeInner />
@@ -225,7 +227,7 @@ export default function ScrollHero() {
             <div className="scrollhero-persp">
               <div className="scrollhero-badge">
                 <div className="badge-face badge-face--front">
-                  <img src="/assets/badge-front.webp" width={800} height={1200} alt="Fiche Google Business Halo : noté 4,9 sur 5 avec 512 avis, Bordeaux." />
+                  <img src={`${B}assets/badge-front.webp`} width={800} height={1200} alt="Fiche Google Business Halo : noté 4,9 sur 5 avec 512 avis, Bordeaux." />
                 </div>
               </div>
             </div>
