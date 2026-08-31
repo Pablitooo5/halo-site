@@ -18,3 +18,6 @@ dist/
 # Sources / matériaux de marque (pas destinés au site déployé)
 Design.pdf
 *.zip
+
+# Doc de travail interne (stratégie, marges) — ne pas publier
+PROMPT-CONTEXTE-HALO.md
