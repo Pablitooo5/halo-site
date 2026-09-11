@@ -288,19 +288,19 @@ export default function ScrollHero() {
       tl.to('[data-zf="stars"]', { autoAlpha: 1, duration: 0.04 }, "<+0.05");
       copyIn("avis", "<+0.02");
       // le compteur d'avis rejoue, lié au scroll
-      const avisScrub = { v: 0 };
+      const avisScrub = { v: 128 };
+      avisEl.textContent = "128 avis";
       tl.to("[data-patch-avis]", { autoAlpha: 1, duration: 0.02 }, "<")
         .to(avisEl, { autoAlpha: 1, duration: 0.02 }, "<")
         .to(avisScrub, {
-          v: 512, duration: 0.1,
+          v: 512, duration: 0.14, ease: "power2.out",
           onUpdate: () => { avisEl.textContent = `${Math.round(avisScrub.v)} avis`; },
         })
-        .to([avisEl, "[data-patch-avis]"], { autoAlpha: 0, duration: 0.03 })
-        .to({}, { duration: 0.05 });
+        .to({}, { duration: 0.04 });
       segEnds.push(tl.duration());
 
       /* --- Étape 2 : les photos (zoom vignette + miniatures) --- */
-      tl.to('[data-zf="stars"]', { autoAlpha: 0, duration: 0.03 });
+      tl.to(['[data-zf="stars"]', avisEl, "[data-patch-avis]"], { autoAlpha: 0, duration: 0.03 });
       copyOut("avis", "<");
       zoomTo("photo", 0.1, "<");
       tl.to('[data-zf="photo"]', { autoAlpha: 1, duration: 0.04 }, "<+0.05");
