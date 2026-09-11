@@ -132,6 +132,13 @@
 /* Zone texte (les panneaux se croisent en fondu, empilés)
    — au-dessus du badge zoomé, avec ombre pour rester lisible */
 .scrollhero-copy { position: relative; z-index: 4; min-height: 220px; order: 2; }
+/* Voile : garde le texte lisible quand le badge zoomé (blanc) passe dessous */
+.scrollhero-copy::before {
+  content: ""; position: absolute; inset: -12% -42% -12% -45%;
+  z-index: -1; pointer-events: none;
+  background: radial-gradient(72% 62% at 34% 50%,
+    rgba(7, 11, 22, 0.94) 0%, rgba(7, 11, 22, 0.86) 52%, rgba(7, 11, 22, 0) 82%);
+}
 @media (min-width: 900px) { .scrollhero-copy { order: 0; min-height: 300px; } }
 .sh-title, .sh-kicker, .sh-sub { text-shadow: 0 2px 18px rgba(7, 11, 22, 0.85), 0 0 40px rgba(7, 11, 22, 0.6); }
 .sh-text {
@@ -209,15 +216,6 @@
 .zone-frame--photo { left: 59%; top: 55.5%; width: 28%; height: 20%; }
 .zone-frame--contact { left: 17.5%; top: 72.5%; width: 41.5%; height: 10%; }
 
-/* Miniatures photos qui « remplissent » la fiche (étape photos) */
-.mini {
-  position: absolute; border-radius: 10px; opacity: 0;
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
-}
-.mini--1 { left: 44%; top: 55.5%; width: 13.5%; aspect-ratio: 4/3; background: linear-gradient(135deg, #8fb8ff 0%, #35507e 60%, #22314e 100%); }
-.mini--2 { left: 44%; top: 66%; width: 13.5%; aspect-ratio: 4/3; background: linear-gradient(150deg, #ffd970 0%, #b07f1e 55%, #5d431a 100%); }
-.mini--3 { left: 60%; top: 76.5%; width: 15%; aspect-ratio: 5/3; background: linear-gradient(120deg, #cfe0ff 0%, #4f8fff 55%, #1e3a6b 100%); }
 
 /* Pulsation sur l'icône d'appel (étape contact) */
 .pulse-ring {
@@ -250,7 +248,8 @@
   display: flex; flex-direction: column; gap: 12px; list-style: none; margin: 0; padding: 0;
 }
 @media (max-width: 640px) {
-  .scrollhero-dots { flex-direction: row; right: auto; left: 50%; top: auto; bottom: 20px; transform: translateX(-50%); }
+  /* garde les points sur le côté : le bas est occupé par le CTA permanent */
+  .scrollhero-dots { right: 10px; gap: 9px; }
 }
 .scrollhero-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-line); transition: background 0.3s, transform 0.3s; }
 .scrollhero-dot[data-on="true"] { background: var(--color-accent); transform: scale(1.35); box-shadow: 0 0 10px 1px rgba(79,143,255,0.6); }
@@ -299,3 +298,48 @@
   .hero-halo { animation: none !important; opacity: 0.85; }
   .hero-star { animation: none !important; opacity: 0.5; }
 }
+
+/* ============================================================
+   Mots-clés du scrollytelling (hors zoom : taille constante)
+   ============================================================ */
+.sh-chip-row {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 20px; justify-content: center;
+}
+@media (min-width: 900px) { .sh-chip-row { justify-content: flex-start; } }
+.sh-chip {
+  white-space: nowrap;
+  padding: 9px 16px; border-radius: 999px;
+  font-size: clamp(0.72rem, 1.05vw, 0.9rem); font-weight: 600; letter-spacing: 0.01em;
+  color: var(--color-ink);
+  background: rgba(22, 30, 46, 0.82);
+  border: 1px solid rgba(79, 143, 255, 0.55);
+  box-shadow: 0 0 0 1px rgba(79, 143, 255, 0.12), 0 10px 30px rgba(7, 11, 22, 0.55),
+    0 0 22px rgba(79, 143, 255, 0.22);
+  backdrop-filter: blur(6px);
+}
+.sh-chip--gold {
+  border-color: rgba(240, 180, 41, 0.6);
+  box-shadow: 0 0 0 1px rgba(240, 180, 41, 0.14), 0 10px 30px rgba(7, 11, 22, 0.55),
+    0 0 22px rgba(240, 180, 41, 0.22);
+}
+
+
+
+/* ============================================================
+   CTA permanent pendant la séquence
+   ============================================================ */
+.sh-sticky-cta {
+  position: absolute; z-index: 6; left: 50%; bottom: 20px; transform: translateX(-50%);
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 13px 26px; border-radius: 999px; white-space: nowrap;
+  background: var(--color-accent); color: #06101f;
+  font-weight: 600; font-size: clamp(0.86rem, 1.1vw, 0.98rem);
+  box-shadow: 0 8px 30px rgba(79, 143, 255, 0.4);
+  transition: box-shadow 0.25s var(--ease-out-soft), filter 0.25s var(--ease-out-soft);
+}
+.sh-sticky-cta:hover { box-shadow: 0 14px 42px rgba(79, 143, 255, 0.6); filter: brightness(1.05); }
+@media (min-width: 900px) {
+  .sh-sticky-cta { left: 24px; right: auto; bottom: 34px; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .sh-chip { opacity: 1 !important; transform: none !important; } }

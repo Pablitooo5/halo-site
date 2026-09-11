@@ -20,6 +20,11 @@ const ZONES = {
   center: { cx: 0.5, cy: 0.5, scale: 1 },
 };
 
+const CHIPS = {
+  avis: ["Réponse sous 24 h", "100 % des avis", "Collecte au comptoir"],
+  photos: ["Devanture", "Intérieur", "Équipe", "Produits"],
+};
+
 const STAR_PATH = "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z";
 
 /* ---------- Sous-composants ---------- */
@@ -41,6 +46,11 @@ function CopyPanels() {
           des gens évitent un commerce de moins de 20 avis.
         </h2>
         <p className="sh-sub">Je collecte les vôtres, et je réponds à chacun.</p>
+        <div className="sh-chip-row">
+          {CHIPS.avis.map((t) => (
+            <span key={t} className="sh-chip sh-chip--gold" data-chip="avis">{t}</span>
+          ))}
+        </div>
       </div>
       <div className="sh-text" data-step="photos">
         <p className="sh-kicker">Les photos</p>
@@ -49,6 +59,11 @@ function CopyPanels() {
           plus de clics pour une fiche complète.
         </h2>
         <p className="sh-sub">Je viens photographier votre établissement.</p>
+        <div className="sh-chip-row">
+          {CHIPS.photos.map((t) => (
+            <span key={t} className="sh-chip" data-chip="photos">{t}</span>
+          ))}
+        </div>
       </div>
       <div className="sh-text" data-step="contact">
         <p className="sh-kicker">Le contact</p>
@@ -63,7 +78,6 @@ function CopyPanels() {
         <h2 className="sh-title">
           Elle brille. <span className="sh-accent">Vous récupérez les appels.</span>
         </h2>
-        <a className="sh-cta" href="#contact">Voir ce que Google montre de moi</a>
       </div>
     </>
   );
@@ -100,9 +114,6 @@ function BadgeStack() {
                   <span className="zone-frame zone-frame--stars" data-zf="stars" />
                   <span className="zone-frame zone-frame--photo" data-zf="photo" />
                   <span className="zone-frame zone-frame--contact" data-zf="contact" />
-                  <span className="mini mini--1" />
-                  <span className="mini mini--2" />
-                  <span className="mini mini--3" />
                   <span className="pulse-ring" data-pulse />
                 </div>
               </div>
@@ -213,7 +224,8 @@ export default function ScrollHero() {
       gsap.set(starsEl, { autoAlpha: 0.18 });
       gsap.set(".ov-star", { autoAlpha: 0, scale: 0.2, transformOrigin: "50% 50%" });
       gsap.set([noteEl, avisEl], { autoAlpha: 0 });
-      gsap.set(".zone-frame, .mini, [data-pulse], [data-glow]", { autoAlpha: 0 });
+      gsap.set(".zone-frame, [data-pulse], [data-glow]", { autoAlpha: 0 });
+      gsap.set(".sh-chip", { autoAlpha: 0, y: 16 });
 
       const floatTween = gsap.to(floatEl, {
         y: 10, duration: 2.3, yoyo: true, repeat: -1, ease: "sine.inOut", paused: true,
@@ -288,30 +300,23 @@ export default function ScrollHero() {
       tl.to('[data-zf="stars"]', { autoAlpha: 1, duration: 0.04 }, "<+0.05");
       copyIn("avis", "<+0.02");
       // le compteur d'avis rejoue, lié au scroll
-      const avisScrub = { v: 128 };
-      avisEl.textContent = "128 avis";
-      tl.to("[data-patch-avis]", { autoAlpha: 1, duration: 0.02 }, "<")
-        .to(avisEl, { autoAlpha: 1, duration: 0.02 }, "<")
-        .to(avisScrub, {
-          v: 512, duration: 0.14, ease: "power2.out",
-          onUpdate: () => { avisEl.textContent = `${Math.round(avisScrub.v)} avis`; },
-        })
-        .to({}, { duration: 0.04 });
+      tl.to('[data-chip="avis"]', { autoAlpha: 1, y: 0, duration: 0.05, stagger: 0.05, ease: "back.out(1.5)" }, "<")
+        .to({}, { duration: 0.08 });
       segEnds.push(tl.duration());
 
       /* --- Étape 2 : les photos (zoom vignette + miniatures) --- */
-      tl.to(['[data-zf="stars"]', avisEl, "[data-patch-avis]"], { autoAlpha: 0, duration: 0.03 });
+      tl.to(['[data-zf="stars"]', '[data-chip="avis"]'], { autoAlpha: 0, duration: 0.03 });
       copyOut("avis", "<");
       zoomTo("photo", 0.1, "<");
       tl.to('[data-zf="photo"]', { autoAlpha: 1, duration: 0.04 }, "<+0.05");
       copyIn("photos", "<+0.02");
-      tl.to(".mini", { autoAlpha: 1, scale: 1, y: 0, duration: 0.05, stagger: 0.045, ease: "back.out(1.6)" }, "<")
+      tl.to('[data-chip="photos"]', { autoAlpha: 1, y: 0, duration: 0.05, stagger: 0.05, ease: "back.out(1.5)" }, "<")
         .to({}, { duration: 0.07 });
       segEnds.push(tl.duration());
 
       /* --- Étape 3 : le contact (desktop uniquement) --- */
       if (!isMobile) {
-        tl.to(['[data-zf="photo"]', ".mini"], { autoAlpha: 0, duration: 0.03 });
+        tl.to(['[data-zf="photo"]', '[data-chip="photos"]'], { autoAlpha: 0, duration: 0.03 });
         copyOut("photos", "<");
         zoomTo("contact", 0.1, "<");
         tl.to('[data-zf="contact"]', { autoAlpha: 1, duration: 0.04 }, "<+0.05");
@@ -322,7 +327,7 @@ export default function ScrollHero() {
       }
 
       /* --- Étape finale : dézoom, la fiche entière s'allume --- */
-      tl.to(".zone-frame, .mini, [data-pulse]", { autoAlpha: 0, duration: 0.03 });
+      tl.to(".zone-frame, .sh-chip, [data-pulse]", { autoAlpha: 0, duration: 0.03 });
       copyOut(isMobile ? "photos" : "contact", "<");
       tl.to(zoomEl, { scale: 1, x: 0, y: 0, duration: 0.12, ease: "power1.out" }, "<")
         .to(haloEl, { autoAlpha: 1, scale: 1.1, duration: 0.12 }, "<")
@@ -372,6 +377,8 @@ export default function ScrollHero() {
             <BadgeStack />
           </div>
         </div>
+
+        <a className="sh-sticky-cta" href="#contact">Voir ce que Google montre de moi</a>
 
         <ul className="scrollhero-dots" aria-hidden="true">
           {Array.from({ length: dotCount }, (_, i) => (
