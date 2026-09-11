@@ -28,7 +28,7 @@ export default function Footer() {
           <a href="mailto:halo.contact@gmail.com" className="mb-2 block text-dim transition-colors hover:text-ink">halo.contact@gmail.com</a>
           <span className="mb-2 block text-dim">Bordeaux et alentours</span>
           <a href={`${import.meta.env.BASE_URL}legal/mentions.html`} className="mb-2 block text-dim transition-colors hover:text-ink">Mentions légales</a>
-          <a href={`${import.meta.env.BASE_URL}legal/cgv.html`} className="mb-2 block text-dim transition-colors hover:text-ink">CGV</a>
+          <a href={`${import.meta.env.BASE_URL}legal/cgv.html`} className="mb-2 block text-dim transition-colors hover:text-ink">Conditions de prestation</a>
           <a href={`${import.meta.env.BASE_URL}legal/confidentialite.html`} className="mb-2 block text-dim transition-colors hover:text-ink">Confidentialité</a>
         </div>
       </div>
