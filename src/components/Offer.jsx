@@ -7,16 +7,16 @@ export default function Offer() {
   return (
     <section id="offre" className="py-16 md:py-28">
       <SectionHead eyebrow="L'offre">
-        Tout ce que Halo gère <span className="text-accent">pour vous.</span>
+        Deux choses, <span className="text-accent">faites correctement.</span>
       </SectionHead>
 
-      <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-[22px] px-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto grid max-w-[980px] grid-cols-1 gap-[22px] px-6 md:grid-cols-2">
         {offers.map((o, i) => {
           const Icon = icons[o.icon];
           return (
             <Reveal
               key={o.title}
-              delay={(i % 3) * 60}
+              delay={(i % 2) * 80}
               className={`relative overflow-hidden rounded-[18px] border p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.35)] ${
                 o.feature
                   ? "border-accent/50 shadow-[0_0_0_1px_rgba(79,143,255,0.25),0_24px_60px_rgba(79,143,255,0.10)]"

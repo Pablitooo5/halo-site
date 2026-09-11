@@ -65,7 +65,7 @@ export default function Contact() {
       <div className="relative z-10">
         <SectionHead
           eyebrow="Audit gratuit"
-          lead="On analyse votre fiche, on la compare à vos concurrents, et on vous dit quoi améliorer. Sans engagement."
+          lead="Je regarde votre fiche, je la compare à trois concurrents de votre rue, et je vous envoie le constat. Gratuit, sans engagement, sans suite obligatoire."
         >
           Découvrez où vous en êtes. <span className="text-accent">Gratuitement.</span>
         </SectionHead>

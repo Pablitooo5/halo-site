@@ -1,7 +1,6 @@
 import Reveal from "./Reveal.jsx";
 import SectionHead from "./SectionHead.jsx";
-import { Star } from "./Icons.jsx";
-import { plans } from "../data.js";
+import { pricing } from "../data.js";
 
 function Check() {
   return (
@@ -17,33 +16,26 @@ export default function Pricing() {
   return (
     <section id="tarifs" className="py-16 md:py-28">
       <SectionHead eyebrow="Les tarifs">
-        Des prix clairs, <span className="text-accent">affichés.</span>
+        Deux lignes, <span className="text-accent">affichées.</span>
       </SectionHead>
 
-      {/* Setup */}
-      <Reveal className="mx-auto mb-7 flex max-w-[1180px] flex-col items-start justify-between gap-2 rounded-[18px] border border-dashed border-line bg-surface px-6 py-[22px] sm:flex-row sm:items-center md:px-7">
-        <div>
-          <span className="font-display text-2xl font-bold">Setup initial · 290 €</span>{" "}
-          <span className="font-semibold text-accent">— offert dès 6 mois d'abonnement</span>
-        </div>
-        <span className="text-[0.95rem] text-dim">Optimisation complète + shooting photo de départ.</span>
+      <Reveal as="p" className="mx-auto -mt-4 mb-10 max-w-[640px] px-6 text-center text-[1.02rem] text-dim">
+        Pas de devis à rallonge, pas de prix sur demande. Voilà ce que ça coûte.
       </Reveal>
 
-      {/* Formules */}
-      <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-stretch gap-[22px] px-6 md:grid-cols-3">
-        {plans.map((p, i) => (
+      <div className="mx-auto grid max-w-[880px] grid-cols-1 items-stretch gap-[22px] px-6 md:grid-cols-2">
+        {pricing.map((p, i) => (
           <Reveal
             key={p.name}
-            delay={i * 60}
-            className={`relative flex flex-col rounded-[18px] border p-[30px] transition-transform duration-300 hover:-translate-y-1 ${
+            delay={i * 80}
+            className={`relative flex flex-col rounded-[18px] border p-[30px] ${
               p.featured
-                ? "order-first border-accent shadow-[0_0_0_1px_rgba(79,143,255,0.3),0_26px_70px_rgba(79,143,255,0.14)] md:order-none"
-                : "border-line bg-surface hover:border-[#33465f]"
+                ? "border-accent shadow-[0_0_0_1px_rgba(79,143,255,0.3),0_26px_70px_rgba(79,143,255,0.14)]"
+                : "border-line bg-surface"
             }`}
           >
             {p.badge && (
-              <span className="absolute -top-[13px] left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-accent px-3.5 py-[5px] text-[0.76rem] font-bold text-[#06101f]">
-                <Star className="text-gold" filled />
+              <span className="absolute -top-[13px] left-1/2 inline-flex -translate-x-1/2 items-center whitespace-nowrap rounded-full bg-accent px-3.5 py-[5px] text-[0.76rem] font-bold text-[#06101f]">
                 {p.badge}
               </span>
             )}
@@ -54,7 +46,7 @@ export default function Pricing() {
               {p.price}
               <span className="font-body text-base font-medium text-dim"> {p.period}</span>
             </div>
-            <ul className="my-6 grid gap-3">
+            <ul className="mt-6 grid gap-3">
               {p.items.map((it) => (
                 <li key={it} className="relative pl-7 text-[0.96rem] text-dim">
                   <Check />
@@ -62,30 +54,22 @@ export default function Pricing() {
                 </li>
               ))}
             </ul>
-            <a
-              href="#contact"
-              className={`mt-auto inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold transition-all duration-200 hover:-translate-y-0.5 ${
-                p.featured
-                  ? "bg-accent text-[#06101f] shadow-[0_8px_30px_rgba(79,143,255,0.28)]"
-                  : "border border-line text-ink hover:border-accent hover:bg-accent/15"
-              }`}
-            >
-              Commencer par un audit
-            </a>
           </Reveal>
         ))}
       </div>
 
-      <Reveal as="p" className="mx-auto mt-7 max-w-[1180px] px-6 text-center text-[0.98rem] text-dim">
-        Option visibilité IA <span className="text-ink">+79 €/mois</span> · Supports NFC/QR{" "}
-        <span className="text-ink">dès 39 €</span> · <span className="text-ink">Tarif dégressif</span> multi-établissements. Tout sans engagement.
+      <Reveal as="p" className="mx-auto mt-8 max-w-[880px] px-6 text-center text-[0.98rem] text-dim">
+        Plaque supplémentaire <span className="text-ink">29 €</span> · Tarif dégressif pour plusieurs établissements.
+        <br className="hidden sm:block" />
+        <span className="text-dim">Rien ne se souscrit ni ne se paie sur ce site : on commence toujours par un audit gratuit.</span>
       </Reveal>
-      <Reveal className="mt-7 text-center">
+
+      <Reveal className="mt-8 text-center">
         <a
           href="#contact"
           className="inline-flex items-center justify-center rounded-full bg-accent px-7 py-3.5 text-[1.02rem] font-semibold text-[#06101f] shadow-[0_8px_30px_rgba(79,143,255,0.28)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(79,143,255,0.42)]"
         >
-          Commencer par un audit gratuit
+          Demander mon audit gratuit
         </a>
       </Reveal>
     </section>

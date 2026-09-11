@@ -20,17 +20,6 @@ const ZONES = {
   center: { cx: 0.5, cy: 0.5, scale: 1 },
 };
 
-const MODULES = [
-  { label: "Catégorie", ctrl: "switch" },
-  { label: "Attributs", ctrl: "bar" },
-  { label: "Description", ctrl: "bar" },
-  { label: "Services", ctrl: "switch" },
-  { label: "Photos", ctrl: "bar" },
-  { label: "Avis", ctrl: "switch", gold: true },
-  { label: "Cohérence des infos", ctrl: "bar" },
-  { label: "Visibilité IA (GEO)", ctrl: "switch" },
-];
-
 const STAR_PATH = "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z";
 
 /* ---------- Sous-composants ---------- */
@@ -39,10 +28,10 @@ function CopyPanels() {
   return (
     <>
       <div className="sh-text" data-step="intro">
-        <p className="sh-kicker intro-el">Fiches Google Business · Bordeaux</p>
+        <p className="sh-kicker intro-el">Photos &amp; avis Google · Bordeaux</p>
         <h1 className="sh-title">
-          <span className="intro-line intro-el">Vos clients vous cherchent.</span>
-          <span className="intro-line intro-el sh-accent">Encore faut-il qu'ils vous trouvent.</span>
+          <span className="intro-line intro-el">Je photographie votre commerce.</span>
+          <span className="intro-line intro-el sh-accent">Je réponds à tous vos avis.</span>
         </h1>
       </div>
       <div className="sh-text" data-step="avis">
@@ -51,7 +40,7 @@ function CopyPanels() {
           <span className="sh-num sh-num--gold">47 %</span>
           des gens évitent un commerce de moins de 20 avis.
         </h2>
-        <p className="sh-sub">On collecte les vôtres, et on répond à chacun.</p>
+        <p className="sh-sub">Je collecte les vôtres, et je réponds à chacun.</p>
       </div>
       <div className="sh-text" data-step="photos">
         <p className="sh-kicker">Les photos</p>
@@ -59,7 +48,7 @@ function CopyPanels() {
           <span className="sh-num sh-num--accent">7×</span>
           plus de clics pour une fiche complète.
         </h2>
-        <p className="sh-sub">On vient photographier votre établissement.</p>
+        <p className="sh-sub">Je viens photographier votre établissement.</p>
       </div>
       <div className="sh-text" data-step="contact">
         <p className="sh-kicker">Le contact</p>
@@ -69,47 +58,14 @@ function CopyPanels() {
         </h2>
         <p className="sh-sub">C'est ici que se déclenche l'appel.</p>
       </div>
-      <div className="sh-text" data-step="inside">
-        <p className="sh-kicker">La mécanique</p>
-        <h2 className="sh-title">
-          Derrière la vitrine, <span className="sh-accent">des dizaines de réglages.</span>
-        </h2>
-        <p className="sh-sub">C'est notre travail. Vos clients n'en verront jamais que le résultat.</p>
-      </div>
       <div className="sh-text" data-step="final">
-        <p className="sh-kicker">Votre fiche, optimisée</p>
+        <p className="sh-kicker">Votre fiche, vivante</p>
         <h2 className="sh-title">
           Elle brille. <span className="sh-accent">Vous récupérez les appels.</span>
         </h2>
         <a className="sh-cta" href="#contact">Recevoir mon audit gratuit</a>
       </div>
     </>
-  );
-}
-
-function BadgeInner() {
-  return (
-    <div className="badge-inner" aria-hidden="true">
-      <p className="badge-inner-title">Réglages Halo</p>
-      <svg className="badge-inner-spine" viewBox="0 0 2 100" preserveAspectRatio="none">
-        <path className="spine-path" d="M1 0 V100" pathLength="1" />
-      </svg>
-      <ul className="badge-modules">
-        {MODULES.map((m) => (
-          <li key={m.label} className={`module ${m.gold ? "module--gold" : ""}`}>
-            <span className="module-dot" />
-            <span style={{ flex: 1, minWidth: 0 }}>
-              <span className="module-label">{m.label}</span>
-              {m.ctrl === "bar" ? (
-                <span className="module-bar"><span className="module-fill" /></span>
-              ) : (
-                <span className="module-switch"><span className="module-knob" /></span>
-              )}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }
 
@@ -152,7 +108,6 @@ function BadgeStack() {
               </div>
             </div>
           </div>
-          <BadgeInner />
           <div className="power-flash" data-flash aria-hidden="true" />
         </div>
       </div>
@@ -185,20 +140,20 @@ function StaticFallback() {
         <Reveal>
           <div className="sh-text">
             <p className="sh-kicker">Fiches Google Business · Bordeaux</p>
-            <h1 className="sh-title">Vos clients vous cherchent. <span className="sh-accent">Encore faut-il qu'ils vous trouvent.</span></h1>
+            <h1 className="sh-title">Je photographie votre commerce. <span className="sh-accent">Je réponds à tous vos avis.</span></h1>
           </div>
         </Reveal>
         <Reveal>
           <div className="sh-text">
             <h2 className="sh-title"><span className="sh-num sh-num--gold">47 %</span>des gens évitent un commerce de moins de 20 avis.</h2>
-            <p className="sh-sub">On collecte les vôtres, et on répond à chacun.</p>
+            <p className="sh-sub">Je collecte les vôtres, et je réponds à chacun.</p>
           </div>
         </Reveal>
         <Reveal><div className="crop" style={cropStyle(0.545, 0.45, 2.2)} role="img" aria-label="Zoom sur la note 4,9 et les avis de la fiche" /></Reveal>
         <Reveal>
           <div className="sh-text">
             <h2 className="sh-title"><span className="sh-num sh-num--accent">7×</span>plus de clics pour une fiche complète.</h2>
-            <p className="sh-sub">On vient photographier votre établissement.</p>
+            <p className="sh-sub">Je viens photographier votre établissement.</p>
           </div>
         </Reveal>
         <Reveal><div className="crop" style={cropStyle(0.73, 0.655, 2.2)} role="img" aria-label="Zoom sur les photos de la fiche" /></Reveal>
@@ -209,13 +164,6 @@ function StaticFallback() {
           </div>
         </Reveal>
         <Reveal><div className="crop" style={cropStyle(0.38, 0.775, 2.4)} role="img" aria-label="Zoom sur les boutons d'appel et d'itinéraire" /></Reveal>
-        <Reveal>
-          <div className="sh-text">
-            <p className="sh-kicker">La mécanique</p>
-            <h2 className="sh-title">Derrière la vitrine, <span className="sh-accent">des dizaines de réglages.</span></h2>
-          </div>
-        </Reveal>
-        <Reveal style={{ width: "min(100%, 360px)" }}><BadgeInner /></Reveal>
         <Reveal>
           <div className="sh-text">
             <h2 className="sh-title">Elle brille. <span className="sh-accent">Vous récupérez les appels.</span></h2>
@@ -234,7 +182,7 @@ export default function ScrollHero() {
   const stage = useRef(null);
   const introRef = useRef(null);
   const [act, setAct] = useState(0);
-  const [dotCount, setDotCount] = useState(5);
+  const [dotCount, setDotCount] = useState(4);
 
   useGSAP(
     () => {
@@ -266,11 +214,6 @@ export default function ScrollHero() {
       gsap.set(".ov-star", { autoAlpha: 0, scale: 0.2, transformOrigin: "50% 50%" });
       gsap.set([noteEl, avisEl], { autoAlpha: 0 });
       gsap.set(".zone-frame, .mini, [data-pulse], [data-glow]", { autoAlpha: 0 });
-      gsap.set(".badge-inner", { autoAlpha: 0 });
-      gsap.set(".spine-path", { strokeDasharray: 1, strokeDashoffset: 1 });
-      gsap.set(".module", { autoAlpha: 0, x: -12 });
-      gsap.set(".module-fill", { scaleX: 0 });
-      gsap.set(".module-knob", { x: 0 });
 
       const floatTween = gsap.to(floatEl, {
         y: 10, duration: 2.3, yoyo: true, repeat: -1, ease: "sine.inOut", paused: true,
@@ -313,7 +256,7 @@ export default function ScrollHero() {
         scrollTrigger: {
           trigger: root.current,
           start: "top top",
-          end: isMobile ? "+=300%" : "+=350%",
+          end: isMobile ? "+=225%" : "+=280%",
           pin: stage.current,
           scrub: 0.6,
           invalidateOnRefresh: true,
@@ -378,30 +321,13 @@ export default function ScrollHero() {
         segEnds.push(tl.duration());
       }
 
-      /* --- Étape 4 : dézoom + plongée à l'intérieur --- */
+      /* --- Étape finale : dézoom, la fiche entière s'allume --- */
       tl.to(".zone-frame, .mini, [data-pulse]", { autoAlpha: 0, duration: 0.03 });
       copyOut(isMobile ? "photos" : "contact", "<");
-      zoomTo("center", 0.1, "<");
-      tl.to(zoomEl, { scale: 1.55, duration: 0.1, ease: "power1.in" })
-        .to(badgeEl, { autoAlpha: 0, duration: 0.07 }, "<+0.03")
-        .to(haloEl, { autoAlpha: 1, scale: 1.2, duration: 0.1 }, "<")
-        .to(".badge-inner", { autoAlpha: 1, duration: 0.07 }, "<");
-      copyIn("inside");
-      tl.to(".spine-path", { strokeDashoffset: 0, duration: 0.18 }, "<")
-        .to(".module", { autoAlpha: 1, x: 0, duration: 0.045, stagger: 0.045 }, "<+0.03")
-        .to(".module-fill", { scaleX: 1, duration: 0.04, stagger: 0.045 }, "<+0.02")
-        .to(".module-knob", { x: 11, duration: 0.03, stagger: 0.045 }, "<")
-        .to({}, { duration: 0.06 });
-      segEnds.push(tl.duration());
-
-      /* --- Étape 5 : la sortie, fiche allumée --- */
-      copyOut("inside");
-      tl.to(".badge-inner", { autoAlpha: 0, duration: 0.06 })
-        .to(badgeEl, { autoAlpha: 1, duration: 0.07 }, "<")
-        .to(zoomEl, { scale: 1, x: 0, y: 0, duration: 0.1, ease: "power1.out" }, "<")
-        .to(haloEl, { scale: 1.06, duration: 0.08 }, "<")
-        .to("[data-glow]", { autoAlpha: 1, duration: 0.06 }, "-=0.04");
-      copyIn("final");
+      tl.to(zoomEl, { scale: 1, x: 0, y: 0, duration: 0.12, ease: "power1.out" }, "<")
+        .to(haloEl, { autoAlpha: 1, scale: 1.1, duration: 0.12 }, "<")
+        .to("[data-glow]", { autoAlpha: 1, duration: 0.07 }, "-=0.05");
+      copyIn("final", "-=0.08");
       tl.to({}, { duration: 0.1 });
       segEnds.push(tl.duration());
 
@@ -433,7 +359,7 @@ export default function ScrollHero() {
   if (reduceMotion()) return <StaticFallback />;
 
   return (
-    <section ref={root} className="relative" aria-label="Ce que vos clients voient sur Google — et ce que Halo règle derrière">
+    <section ref={root} className="relative" aria-label="Ce que vos clients voient sur votre fiche Google">
       <div ref={stage} className="scrollhero-stage">
         <Starfield />
         <div className="hero-halo" aria-hidden="true" />
