@@ -26,9 +26,9 @@ export default function Contact() {
     };
 
     const mailtoFallback = () => {
-      const subject = `Demande d'audit gratuit — ${data.entreprise}`;
+      const subject = `Demande d'état des lieux — ${data.entreprise}`;
       const body =
-        `Bonjour,\n\nJe souhaite recevoir un audit gratuit de ma fiche Google.\n\n` +
+        `Bonjour,\n\nJe souhaite recevoir un état des lieux de ma fiche Google.\n\n` +
         `Entreprise : ${data.entreprise}\nVille : ${data.ville}\nEmail : ${data.email}\n` +
         `Téléphone : ${data.telephone || "—"}\n\nMerci !`;
       window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -64,17 +64,17 @@ export default function Contact() {
       />
       <div className="relative z-10">
         <SectionHead
-          eyebrow="Audit gratuit"
-          lead="Je regarde votre fiche, je la compare à trois concurrents de votre rue, et je vous envoie le constat. Gratuit, sans engagement, sans suite obligatoire."
+          eyebrow="État des lieux gratuit"
+          lead="Je regarde votre fiche, je la compare à trois commerces de votre rue, et je vous envoie ce que j'ai noté — plus deux photos de votre devanture si je passe dans le quartier. Gratuit, sans suite obligatoire."
         >
-          Découvrez où vous en êtes. <span className="text-accent">Gratuitement.</span>
+          Voyez ce que Google <span className="text-accent">montre de vous.</span>
         </SectionHead>
 
         <Reveal className="mx-auto max-w-[620px] px-6">
           {sent ? (
             <div className="rounded-xl border border-accent/40 bg-accent/15 p-6 text-center" role="status" aria-live="polite">
               <h3 className="mb-1.5 text-xl font-semibold">C'est reçu.</h3>
-              <p className="text-dim">Vous recevez votre audit sous 48h à l'adresse indiquée.</p>
+              <p className="text-dim">Vous recevez votre état des lieux sous 48h à l'adresse indiquée.</p>
             </div>
           ) : (
             <form onSubmit={onSubmit} noValidate className="grid gap-[18px] rounded-[18px] border border-line bg-surface p-6 md:p-10">
@@ -103,7 +103,7 @@ export default function Contact() {
                 disabled={busy}
                 className="mt-1 inline-flex w-full items-center justify-center rounded-full bg-accent px-7 py-3.5 text-[1.02rem] font-semibold text-[#06101f] shadow-[0_8px_30px_rgba(79,143,255,0.28)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(79,143,255,0.42)] disabled:opacity-70"
               >
-                {busy ? "Envoi…" : "Recevoir mon audit"}
+                {busy ? "Envoi…" : "Recevoir mon état des lieux"}
               </button>
               <p className="mt-1.5 text-center text-[0.86rem] text-dim">
                 Réponse sous 48h · Sans engagement · Vos données ne sont pas revendues.

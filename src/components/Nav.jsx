@@ -37,7 +37,7 @@ export default function Nav() {
           href="#contact"
           className="ml-1 hidden rounded-full bg-accent px-5 py-2.5 text-[0.95rem] font-semibold text-[#06101f] shadow-[0_8px_30px_rgba(79,143,255,0.28)] transition-transform duration-200 hover:-translate-y-0.5 md:inline-flex"
         >
-          Audit gratuit
+          Mon état des lieux
         </a>
 
         <button
@@ -65,7 +65,7 @@ export default function Nav() {
             className="mt-1 rounded-full bg-accent px-5 py-2.5 text-center font-semibold text-[#06101f]"
             onClick={() => setOpen(false)}
           >
-            Audit gratuit
+            Mon état des lieux
           </a>
         </div>
       )}

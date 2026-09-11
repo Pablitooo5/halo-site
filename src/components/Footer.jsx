@@ -18,7 +18,7 @@ export default function Footer() {
             ["#offre", "L'offre"],
             ["#tarifs", "Tarifs"],
             ["#etapes", "Comment ça marche"],
-            ["#contact", "Audit gratuit"],
+            ["#contact", "Voir ce que Google montre de moi"],
           ].map(([href, label]) => (
             <a key={href} href={href} className="mb-2 block text-dim transition-colors hover:text-ink">{label}</a>
           ))}

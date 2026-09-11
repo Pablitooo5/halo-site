@@ -63,7 +63,7 @@ function CopyPanels() {
         <h2 className="sh-title">
           Elle brille. <span className="sh-accent">Vous récupérez les appels.</span>
         </h2>
-        <a className="sh-cta" href="#contact">Recevoir mon audit gratuit</a>
+        <a className="sh-cta" href="#contact">Voir ce que Google montre de moi</a>
       </div>
     </>
   );
@@ -167,7 +167,7 @@ function StaticFallback() {
         <Reveal>
           <div className="sh-text">
             <h2 className="sh-title">Elle brille. <span className="sh-accent">Vous récupérez les appels.</span></h2>
-            <a className="sh-cta" href="#contact" style={{ alignSelf: "center" }}>Recevoir mon audit gratuit</a>
+            <a className="sh-cta" href="#contact" style={{ alignSelf: "center" }}>Voir ce que Google montre de moi</a>
           </div>
         </Reveal>
       </div>

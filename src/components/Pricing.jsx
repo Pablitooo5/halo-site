@@ -61,7 +61,7 @@ export default function Pricing() {
       <Reveal as="p" className="mx-auto mt-8 max-w-[880px] px-6 text-center text-[0.98rem] text-dim">
         Plaque supplémentaire <span className="text-ink">29 €</span> · Tarif dégressif pour plusieurs établissements.
         <br className="hidden sm:block" />
-        <span className="text-dim">Rien ne se souscrit ni ne se paie sur ce site : on commence toujours par un audit gratuit.</span>
+        <span className="text-dim">Rien ne se souscrit ni ne se paie sur ce site : on commence toujours par un état des lieux gratuit.</span>
       </Reveal>
 
       <Reveal className="mt-8 text-center">
@@ -69,7 +69,7 @@ export default function Pricing() {
           href="#contact"
           className="inline-flex items-center justify-center rounded-full bg-accent px-7 py-3.5 text-[1.02rem] font-semibold text-[#06101f] shadow-[0_8px_30px_rgba(79,143,255,0.28)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(79,143,255,0.42)]"
         >
-          Demander mon audit gratuit
+          Voir ce que Google montre de moi
         </a>
       </Reveal>
     </section>
