@@ -1,4 +1,3 @@
-import { Ring } from "./Icons.jsx";
 import { CONTACT_EMAIL } from "../data.js";
 
 const legal = [
@@ -9,31 +8,29 @@ const legal = [
 
 export default function Footer() {
   return (
-    <footer className="bg-paper">
-      <div className="mx-auto flex max-w-[1080px] flex-col gap-6 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+    <footer>
+      <div className="mx-auto flex max-w-[1020px] flex-col gap-8 px-6 py-12 sm:flex-row sm:justify-between">
         <div>
-          <div className="flex items-center gap-2.5 font-display text-[1.1rem] font-bold">
-            <Ring size={16} /> Halo
-          </div>
-          <p className="mt-2 text-[0.9rem] text-muted">
+          <p className="font-display text-[1.35rem]">Halooo</p>
+          <p className="mt-2 text-[0.92rem] text-muted">
             Photos et avis Google · Bordeaux et alentours
           </p>
-          <a href={`mailto:${CONTACT_EMAIL}`} className="mt-1 inline-block text-[0.9rem] text-accent hover:underline">
+          <a href={`mailto:${CONTACT_EMAIL}`} className="mt-1 inline-block border-b border-rule text-[0.92rem]">
             {CONTACT_EMAIL}
           </a>
         </div>
 
-        <div className="flex flex-wrap gap-x-5 gap-y-2 text-[0.85rem] text-muted">
+        <ul className="grid gap-2 text-[0.88rem] text-muted sm:text-right">
           {legal.map(([href, label]) => (
-            <a key={href} href={`${import.meta.env.BASE_URL}${href}`} className="hover:text-ink">
-              {label}
-            </a>
+            <li key={href}>
+              <a href={`${import.meta.env.BASE_URL}${href}`} className="hover:text-ink">{label}</a>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
-      <div className="border-t border-line">
-        <p className="mx-auto max-w-[1080px] px-6 py-5 text-[0.82rem] text-muted">
-          © {new Date().getFullYear()} Halo · Sans engagement — vous restez propriétaire de votre fiche.
+      <div className="border-t border-rule">
+        <p className="mx-auto max-w-[1020px] px-6 py-5 text-[0.82rem] text-muted">
+          © {new Date().getFullYear()} Halooo · Sans engagement — vous restez propriétaire de votre fiche.
         </p>
       </div>
     </footer>

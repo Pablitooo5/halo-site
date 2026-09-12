@@ -2,33 +2,33 @@
 // les seuls chiffres cités sont des chiffres de marché, pas des résultats Halo.
 
 export const CONTACT_EMAIL = "halo.contact@gmail.com";
-// Remplacer par l'endpoint Formspree ; tant que "REMPLACER" est présent, repli mailto.
+// Remplacer par l’endpoint Formspree ; tant que "REMPLACER" est présent, repli mailto.
 export const FORMSPREE_ENDPOINT = "https://formspree.io/f/REMPLACER_ICI";
 
 /* ------------------------------------------------------------------
    PHOTOS — pour afficher une vraie photo, poser le fichier dans
    public/assets/photos/ et renseigner "src" (chemin SANS slash initial,
    il passe par BASE_URL). Tant que src vaut null, un emplacement
-   balisé s'affiche à la place.
+   balisé s’affiche à la place.
    ------------------------------------------------------------------ */
 export const heroPhoto = {
   src: null, // ex. "assets/photos/devanture.jpg"
-  alt: "Devanture d'un commerce bordelais photographiée pour sa fiche Google",
-  slot: "Photo d'une devanture",
-  hint: "Format portrait, 4:5",
+  alt: "Devanture d’un commerce bordelais photographiée pour sa fiche Google",
+  slot: "Photo d’une devanture",
+  hint: "format paysage, 5:4",
 };
 
 export const workPhotos = [
-  { src: null, alt: "Intérieur d'un commerce", slot: "Intérieur", hint: "4:3" },
+  { src: null, alt: "Intérieur d’un commerce", slot: "Intérieur", hint: "4:3" },
   { src: null, alt: "Produits en vitrine", slot: "Produits", hint: "4:3" },
-  { src: null, alt: "Le commerçant dans sa boutique", slot: "L'équipe", hint: "4:3" },
+  { src: null, alt: "Le commerçant dans sa boutique", slot: "L’équipe", hint: "4:3" },
 ];
 
 export const portrait = {
   src: null, // ex. "assets/photos/pablo.jpg"
   alt: "Pablo, fondateur de Halo",
   slot: "Photo de moi",
-  hint: "Portrait, carré",
+  hint: "portrait, 4:5",
 };
 
 /* ------------------------------------------------------------------
@@ -52,7 +52,7 @@ export const services = [
 ];
 
 /* ------------------------------------------------------------------
-   TARIFS — informatifs. Rien ne s'achète sur ce site.
+   TARIFS — informatifs. Rien ne s’achète sur ce site.
    ------------------------------------------------------------------ */
 export const pricing = [
   {
@@ -62,12 +62,12 @@ export const pricing = [
     items: [
       "Le shooting complet sur place",
       "Le tri et la publication des photos",
-      "La plaque de collecte d'avis posée",
+      "La plaque de collecte d’avis posée",
       "La réponse à vos avis des trois derniers mois",
     ],
   },
   {
-    name: "L'abonnement",
+    name: "L’abonnement",
     price: "249 €",
     period: "par mois, sans engagement",
     featured: true,
@@ -75,7 +75,7 @@ export const pricing = [
       "Un passage photo chaque trimestre",
       "La réponse à 100 % de vos avis, sous 24 h",
       "Vos photos publiées tout au long du mois",
-      "Un rapport d'une page chaque mois",
+      "Un rapport d’une page chaque mois",
     ],
   },
 ];
@@ -83,6 +83,6 @@ export const pricing = [
 /* Chiffres de marché (source : études publiques sur la recherche locale).
    Aucun ne prétend décrire un résultat obtenu par Halo. */
 export const facts = [
-  { num: "84 %", label: "des vues de fiche Google viennent d'un téléphone." },
+  { num: "84 %", label: "des vues de fiche Google viennent d’un téléphone." },
   { num: "95 %", label: "des gens lisent la réponse du gérant avant de choisir." },
 ];

@@ -2,8 +2,8 @@ Posez ici les vraies photos, puis renseignez leur chemin dans src/data.js
 (champ "src", sans slash initial — ex. "assets/photos/devanture.jpg").
 
 Emplacements attendus :
-  - heroPhoto   : une devanture, format portrait 4:5
+  - heroPhoto   : une devanture, format paysage 5:4
   - workPhotos  : intérieur / produits / équipe, format paysage 4:3
-  - portrait    : photo de Pablo, format carré
+  - portrait    : photo de Pablo, format portrait 4:5
 
 Tant qu'un "src" vaut null, le site affiche un encadré « à ajouter » à la place.

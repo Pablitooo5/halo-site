@@ -1,35 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="'Space Grotesk','Inter',system-ui,sans-serif">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0B1120"/>
-      <stop offset="0.55" stop-color="#0F1729"/>
-      <stop offset="1" stop-color="#0B1120"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0.78" cy="0.28" r="0.5">
-      <stop offset="0" stop-color="#4F8FFF" stop-opacity="0.28"/>
-      <stop offset="1" stop-color="#4F8FFF" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="ring-glow" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="8" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FBFAF7"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#16181B"/>
 
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#glow)"/>
+  <!-- marque -->
+  <text x="80" y="104" fill="#16181B" font-family="Georgia,'Times New Roman',serif" font-size="40">Halooo</text>
+  <text x="230" y="102" fill="#5F6670" font-family="Helvetica,Arial,sans-serif" font-size="19" font-weight="600" letter-spacing="2.6">BORDEAUX</text>
+  <line x1="80" y1="140" x2="1120" y2="140" stroke="#DDD7CD" stroke-width="1"/>
 
-  <!-- brand -->
-  <circle cx="92" cy="90" r="20" fill="none" stroke="#4F8FFF" stroke-width="7" filter="url(#ring-glow)"/>
-  <text x="128" y="103" fill="#F5F7FA" font-size="40" font-weight="700">Halo</text>
+  <!-- titre -->
+  <text x="80" y="278" fill="#16181B" font-family="Georgia,'Times New Roman',serif" font-size="62">J’améliore l’image</text>
+  <text x="80" y="358" fill="#16181B" font-family="Georgia,'Times New Roman',serif" font-size="62">et la réputation de votre</text>
+  <text x="80" y="438" fill="#16181B" font-family="Georgia,'Times New Roman',serif" font-size="62">commerce sur Google.</text>
 
-  <!-- headline -->
-  <text x="80" y="300" fill="#F5F7FA" font-size="64" font-weight="700">Je photographie votre commerce.</text>
-  <text x="80" y="388" fill="#4F8FFF" font-size="64" font-weight="700">Je réponds à tous vos avis.</text>
-
-  <!-- sub -->
-  <text x="82" y="470" fill="#94A3B8" font-size="32" font-weight="400" font-family="'Inter',system-ui,sans-serif">Photos de commerce · gestion des avis — Bordeaux</text>
-
-  <!-- pill -->
-  <rect x="82" y="520" width="430" height="64" rx="32" fill="#4F8FFF"/>
-  <text x="116" y="560" fill="#06101F" font-size="27" font-weight="600" font-family="'Inter',system-ui,sans-serif">Recevoir mon état des lieux</text>
+  <!-- accroche -->
+  <line x1="80" y1="500" x2="1120" y2="500" stroke="#DDD7CD" stroke-width="1"/>
+  <text x="80" y="548" fill="#5F6670" font-family="Helvetica,Arial,sans-serif" font-size="27">Photos faites sur place · Réponse à chaque avis · Sans engagement</text>
 </svg>
