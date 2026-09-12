@@ -10,29 +10,39 @@ export default function Services() {
         Deux choses, et je m’en occupe entièrement.
       </Reveal>
 
-      <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-12">
-        {services.map((s, i) => (
-          <Reveal key={s.title} delay={i * 60}>
-            <h3 className="border-t border-ink pt-4 text-[1.35rem]">{s.title}</h3>
-            <p className="mt-3 text-muted">{s.text}</p>
-            <ul className="dash-list mt-5 grid gap-1.5 text-[0.95rem] text-muted">
-              {s.points.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
+      <div className="mt-12 grid gap-12 md:grid-cols-2">
+        {services.map((s, i) => {
+          const amber = s.icon === "star"; // le bloc « avis » porte l'ambre du logo
+          return (
+            <Reveal key={s.title} delay={i * 120}>
+              <span
+                className="mb-4 block h-[3px] w-16"
+                style={{ background: amber ? "var(--color-amber)" : "var(--color-blue)" }}
+                aria-hidden="true"
+              />
+              <h3 className="text-[1.35rem]">{s.title}</h3>
+              <p className="mt-3 text-muted">{s.text}</p>
+              <ul className={`dash-list ${amber ? "dash-list--amber" : ""} mt-5 grid gap-1.5 text-[0.95rem] text-muted`}>
+                {s.points.map((p) => (
+                  <li key={p}>{p}</li>
+                ))}
+              </ul>
+            </Reveal>
+          );
+        })}
+      </div>
+
+      <div className="mt-14 grid grid-cols-3 gap-3 md:gap-4">
+        {workPhotos.map((p, i) => (
+          <Reveal key={p.slot} delay={i * 130}>
+            <div className="unveil">
+              <Photo photo={p} ratio="4 / 3" />
+            </div>
           </Reveal>
         ))}
       </div>
-
-      <Reveal className="mt-12">
-        <div className="grid grid-cols-3 gap-3 md:gap-4">
-          {workPhotos.map((p) => (
-            <Photo key={p.slot} photo={p} ratio="4 / 3" />
-          ))}
-        </div>
-        <p className="caption mt-3">
-          Un passage suffit à alimenter la fiche pendant des mois.
-        </p>
+      <Reveal className="caption mt-3">
+        Un passage suffit à alimenter la fiche pendant des mois.
       </Reveal>
     </Section>
   );

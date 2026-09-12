@@ -1,3 +1,4 @@
+import Logo from "./Logo.jsx";
 import { CONTACT_EMAIL } from "../data.js";
 
 const legal = [
@@ -9,13 +10,17 @@ const legal = [
 export default function Footer() {
   return (
     <footer>
+      <div className="brand-gradient h-[3px]" aria-hidden="true" />
       <div className="mx-auto flex max-w-[1020px] flex-col gap-8 px-6 py-12 sm:flex-row sm:justify-between">
         <div>
-          <p className="font-display text-[1.35rem]">Halooo</p>
+          <div className="flex items-center gap-2.5">
+            <Logo size={24} />
+            <p className="font-display text-[1.35rem]">Halooo</p>
+          </div>
           <p className="mt-2 text-[0.92rem] text-muted">
             Photos et avis Google · Bordeaux et alentours
           </p>
-          <a href={`mailto:${CONTACT_EMAIL}`} className="mt-1 inline-block border-b border-rule text-[0.92rem]">
+          <a href={`mailto:${CONTACT_EMAIL}`} className="mt-1 inline-block border-b border-amber text-[0.92rem]">
             {CONTACT_EMAIL}
           </a>
         </div>

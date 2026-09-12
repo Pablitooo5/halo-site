@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Reveal from "./Reveal.jsx";
+import Section from "./Section.jsx";
 import { CONTACT_EMAIL, FORMSPREE_ENDPOINT } from "../data.js";
 
 const field =
-  "w-full border-b border-rule bg-transparent px-0 py-2.5 text-[1rem] text-ink outline-none transition placeholder:text-muted/60 focus:border-ink";
+  "w-full border-b border-rule bg-transparent px-0 py-2.5 text-[1rem] text-ink outline-none transition placeholder:text-muted/60 focus:border-blue";
 const labelCls = "label";
 
 const PRIVACY = `${import.meta.env.BASE_URL}legal/confidentialite.html`;
@@ -11,7 +12,7 @@ const PRIVACY = `${import.meta.env.BASE_URL}legal/confidentialite.html`;
 /* Adresse en clair : recours si aucune messagerie ne s’ouvre côté visiteur */
 function MailLink() {
   return (
-    <a href={`mailto:${CONTACT_EMAIL}`} className="border-b border-rule font-medium">
+    <a href={`mailto:${CONTACT_EMAIL}`} className="border-b border-amber font-medium">
       {CONTACT_EMAIL}
     </a>
   );
@@ -77,17 +78,13 @@ export default function Contact() {
     }
   };
 
-  const panel = "border-t border-ink pt-6";
+  const panel = "border-t-[3px] border-blue pt-6";
 
   return (
-    <section id="contact" className="border-b border-rule">
-      <div className="mx-auto grid max-w-[1020px] gap-6 px-6 py-14 md:grid-cols-[110px_1fr] md:gap-10 md:py-20">
-        <Reveal className="md:pt-2">
-          <p className="label">04 <span className="mx-1 text-rule">/</span> Le contact</p>
-        </Reveal>
-        <div className="grid gap-10 md:grid-cols-[1fr_1fr] md:gap-12">
-          <Reveal>
-            <h2 className="max-w-[18ch] text-[1.8rem] md:text-[2.5rem]">
+    <Section id="contact" num="04" kicker="Le contact">
+      <div className="grid gap-10 md:grid-cols-[1fr_1fr] md:gap-12">
+        <Reveal>
+          <h2 className="max-w-[18ch] text-[1.8rem] md:text-[2.5rem]">
               Voyez ce que Google montre de vous.
             </h2>
             <p className="mt-5 max-w-[44ch] text-muted">
@@ -138,7 +135,7 @@ export default function Contact() {
             )}
 
             {(status === "idle" || status === "sending") && (
-              <form onSubmit={onSubmit} noValidate className="relative grid gap-6 border-t border-ink pt-7">
+              <form onSubmit={onSubmit} noValidate className="relative grid gap-6 border-t-[3px] border-blue pt-7">
                 <div className="grid gap-1">
                   <label htmlFor="f-entreprise" className={labelCls}>Nom de l’entreprise</label>
                   <input id="f-entreprise" name="entreprise" type="text" autoComplete="organization" placeholder="Ex. Boulangerie du Port" required className={field} />
@@ -177,16 +174,15 @@ export default function Contact() {
                 <p className="text-[0.8rem] text-muted">
                   Ces informations me servent uniquement à préparer votre état des lieux et à vous
                   recontacter. Elles sont conservées 12 mois, puis supprimées.{" "}
-                  <a href={PRIVACY} className="border-b border-rule hover:text-ink">
+                  <a href={PRIVACY} className="border-b border-amber hover:text-ink">
                     Politique de confidentialité
                   </a>
                   .
                 </p>
               </form>
             )}
-          </Reveal>
-        </div>
+        </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }

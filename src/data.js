@@ -57,7 +57,7 @@ export const services = [
 export const pricing = [
   {
     name: "La mise en route",
-    price: "490 €",
+    price: "490 €",
     period: "une seule fois",
     items: [
       "Le shooting complet sur place",
@@ -68,7 +68,7 @@ export const pricing = [
   },
   {
     name: "L’abonnement",
-    price: "249 €",
+    price: "249 €",
     period: "par mois, sans engagement",
     featured: true,
     items: [
@@ -83,6 +83,6 @@ export const pricing = [
 /* Chiffres de marché (source : études publiques sur la recherche locale).
    Aucun ne prétend décrire un résultat obtenu par Halo. */
 export const facts = [
-  { num: "84 %", label: "des vues de fiche Google viennent d’un téléphone." },
-  { num: "95 %", label: "des gens lisent la réponse du gérant avant de choisir." },
+  { num: "84 %", label: "des vues de fiche Google viennent d’un téléphone." },
+  { num: "95 %", label: "des gens lisent la réponse du gérant avant de choisir." },
 ];

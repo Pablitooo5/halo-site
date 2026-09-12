@@ -1,36 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useInView } from "../hooks.js";
 
-/** Apparition discrète au défilement (fondu + 14 px). Neutralisée en reduced-motion via le CSS. */
+/** Apparition au défilement. Neutralisée en reduced-motion via le CSS. */
 export default function Reveal({ as: Tag = "div", className = "", delay = 0, children, ...rest }) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (!("IntersectionObserver" in window)) {
-      setVisible(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const [ref, seen] = useInView();
 
   return (
     <Tag
       ref={ref}
-      className={`reveal ${visible ? "is-visible" : ""} ${className}`}
+      className={`reveal ${seen ? "is-visible" : ""} ${className}`}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
       {...rest}
     >

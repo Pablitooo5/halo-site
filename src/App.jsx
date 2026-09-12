@@ -1,3 +1,4 @@
+import ScrollProgress from "./components/ScrollProgress.jsx";
 import Nav from "./components/Nav.jsx";
 import Hero from "./components/Hero.jsx";
 import Services from "./components/Services.jsx";
@@ -9,6 +10,7 @@ import Footer from "./components/Footer.jsx";
 export default function App() {
   return (
     <>
+      <ScrollProgress />
       <Nav />
       <main>
         <Hero />

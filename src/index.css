@@ -1,19 +1,22 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Halooo — parti pris éditorial : papier chaud, filets fins,
-   titres à empattements, aucune icône, aucun bloc arrondi.
+   Halooo — les deux couleurs du logo (bleu → ambre) portent
+   toute la page. Titres à empattements, rythme éditorial.
    ============================================================ */
 @theme {
   --color-paper: #fbfaf7;
   --color-ground: #f2efe9;
-  --color-ink: #16181b;
+  --color-ink: #14171c;
   --color-muted: #5f6670;
   --color-rule: #ddd7cd;
-  --color-accent: #26456e;
-  --color-gold: #c08a1e;
 
-  /* Titres : empattements disponibles nativement, aucune requête réseau. */
+  /* Reprises au pixel sur le logo */
+  --color-blue: #4f93fe;
+  --color-blue-ink: #0f2a5c;
+  --color-blue-mid: #1a4fb5;
+  --color-amber: #f5b01e;
+
   --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 
@@ -39,11 +42,24 @@
     line-height: 1.14;
     text-wrap: balance;
   }
-  :focus-visible { outline: 1.5px solid var(--color-ink); outline-offset: 3px; }
-  ::selection { background: var(--color-ink); color: var(--color-paper); }
+  :focus-visible { outline: 2px solid var(--color-blue); outline-offset: 3px; }
+  ::selection { background: var(--color-blue); color: #fff; }
 }
 
-/* Petite capitale d'appui : numéro de section, intitulé de colonne */
+/* Le dégradé de la marque, réutilisé partout */
+.brand-gradient {
+  background-image: linear-gradient(100deg, var(--color-blue) 0%, #8fb4f0 52%, var(--color-amber) 100%);
+}
+
+/* Jauge de lecture, collée en haut de la fenêtre */
+.progress {
+  position: fixed; inset: 0 auto auto 0; z-index: 60;
+  height: 3px; width: 100%;
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+
+/* Petite capitale d'appui */
 .label {
   font-family: var(--font-body);
   font-size: 0.72rem;
@@ -52,6 +68,7 @@
   text-transform: uppercase;
   color: var(--color-muted);
 }
+.label--blue { color: var(--color-blue-ink); }
 
 /* Légende de photo, à l'italique comme en presse */
 .caption {
@@ -61,54 +78,87 @@
   color: var(--color-muted);
 }
 
-/* Bouton : rectangle plein, angles francs */
+/* Filet vertical qui se trace à l'arrivée de la section */
+.tick {
+  display: block; width: 2px; height: 44px; margin-bottom: 14px;
+  transform: scaleY(0); transform-origin: 0 0;
+  transition: transform 0.7s var(--ease-out-soft);
+}
+.is-visible .tick, .tick.is-visible { transform: scaleY(1); }
+
+/* Boutons */
 .btn {
   display: inline-block;
   padding: 14px 26px;
-  background: var(--color-ink);
+  background: var(--color-blue-ink);
   color: var(--color-paper);
   font-size: 0.96rem;
   font-weight: 500;
-  letter-spacing: 0.01em;
-  border: 1px solid var(--color-ink);
-  transition: background 0.18s var(--ease-out-soft), color 0.18s var(--ease-out-soft);
+  border: 1px solid var(--color-blue-ink);
+  transition: background 0.18s var(--ease-out-soft), color 0.18s var(--ease-out-soft),
+    transform 0.18s var(--ease-out-soft);
 }
-.btn:hover { background: transparent; color: var(--color-ink); }
+.btn:hover { background: var(--color-blue); border-color: var(--color-blue); transform: translateY(-1px); }
 
 .btn--ghost { background: transparent; color: var(--color-ink); border-color: var(--color-rule); }
-.btn--ghost:hover { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+.btn--ghost:hover { background: transparent; border-color: var(--color-blue-ink); color: var(--color-blue-ink); }
 
-/* Listes sans puce graphique : tiret cadratin en saillie */
+.btn--light { background: var(--color-paper); color: var(--color-blue-ink); border-color: var(--color-paper); }
+.btn--light:hover { background: var(--color-amber); border-color: var(--color-amber); color: var(--color-blue-ink); }
+
+/* Listes à tiret, la barre prend la couleur du contexte */
 .dash-list { list-style: none; margin: 0; padding: 0; }
 .dash-list li { position: relative; padding-left: 1.35em; }
 .dash-list li::before {
-  content: "—";
-  position: absolute;
-  left: 0;
-  color: var(--color-muted);
+  content: "—"; position: absolute; left: 0; color: var(--color-blue);
 }
+.dash-list--amber li::before { color: var(--color-amber); }
+.dash-list--light li::before { color: var(--color-amber); }
 
 /* Emplacement photo en attente du vrai fichier */
 .slot {
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 20px;
+  display: grid; place-items: center; text-align: center; padding: 20px;
   border: 1px solid var(--color-rule);
   background: var(--color-ground);
   color: var(--color-muted);
 }
 
-/* Apparition discrète au défilement — la seule animation du site */
+/* Section sombre : le bleu profond du logo */
+.on-deep { background: var(--color-blue-ink); color: var(--color-paper); }
+.on-deep .label { color: #9fb8e2; }
+.on-deep .caption { color: #9fb8e2; }
+.on-deep .text-muted { color: #b9c8e0 !important; }
+.on-deep .border-rule { border-color: rgba(255, 255, 255, 0.18) !important; }
+.on-deep .border-ink { border-color: rgba(255, 255, 255, 0.45) !important; }
+
+/* Apparitions au défilement */
 .reveal {
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s var(--ease-out-soft), transform 0.5s var(--ease-out-soft);
+  transform: translateY(22px);
+  transition: opacity 0.65s var(--ease-out-soft), transform 0.65s var(--ease-out-soft);
 }
 .reveal.is-visible { opacity: 1; transform: none; }
+
+/* Variante : le bloc se dévoile par la gauche (colonnes de marge) */
+.reveal--side { transform: translateX(-16px); }
+.reveal--side.is-visible { transform: none; }
+
+/* Photo qui se découvre derrière un voile qui se retire */
+.unveil { position: relative; overflow: hidden; }
+.unveil::after {
+  content: ""; position: absolute; inset: 0;
+  background: var(--color-paper);
+  transform: translateX(0);
+  transition: transform 0.85s var(--ease-out-soft);
+}
+.is-visible.unveil::after,
+.is-visible .unveil::after { transform: translateX(101%); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   .reveal { opacity: 1; transform: none; }
+  .tick { transform: scaleY(1); }
+  .unveil::after { display: none; }
+  .progress { display: none; }
 }

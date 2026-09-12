@@ -1,6 +1,7 @@
 import Reveal from "./Reveal.jsx";
 import Section from "./Section.jsx";
 import Photo from "./Photo.jsx";
+import CountUp from "./CountUp.jsx";
 import { portrait, facts } from "../data.js";
 
 export default function About() {
@@ -22,24 +23,24 @@ export default function About() {
           </p>
         </Reveal>
 
-        <Reveal delay={60} className="max-w-[200px]">
-          <Photo photo={portrait} ratio="4 / 5" />
+        <Reveal delay={140} className="max-w-[200px]">
+          <div className="unveil">
+            <Photo photo={portrait} ratio="4 / 5" />
+          </div>
         </Reveal>
       </div>
 
-      <Reveal className="mt-12 border-t border-rule pt-8">
-        <dl className="grid gap-8 sm:grid-cols-2">
-          {facts.map((f) => (
-            <div key={f.num} className="flex items-baseline gap-4">
-              <dt className="font-display text-[2.4rem] leading-none">{f.num}</dt>
-              <dd className="max-w-[26ch] text-[0.95rem] text-muted">{f.label}</dd>
-            </div>
-          ))}
-        </dl>
-        <p className="mt-6 text-[0.82rem] text-muted">
-          Études publiques sur la recherche locale. Ces chiffres décrivent le marché, pas des
-          résultats clients.
-        </p>
+      <div className="mt-14 grid gap-8 border-t border-rule pt-9 sm:grid-cols-2">
+        {facts.map((f, i) => (
+          <Reveal key={f.num} delay={i * 120} className="flex items-baseline gap-4">
+            <CountUp value={f.num} className="font-display text-[2.6rem] leading-none text-blue-ink" />
+            <span className="max-w-[26ch] text-[0.95rem] text-muted">{f.label}</span>
+          </Reveal>
+        ))}
+      </div>
+      <Reveal className="mt-6 text-[0.82rem] text-muted">
+        Études publiques sur la recherche locale. Ces chiffres décrivent le marché, pas des
+        résultats clients.
       </Reveal>
     </Section>
   );
