@@ -122,3 +122,64 @@ export const googleFactors = [
     actionable: true,
   },
 ];
+
+/* ------------------------------------------------------------------
+   Éléments du hero
+   ------------------------------------------------------------------ */
+export const heroChips = [
+  "Photos de commerce",
+  "Avis Google",
+  "Plaques sans contact",
+  "Réponse sous 24 h",
+  "Bordeaux",
+];
+
+/* Les deux vignettes posées en bas de la carte du hero */
+export const heroTiles = [
+  { photo: { src: null, alt: "Devanture photographiée", slot: "Devanture" }, title: "La prise de vue", kicker: "Photos" },
+  { photo: { src: null, alt: "Fiche Google et avis", slot: "Avis" }, title: "Les avis, au quotidien", kicker: "Réputation" },
+];
+
+/* ------------------------------------------------------------------
+   Les étapes. Rien ici qui ne soit déjà tenu dans la procédure.
+   ------------------------------------------------------------------ */
+export const processSteps = [
+  {
+    num: "01",
+    name: "L’état des lieux",
+    body: [
+      "Je regarde vos photos et vos avis, puis je vous compare à trois commerces qui vous font concurrence dans votre rue.",
+      "Vous recevez le relevé par écrit sous 48 heures. C’est gratuit et ça ne vous engage à rien.",
+    ],
+  },
+  {
+    num: "02",
+    name: "La prise de vue",
+    body: [
+      "Je viens sur place avec du matériel professionnel. La façade, la salle, vos produits, votre équipe.",
+      "Vous recevez les fichiers en moins de 48 heures, et ils vous appartiennent.",
+    ],
+  },
+  {
+    num: "03",
+    name: "La publication",
+    body: [
+      "Je trie, je retouche et je publie les photos sur votre fiche Google, étalées dans le temps plutôt que d’un bloc.",
+      "Je pose la plaque sans contact à l’endroit où vos clients paient, et je la configure.",
+    ],
+  },
+  {
+    num: "04",
+    name: "Les avis, au quotidien",
+    body: [
+      "Chaque avis reçoit une réponse sous 24 heures. Les négatifs ne partent jamais sans votre accord : je vous écris la réponse que je propose, vous validez, je publie.",
+      "Un passage photo par trimestre, et un rapport d’une page chaque mois.",
+    ],
+  },
+];
+
+export const processPhoto = {
+  src: null,
+  alt: "Un commerce photographié pour sa fiche Google",
+  slot: "En intervention",
+};

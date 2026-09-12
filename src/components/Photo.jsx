@@ -1,9 +1,23 @@
 /**
- * Affiche une vraie photo dès que `src` est renseigné dans data.js,
- * sinon un emplacement en attente. Tout chemin vers public/ passe par BASE_URL.
+ * Affiche la vraie photo dès que `src` est renseigné dans data.js.
+ * Tant que ce n'est pas le cas, on dessine un panneau aux couleurs de
+ * la marque, légendé — jamais une fausse photo de commerce.
+ * `fill` : occupe tout le parent (fond de carte) au lieu d'un ratio.
+ * Tout chemin vers public/ passe par BASE_URL.
  */
-export default function Photo({ photo, ratio = "4 / 5", className = "" }) {
-  const { src, alt, slot, hint } = photo;
+export default function Photo({
+  photo,
+  ratio = "4 / 3",
+  className = "",
+  rounded = "rounded-[20px]",
+  tone = "light",
+  fill = false,
+  tagCorner = "bl",
+  tag = true,
+}) {
+  const { src, alt, slot } = photo;
+  const box = fill ? "ph--fill" : "w-full";
+  const style = fill ? undefined : { aspectRatio: ratio };
 
   if (src) {
     return (
@@ -12,23 +26,20 @@ export default function Photo({ photo, ratio = "4 / 5", className = "" }) {
         alt={alt}
         loading="lazy"
         decoding="async"
-        className={`w-full object-cover ${className}`}
-        style={{ aspectRatio: ratio }}
+        className={`${fill ? "absolute inset-0 h-full w-full" : "w-full"} object-cover ${rounded} ${className}`}
+        style={style}
       />
     );
   }
 
   return (
     <div
-      className={`slot ${className}`}
-      style={{ aspectRatio: ratio }}
+      className={`ph ${tone === "dark" ? "ph--dark" : ""} ${box} ${rounded} ${className}`}
+      style={style}
       role="img"
       aria-label={`Emplacement réservé : ${slot}`}
     >
-      <div>
-        <p className="label">{slot}</p>
-        <p className="caption mt-1">à ajouter · {hint}</p>
-      </div>
+      {tag && <span className={`ph-tag ${tagCorner === "tr" ? "ph-tag--tr" : ""}`}>{slot}</span>}
     </div>
   );
 }

@@ -1,19 +1,37 @@
 import Logo from "./Logo.jsx";
+import Arrow from "./Arrow.jsx";
+
+const links = [
+  ["#travail", "Le travail"],
+  ["#etapes", "Les étapes"],
+  ["#tarifs", "Tarifs"],
+  ["#moi", "Qui je suis"],
+];
 
 export default function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-rule bg-paper/95 backdrop-blur">
-      <nav className="mx-auto flex max-w-[1020px] items-center gap-4 px-6 py-3.5">
+    <header className="sticky top-0 z-50 bg-page/85 backdrop-blur">
+      <nav className="mx-auto flex max-w-[1180px] items-center gap-6 px-4 py-4 md:px-6">
         <a href="#top" className="flex items-center gap-2.5" aria-label="Halooo — accueil">
-          <Logo size={28} />
-          <span className="font-display text-[1.45rem] tracking-tight">Halooo</span>
+          <Logo size={30} />
+          <span className="min-w-0">
+            <span className="block font-display text-[1.05rem] font-semibold leading-none">HALOOO</span>
+            <span className="label hidden whitespace-nowrap text-[0.6rem] sm:block">Photos et avis Google</span>
+          </span>
         </a>
-        <span className="label hidden sm:inline">Bordeaux</span>
-        <a
-          href="#contact"
-          className="ml-auto border-b-2 border-amber pb-0.5 text-[0.92rem] font-medium transition-colors hover:text-blue-ink"
-        >
-          État des lieux gratuit
+
+        <ul className="mx-auto hidden items-center gap-8 text-[0.92rem] md:flex">
+          {links.map(([href, label]) => (
+            <li key={href}>
+              <a href={href} className="text-muted transition-colors hover:text-ink">{label}</a>
+            </li>
+          ))}
+        </ul>
+
+        <a href="#contact" className="btn btn--amber ml-auto shrink-0 md:ml-0">
+          <span className="hidden sm:inline">État des lieux gratuit</span>
+          <span className="sm:hidden">État des lieux</span>
+          <span className="btn-arrow"><Arrow /></span>
         </a>
       </nav>
     </header>

@@ -1,18 +1,24 @@
 import { useState } from "react";
 import Reveal from "./Reveal.jsx";
-import Section from "./Section.jsx";
+import Arrow from "./Arrow.jsx";
 import { CONTACT_EMAIL, FORMSPREE_ENDPOINT } from "../data.js";
 
 const field =
-  "w-full border-b border-rule bg-transparent px-0 py-2.5 text-[1rem] text-ink outline-none transition placeholder:text-muted/60 focus:border-blue";
-const labelCls = "label";
+  "w-full rounded-[14px] bg-page px-4 py-3.5 text-[0.98rem] text-ink outline-none transition placeholder:text-muted/70 focus:shadow-[inset_0_0_0_1.5px_var(--color-blue)]";
 
 const PRIVACY = `${import.meta.env.BASE_URL}legal/confidentialite.html`;
 
-/* Adresse en clair : recours si aucune messagerie ne s’ouvre côté visiteur */
+const bullets = [
+  "L’état de vos photos et de vos avis",
+  "Le même relevé pour trois concurrents proches",
+  "Ce qu’il y a à corriger en premier",
+  "Par écrit, sous 48 heures. Aucun appel commercial.",
+];
+
+/* Adresse en clair : recours si aucune messagerie ne s'ouvre côté visiteur */
 function MailLink() {
   return (
-    <a href={`mailto:${CONTACT_EMAIL}`} className="border-b border-amber font-medium">
+    <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium underline underline-offset-2">
       {CONTACT_EMAIL}
     </a>
   );
@@ -32,7 +38,7 @@ export default function Contact() {
 
     // Anti-spam : champ leurre invisible, rempli uniquement par les robots
     if (form._gotcha && form._gotcha.value) {
-      setStatus("sent"); // on n’envoie rien, sans le signaler au robot
+      setStatus("sent"); // on n'envoie rien, sans le signaler au robot
       return;
     }
 
@@ -44,8 +50,8 @@ export default function Contact() {
     };
 
     /* Ouvre un brouillon dans la messagerie du visiteur.
-       On NE confirme PAS l’envoi : le message n’est pas parti, et si aucun
-       client mail n’est configuré, il ne se passe rien du tout. */
+       On NE confirme PAS l'envoi : le message n'est pas parti, et si aucun
+       client mail n'est configuré, il ne se passe rien du tout. */
     const openDraft = () => {
       const subject = `Demande d’état des lieux : ${data.entreprise}`;
       const body =
@@ -58,7 +64,7 @@ export default function Contact() {
       setStatus("draft");
     };
 
-    // Tant qu’aucun service de formulaire n’est branché, on passe par la messagerie
+    // Tant qu'aucun service de formulaire n'est branché, on passe par la messagerie
     if (FORMSPREE_ENDPOINT.includes("REMPLACER")) {
       openDraft();
       return;
@@ -78,41 +84,45 @@ export default function Contact() {
     }
   };
 
-  const panel = "border-t-[3px] border-blue pt-6";
+  const panel = "rounded-[24px] bg-page p-7";
 
   return (
-    <Section id="contact" num="04" kicker="Le contact">
-      <div className="grid gap-10 md:grid-cols-[1fr_1fr] md:gap-12">
-        <Reveal>
-          <h2 className="max-w-[18ch] text-[1.8rem] md:text-[2.5rem]">
+    <section id="contact" className="px-4 pt-4 md:px-6 md:pt-6">
+      <div className="card mx-auto max-w-[1180px] p-6 md:p-12">
+        <div className="grid gap-10 md:grid-cols-2 md:gap-14">
+          <Reveal>
+            <p className="label">L’état des lieux</p>
+            <h2 className="mt-4 text-[1.9rem] md:text-[2.6rem]">
               Voyez ce que Google montre de vous.
             </h2>
-            <p className="mt-5 max-w-[46ch] text-muted">
+            <p className="mt-5 max-w-[44ch] text-muted">
               Je regarde vos photos et vos avis, puis je vous compare à trois commerces qui vous
               font concurrence dans votre rue. Vous voyez noir sur blanc où vous vous situez, et ce
               qui vous sépare d’eux.
             </p>
-            <ul className="mark-list mt-6 grid gap-2 text-[0.95rem] text-muted">
-              <li>L’état de vos photos et de vos avis</li>
-              <li>Le même relevé pour trois concurrents proches</li>
-              <li>Ce qu’il y a à corriger en premier</li>
-              <li>Par écrit, sous 48 heures. Aucun appel commercial.</li>
+            <ul className="mt-7 flex flex-wrap gap-2">
+              {bullets.map((b) => (
+                <li key={b} className="chip chip--solid text-[0.82rem]">{b}</li>
+              ))}
             </ul>
           </Reveal>
 
-          <Reveal delay={60}>
+          <Reveal delay={110}>
             {status === "sent" && (
-              <div className={`${panel}`} role="status" aria-live="polite">
-                <h3 className="text-[1.4rem]">C’est reçu.</h3>
-                <p className="text-muted">Vous recevez votre état des lieux sous 48 h à l’adresse indiquée.</p>
+              <div className={panel} role="status" aria-live="polite">
+                <h3 className="text-[1.3rem]">C’est reçu.</h3>
+                <p className="mt-2 text-muted">
+                  Vous recevez votre état des lieux sous 48 h à l’adresse indiquée.
+                </p>
               </div>
             )}
 
             {status === "draft" && (
-              <div className={`${panel}`} role="status" aria-live="polite">
-                <h3 className="text-[1.4rem]">Votre message vous attend.</h3>
-                <p className="text-muted">
-                  Un brouillon vient de s’ouvrir dans votre messagerie : <strong className="text-ink">il reste à l’envoyer</strong>.
+              <div className={panel} role="status" aria-live="polite">
+                <h3 className="text-[1.3rem]">Votre message vous attend.</h3>
+                <p className="mt-2 text-muted">
+                  Un brouillon vient de s’ouvrir dans votre messagerie :{" "}
+                  <strong className="text-ink">il reste à l’envoyer</strong>.
                 </p>
                 <p className="mt-3 text-muted">
                   Rien ne s’est ouvert ? Écrivez-moi directement à <MailLink />.
@@ -121,42 +131,41 @@ export default function Contact() {
             )}
 
             {status === "error" && (
-              <div className={`${panel}`} role="alert">
-                <h3 className="text-[1.4rem]">L’envoi n’a pas abouti.</h3>
-                <p className="text-muted">
+              <div className={panel} role="alert">
+                <h3 className="text-[1.3rem]">L’envoi n’a pas abouti.</h3>
+                <p className="mt-2 text-muted">
                   Rien n’est perdu : écrivez-moi à <MailLink /> et je vous réponds sous 48 h.
                 </p>
-                <button
-                  type="button"
-                  onClick={() => setStatus("idle")}
-                  className="btn btn--ghost mt-5"
-                >
+                <button type="button" onClick={() => setStatus("idle")} className="btn btn--ghost mt-5">
                   Réessayer
+                  <span className="btn-arrow"><Arrow /></span>
                 </button>
               </div>
             )}
 
             {(status === "idle" || status === "sending") && (
-              <form onSubmit={onSubmit} noValidate className="relative grid gap-6 border-t-[3px] border-blue pt-7">
-                <div className="grid gap-1">
-                  <label htmlFor="f-entreprise" className={labelCls}>Nom de l’entreprise</label>
-                  <input id="f-entreprise" name="entreprise" type="text" autoComplete="organization" placeholder="Ex. Boulangerie du Port" required className={field} />
+              <form onSubmit={onSubmit} noValidate className="relative grid gap-4 rounded-[24px] bg-page p-6 md:p-8">
+                <div className="grid gap-1.5">
+                  <label htmlFor="f-entreprise" className="label">Nom de l’entreprise</label>
+                  <input id="f-entreprise" name="entreprise" type="text" autoComplete="organization"
+                         placeholder="Ex. Boulangerie du Port" required className={`${field} bg-card`} />
                 </div>
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <div className="grid gap-1">
-                    <label htmlFor="f-ville" className={labelCls}>Ville</label>
-                    <input id="f-ville" name="ville" type="text" autoComplete="address-level2" placeholder="Bordeaux" required className={field} />
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="grid gap-1.5">
+                    <label htmlFor="f-ville" className="label">Ville</label>
+                    <input id="f-ville" name="ville" type="text" autoComplete="address-level2"
+                           placeholder="Bordeaux" required className={`${field} bg-card`} />
                   </div>
-                  <div className="grid gap-1">
-                    <label htmlFor="f-tel" className={labelCls}>
-                      Téléphone (optionnel)
-                    </label>
-                    <input id="f-tel" name="telephone" type="tel" autoComplete="tel" placeholder="06 12 34 56 78" className={field} />
+                  <div className="grid gap-1.5">
+                    <label htmlFor="f-tel" className="label">Téléphone (optionnel)</label>
+                    <input id="f-tel" name="telephone" type="tel" autoComplete="tel"
+                           placeholder="06 12 34 56 78" className={`${field} bg-card`} />
                   </div>
                 </div>
-                <div className="grid gap-1">
-                  <label htmlFor="f-email" className={labelCls}>Email</label>
-                  <input id="f-email" name="email" type="email" autoComplete="email" placeholder="vous@exemple.fr" required className={field} />
+                <div className="grid gap-1.5">
+                  <label htmlFor="f-email" className="label">Email</label>
+                  <input id="f-email" name="email" type="email" autoComplete="email"
+                         placeholder="vous@exemple.fr" required className={`${field} bg-card`} />
                 </div>
 
                 {/* Leurre anti-robots : invisible et hors du parcours clavier */}
@@ -165,26 +174,24 @@ export default function Contact() {
                   <input id="f-site" name="_gotcha" type="text" tabIndex={-1} autoComplete="off" />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="btn mt-1 w-full disabled:opacity-70"
-                >
+                <button type="submit" disabled={status === "sending"} className="btn mt-2 justify-between disabled:opacity-70">
                   {status === "sending" ? "Envoi…" : "Recevoir mon état des lieux"}
+                  <span className="btn-arrow"><Arrow /></span>
                 </button>
 
-                <p className="text-[0.8rem] text-muted">
+                <p className="text-[0.78rem] text-muted">
                   Ces informations me servent uniquement à préparer votre état des lieux et à vous
                   recontacter. Elles sont conservées 12 mois, puis supprimées.{" "}
-                  <a href={PRIVACY} className="border-b border-amber hover:text-ink">
+                  <a href={PRIVACY} className="underline underline-offset-2 hover:text-ink">
                     Politique de confidentialité
                   </a>
                   .
                 </p>
               </form>
             )}
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }

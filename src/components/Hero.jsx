@@ -1,69 +1,62 @@
 import Photo from "./Photo.jsx";
 import Reveal from "./Reveal.jsx";
+import Arrow from "./Arrow.jsx";
 import Stars from "./Stars.jsx";
-import HeroBackdrop from "./HeroBackdrop.jsx";
-import { useParallax } from "../hooks.js";
-import { heroPhoto } from "../data.js";
+import { heroPhoto, heroChips, heroTiles } from "../data.js";
 
-/* Deux colonnes franches : le texte à gauche, la photo à droite,
-   alignées sur la même ligne haute. Pas d'escalier entre les deux. */
+/* La carte d'ouverture : une grande image, le titre par-dessus,
+   les mots-clés en bas à gauche, deux vignettes en bas à droite. */
 export default function Hero() {
-  const [photoRef, y] = useParallax(20);
-
   return (
-    <section id="top" className="relative overflow-hidden border-b border-rule">
-      <HeroBackdrop />
+    <section id="top" className="px-4 md:px-6">
+      <div className="relative mx-auto max-w-[1180px] overflow-hidden rounded-[30px]">
+        <Photo photo={heroPhoto} tone="dark" rounded="rounded-[30px]" fill tagCorner="tr" />
 
-      <div className="relative mx-auto grid max-w-[1020px] gap-10 px-6 py-16 md:grid-cols-2 md:gap-12 md:py-24">
-        <div>
-          <Reveal>
-            <span className="tick brand-gradient" />
-            <p className="label">Photos et avis Google · Bordeaux</p>
-          </Reveal>
+        {/* voile pour garder le titre lisible quelle que soit la photo */}
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(100deg, rgba(6,16,36,0.82) 0%, rgba(6,16,36,0.55) 42%, rgba(6,16,36,0.15) 74%)" }}
+          aria-hidden="true"
+        />
 
-          <Reveal delay={90} as="h1" className="mt-5 text-[2.2rem] leading-[1.1] sm:text-[2.7rem] md:text-[3.1rem]">
-            J’améliore{" "}
-            <span className="relative whitespace-nowrap text-blue-mid">
-              l’image
-              <span className="brand-gradient absolute -bottom-1 left-0 h-[3px] w-full" aria-hidden="true" />
-            </span>{" "}
-            et la{" "}
-            <span className="relative whitespace-nowrap text-blue-mid">
-              réputation
-              <span className="brand-gradient absolute -bottom-1 left-0 h-[3px] w-full" aria-hidden="true" />
-            </span>{" "}
-            de votre commerce sur Google.
-          </Reveal>
-
-          <Reveal delay={160}>
-            <p className="mt-6 max-w-[44ch] text-[1.06rem] text-muted">
-              Des photos faites sur place, au matériel professionnel. Des avis travaillés pour de
-              bon : une plaque sans contact à votre comptoir pour en récolter, et une réponse à
-              chacun d’eux sous 24 heures.
+        <div className="relative flex min-h-[500px] flex-col justify-between gap-10 p-6 md:min-h-[640px] md:gap-14 md:p-12">
+          <Reveal className="max-w-[660px] pt-4 md:pt-8">
+            <h1 className="text-[2.3rem] text-white sm:text-[3rem] md:text-[3.7rem]">
+              J’améliore l’image et la réputation de votre commerce sur Google.
+            </h1>
+            <p className="mt-6 max-w-[40ch] text-[1rem] text-white/75">
+              Des photos faites sur place au matériel professionnel, une plaque sans contact à
+              votre comptoir, et une réponse à chacun de vos avis sous 24 heures.
             </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a href="#contact" className="btn text-center">Demander un état des lieux</a>
-              <a href="#travail" className="btn btn--ghost text-center">Voir le travail</a>
-            </div>
-
-            <p className="mt-6 text-[0.92rem] text-muted">
-              Gratuit, sans suite obligatoire. Réponse sous 48 heures.
-            </p>
+            <a href="#contact" className="btn btn--amber mt-8">
+              Demander un état des lieux
+              <span className="btn-arrow"><Arrow /></span>
+            </a>
           </Reveal>
+
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <Reveal delay={160} className="flex max-w-[26rem] flex-wrap gap-2">
+              {heroChips.map((c) => (
+                <span key={c} className="chip">{c}</span>
+              ))}
+            </Reveal>
+
+            <Reveal delay={240} className="hidden gap-3 lg:flex">
+              {heroTiles.map((t) => (
+                <div key={t.title} className="flex w-[236px] items-center gap-3 rounded-[20px] bg-card p-3">
+                  <div className="w-[62px] flex-none">
+                    <Photo photo={t.photo} ratio="1 / 1" rounded="rounded-[14px]" tag={false} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="label text-[0.6rem]">{t.kicker}</p>
+                    <p className="mt-0.5 truncate font-display text-[0.92rem] font-medium">{t.title}</p>
+                    {t.kicker === "Réputation" && <Stars size={11} />}
+                  </div>
+                </div>
+              ))}
+            </Reveal>
+          </div>
         </div>
-
-        <Reveal delay={220}>
-          <figure className="m-0" ref={photoRef}>
-            <div className="unveil" style={{ transform: `translateY(${y}px)` }}>
-              <Photo photo={heroPhoto} ratio="5 / 4" />
-            </div>
-            <figcaption className="mt-3 flex items-center gap-2.5">
-              <Stars />
-              <span className="caption">La devanture, telle qu’elle apparaît sur la fiche.</span>
-            </figcaption>
-          </figure>
-        </Reveal>
       </div>
     </section>
   );

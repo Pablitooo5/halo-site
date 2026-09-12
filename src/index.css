@@ -1,24 +1,26 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Halooo — les deux couleurs du logo (bleu → ambre) portent
-   toute la page. Titres à empattements, rythme éditorial.
+   Halooo — cartes arrondies sur fond clair, grandes images,
+   pastilles et flèches. Les deux couleurs viennent du logo.
    ============================================================ */
 @theme {
-  --color-paper: #fbfaf7;
-  --color-ground: #f2efe9;
-  --color-ink: #14171c;
-  --color-muted: #5f6670;
-  --color-rule: #ddd7cd;
+  --color-page: #e9e7e2;
+  --color-card: #ffffff;
+  --color-ink: #15181c;
+  --color-muted: #6a7079;
+  --color-line: #e7e5e0;
 
   /* Reprises au pixel sur le logo */
   --color-blue: #4f93fe;
   --color-blue-ink: #0f2a5c;
-  --color-blue-mid: #1a4fb5;
   --color-amber: #f5b01e;
 
-  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 30px;
+  --radius-tile: 20px;
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -27,180 +29,195 @@
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    background: var(--color-paper);
+    background: var(--color-page);
     color: var(--color-ink);
     font-family: var(--font-body);
-    font-size: 17px;
-    line-height: 1.62;
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
   }
   h1, h2, h3 {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.012em;
-    line-height: 1.14;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.06;
     text-wrap: balance;
   }
-  :focus-visible { outline: 2px solid var(--color-blue); outline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--color-blue); outline-offset: 3px; border-radius: 8px; }
   ::selection { background: var(--color-blue); color: #fff; }
 }
 
-/* Le dégradé de la marque, réutilisé partout */
 .brand-gradient {
   background-image: linear-gradient(100deg, var(--color-blue) 0%, #8fb4f0 52%, var(--color-amber) 100%);
 }
 
-/* Jauge de lecture, collée en haut de la fenêtre */
+/* Jauge de lecture */
 .progress {
   position: fixed; inset: 0 auto auto 0; z-index: 60;
-  height: 3px; width: 100%;
-  transform-origin: 0 50%;
-  will-change: transform;
+  height: 3px; width: 100%; transform-origin: 0 50%; will-change: transform;
 }
 
 /* Petite capitale d'appui */
 .label {
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-muted);
+  font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--color-muted);
 }
-.label--blue { color: var(--color-blue-ink); }
+.on-dark .label { color: rgba(255, 255, 255, 0.55); }
 
-/* Légende de photo, à l'italique comme en presse */
-.caption {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 0.92rem;
-  color: var(--color-muted);
+/* ------------------------------------------------------------------
+   Cartes : tout le site est une pile de panneaux arrondis
+   ------------------------------------------------------------------ */
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
 }
+.on-dark { background: var(--color-blue-ink); color: #fff; }
+.on-dark .text-muted { color: rgba(255, 255, 255, 0.66) !important; }
+.on-dark .border-line { border-color: rgba(255, 255, 255, 0.14) !important; }
 
-/* Filet vertical qui se trace à l'arrivée de la section */
-.tick {
-  display: block; width: 2px; height: 44px; margin-bottom: 14px;
-  transform: scaleY(0); transform-origin: 0 0;
-  transition: transform 0.7s var(--ease-out-soft);
-}
-.is-visible .tick, .tick.is-visible { transform: scaleY(1); }
-
-/* Boutons */
+/* ------------------------------------------------------------------
+   Boutons pilule, avec pastille-flèche à droite
+   ------------------------------------------------------------------ */
 .btn {
-  display: inline-block;
-  padding: 14px 26px;
-  background: var(--color-blue-ink);
-  color: var(--color-paper);
-  font-size: 0.96rem;
-  font-weight: 500;
-  border: 1px solid var(--color-blue-ink);
-  transition: background 0.18s var(--ease-out-soft), color 0.18s var(--ease-out-soft),
-    transform 0.18s var(--ease-out-soft);
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 8px 8px 8px 24px; border-radius: 999px;
+  background: var(--color-blue-ink); color: #fff;
+  font-size: 0.94rem; font-weight: 500; white-space: nowrap;
+  transition: background 0.2s var(--ease-out-soft), transform 0.2s var(--ease-out-soft);
 }
-.btn:hover { background: var(--color-blue); border-color: var(--color-blue); transform: translateY(-1px); }
-
-.btn--ghost { background: transparent; color: var(--color-ink); border-color: var(--color-rule); }
-.btn--ghost:hover { background: transparent; border-color: var(--color-blue-ink); color: var(--color-blue-ink); }
-
-.btn--light { background: var(--color-paper); color: var(--color-blue-ink); border-color: var(--color-paper); }
-.btn--light:hover { background: var(--color-amber); border-color: var(--color-amber); color: var(--color-blue-ink); }
-
-/* Listes : un carré plein en repère, jamais de tiret dans le texte courant */
-.mark-list { list-style: none; margin: 0; padding: 0; }
-.mark-list li { position: relative; padding-left: 1.4em; }
-.mark-list li::before {
-  content: ""; position: absolute; left: 0; top: 0.62em;
-  width: 6px; height: 6px; background: var(--color-blue);
+.btn:hover { background: #163a78; transform: translateY(-1px); }
+.btn-arrow {
+  display: grid; place-items: center;
+  width: 34px; height: 34px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  transition: background 0.2s var(--ease-out-soft), transform 0.2s var(--ease-out-soft);
 }
-.mark-list--amber li::before { background: var(--color-amber); }
+.btn:hover .btn-arrow { background: var(--color-amber); color: var(--color-blue-ink); transform: rotate(45deg); }
 
-/* ------------------------------------------------------------------
-   Planche-contact : le fond du hero. Des cadres de photo qui se
-   révèlent lentement, comme sur une planche de tirages.
-   ------------------------------------------------------------------ */
-.sheet {
-  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
-  opacity: 0.42;
-  /* la planche s'efface du côté du texte et vers le bas */
-  -webkit-mask-image:
-    linear-gradient(105deg, transparent 0%, transparent 40%, #000 82%),
-    linear-gradient(#000 0%, #000 55%, transparent 92%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(105deg, transparent 0%, transparent 40%, #000 82%),
-    linear-gradient(#000 0%, #000 55%, transparent 92%);
-  mask-composite: intersect;
-}
-.sheet svg { width: 100%; height: 100%; }
-.sheet-frame {
-  opacity: 0;
-  animation: sheetDevelop 16s var(--ease-out-soft) infinite;
-}
-@keyframes sheetDevelop {
-  0%, 8% { opacity: 0; }
-  20%, 42% { opacity: 0.28; }
-  58%, 100% { opacity: 0; }
+.btn--amber { background: var(--color-amber); color: var(--color-blue-ink); }
+.btn--amber:hover { background: #ffc247; }
+.btn--amber .btn-arrow { background: rgba(15, 42, 92, 0.14); }
+
+.btn--ghost { background: transparent; color: inherit; box-shadow: inset 0 0 0 1px var(--color-line); }
+.btn--ghost:hover { background: rgba(0, 0, 0, 0.03); }
+.btn--ghost .btn-arrow { background: rgba(0, 0, 0, 0.06); }
+
+.btn--glass { background: rgba(255, 255, 255, 0.14); color: #fff; backdrop-filter: blur(10px); }
+.btn--glass:hover { background: rgba(255, 255, 255, 0.24); }
+
+/* Pastille-flèche seule (lignes de l'étapier) */
+.dot-arrow {
+  display: grid; place-items: center; flex: none;
+  width: 36px; height: 36px; border-radius: 999px;
+  background: var(--color-page); color: var(--color-ink);
+  transition: background 0.2s var(--ease-out-soft), color 0.2s var(--ease-out-soft),
+    transform 0.2s var(--ease-out-soft);
 }
 
 /* ------------------------------------------------------------------
-   Étoiles d'avis : elles se remplissent une à une à l'arrivée.
+   Pastilles de mots-clés
    ------------------------------------------------------------------ */
-.stars { display: inline-flex; gap: 3px; }
+.chip {
+  display: inline-block; padding: 9px 18px; border-radius: 999px;
+  font-size: 0.85rem; font-weight: 500; white-space: nowrap;
+  background: rgba(255, 255, 255, 0.16); color: #fff;
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+.chip--solid {
+  background: var(--color-page); color: var(--color-ink);
+  backdrop-filter: none; box-shadow: none;
+}
+
+/* ------------------------------------------------------------------
+   Étapier : la ligne active se remplit
+   ------------------------------------------------------------------ */
+.step {
+  display: flex; align-items: center; gap: 16px; width: 100%;
+  padding: 14px 14px 14px 18px; border-radius: 999px;
+  text-align: left; cursor: pointer;
+  transition: background 0.25s var(--ease-out-soft);
+}
+.step:hover { background: rgba(0, 0, 0, 0.025); }
+.step[aria-selected="true"] { background: var(--color-page); }
+.step[aria-selected="true"] .dot-arrow { background: var(--color-blue-ink); color: #fff; }
+.step-num { font-family: var(--font-display); font-size: 0.82rem; color: var(--color-muted); flex: none; width: 22px; }
+.step-name { font-family: var(--font-display); font-size: 1.02rem; font-weight: 500; flex: 1; }
+
+/* ------------------------------------------------------------------
+   Emplacements d'image : des panneaux dessinés, pas des trous.
+   À remplacer par les vraies photos (voir src/data.js).
+   ------------------------------------------------------------------ */
+.ph { position: relative; overflow: hidden; background: #dcdad4; }
+/* Fond de carte. Classe maison : en Tailwind v4 mes règles hors couche
+   l'emportent sur l'utilitaire `absolute`, qui serait donc sans effet ici. */
+.ph--fill { position: absolute; inset: 0; }
+.ph::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(80% 70% at 18% 12%, rgba(79, 147, 254, 0.55), transparent 62%),
+    radial-gradient(70% 80% at 88% 88%, rgba(245, 176, 30, 0.5), transparent 60%),
+    linear-gradient(145deg, #f3f1ec 0%, #d9d6ce 55%, #c8c5bc 100%);
+}
+.ph::after {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: radial-gradient(120% 100% at 50% 0%, #000 20%, transparent 78%);
+  -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 20%, transparent 78%);
+}
+.ph--dark::before {
+  background:
+    radial-gradient(75% 70% at 78% 18%, rgba(79, 147, 254, 0.5), transparent 60%),
+    radial-gradient(65% 60% at 20% 92%, rgba(245, 176, 30, 0.34), transparent 62%),
+    linear-gradient(150deg, #1d3f7a 0%, #102a58 52%, #091a38 100%);
+}
+.ph-tag {
+  position: absolute; left: 16px; bottom: 16px; z-index: 2;
+  padding: 6px 13px; border-radius: 999px;
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.82); color: #4b5058;
+  backdrop-filter: blur(6px);
+}
+.ph-tag--tr { left: auto; bottom: auto; right: 16px; top: 16px; }
+.ph--dark .ph-tag { background: rgba(255, 255, 255, 0.16); color: rgba(255, 255, 255, 0.82); }
+
+/* ------------------------------------------------------------------
+   Étoiles d'avis : elles se remplissent une à une
+   ------------------------------------------------------------------ */
+.stars { display: inline-flex; gap: 2px; }
 .stars svg { display: block; }
 .star {
-  color: var(--color-rule);
-  transition: color 0.35s var(--ease-out-soft), transform 0.35s var(--ease-out-soft);
+  color: rgba(0, 0, 0, 0.14);
   transform: scale(0.86);
+  transition: color 0.35s var(--ease-out-soft), transform 0.35s var(--ease-out-soft);
 }
 .is-visible .star { color: var(--color-amber); transform: scale(1); }
 
-/* Emplacement photo en attente du vrai fichier */
-.slot {
-  display: grid; place-items: center; text-align: center; padding: 20px;
-  border: 1px solid var(--color-rule);
-  background: var(--color-ground);
-  color: var(--color-muted);
-}
-
-/* Section sombre : le bleu profond du logo */
-.on-deep { background: var(--color-blue-ink); color: var(--color-paper); }
-.on-deep .label { color: #9fb8e2; }
-.on-deep .caption { color: #9fb8e2; }
-.on-deep .text-muted { color: #b9c8e0 !important; }
-.on-deep .border-rule { border-color: rgba(255, 255, 255, 0.18) !important; }
-.on-deep .border-ink { border-color: rgba(255, 255, 255, 0.45) !important; }
-
-/* Apparitions au défilement */
+/* ------------------------------------------------------------------
+   Apparitions au défilement
+   ------------------------------------------------------------------ */
 .reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.65s var(--ease-out-soft), transform 0.65s var(--ease-out-soft);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-out-soft), transform 0.6s var(--ease-out-soft);
 }
 .reveal.is-visible { opacity: 1; transform: none; }
 
-/* Variante : le bloc se dévoile par la gauche (colonnes de marge) */
-.reveal--side { transform: translateX(-16px); }
-.reveal--side.is-visible { transform: none; }
-
-/* Photo qui se découvre derrière un voile qui se retire */
 .unveil { position: relative; overflow: hidden; }
 .unveil::after {
-  content: ""; position: absolute; inset: 0;
-  background: var(--color-paper);
-  transform: translateX(0);
-  transition: transform 0.85s var(--ease-out-soft);
+  content: ""; position: absolute; inset: 0; background: var(--color-card);
+  transform: translateX(0); transition: transform 0.8s var(--ease-out-soft);
 }
-.is-visible.unveil::after,
-.is-visible .unveil::after { transform: translateX(101%); }
+.is-visible.unveil::after, .is-visible .unveil::after { transform: translateX(101%); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   .reveal { opacity: 1; transform: none; }
-  .tick { transform: scaleY(1); }
   .unveil::after { display: none; }
   .progress { display: none; }
-  .sheet-frame { animation: none; opacity: 0.18; }
   .star { color: var(--color-amber); transform: none; }
 }
