@@ -51,10 +51,10 @@ export const services = [
     accent: "amber",
     title: "J’optimise vos avis",
     text:
-      "Je réponds aux avis à votre place. Les mauvais, jamais sans vous : on prend rendez-vous et on décide ensemble de la réponse. Pour en recevoir davantage, je mets à votre comptoir une plaque sans contact, dans le style qui va avec votre boutique.",
+      "Je réponds aux avis à votre place. Les mauvais ne partent jamais sans votre accord : je vous écris la réponse que je propose, vous validez, je publie. Pour en recevoir davantage, je mets à votre comptoir une plaque sans contact, dans le style qui va avec votre boutique.",
     points: [
-      "Réponses rapides à vos avis",
-      "Les avis négatifs traités avec vous",
+      "Une réponse à chacun de vos avis, sous 24 heures",
+      "Les avis négatifs validés par vous",
       "Plaques NFC, plusieurs styles au choix",
       "Objectif : votre réputation, pas un tableau de bord",
     ],
@@ -84,8 +84,8 @@ export const pricing = [
     accent: "amber",
     items: [
       "Un passage photo chaque trimestre",
-      "Les réponses à vos avis, en continu",
-      "Un rendez-vous dès qu’un avis négatif arrive",
+      "Une réponse à chacun de vos avis, sous 24 heures",
+      "Les avis négatifs, jamais publiés sans votre accord",
       "Vos photos publiées tout au long du mois",
       "Un rapport d’une page chaque mois",
     ],

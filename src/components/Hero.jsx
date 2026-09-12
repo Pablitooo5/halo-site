@@ -38,8 +38,8 @@ export default function Hero() {
           <Reveal delay={160}>
             <p className="mt-6 max-w-[44ch] text-[1.06rem] text-muted">
               Des photos faites sur place, au matériel professionnel. Des avis travaillés pour de
-              bon : une plaque sans contact à votre comptoir pour en récolter, et des réponses
-              rapides à ceux qui arrivent.
+              bon : une plaque sans contact à votre comptoir pour en récolter, et une réponse à
+              chacun d’eux sous 24 heures.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
