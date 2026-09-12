@@ -106,14 +106,54 @@
 .btn--light { background: var(--color-paper); color: var(--color-blue-ink); border-color: var(--color-paper); }
 .btn--light:hover { background: var(--color-amber); border-color: var(--color-amber); color: var(--color-blue-ink); }
 
-/* Listes à tiret, la barre prend la couleur du contexte */
-.dash-list { list-style: none; margin: 0; padding: 0; }
-.dash-list li { position: relative; padding-left: 1.35em; }
-.dash-list li::before {
-  content: "—"; position: absolute; left: 0; color: var(--color-blue);
+/* Listes : un carré plein en repère, jamais de tiret dans le texte courant */
+.mark-list { list-style: none; margin: 0; padding: 0; }
+.mark-list li { position: relative; padding-left: 1.4em; }
+.mark-list li::before {
+  content: ""; position: absolute; left: 0; top: 0.62em;
+  width: 6px; height: 6px; background: var(--color-blue);
 }
-.dash-list--amber li::before { color: var(--color-amber); }
-.dash-list--light li::before { color: var(--color-amber); }
+.mark-list--amber li::before { background: var(--color-amber); }
+
+/* ------------------------------------------------------------------
+   Planche-contact : le fond du hero. Des cadres de photo qui se
+   révèlent lentement, comme sur une planche de tirages.
+   ------------------------------------------------------------------ */
+.sheet {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  opacity: 0.42;
+  /* la planche s'efface du côté du texte et vers le bas */
+  -webkit-mask-image:
+    linear-gradient(105deg, transparent 0%, transparent 40%, #000 82%),
+    linear-gradient(#000 0%, #000 55%, transparent 92%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(105deg, transparent 0%, transparent 40%, #000 82%),
+    linear-gradient(#000 0%, #000 55%, transparent 92%);
+  mask-composite: intersect;
+}
+.sheet svg { width: 100%; height: 100%; }
+.sheet-frame {
+  opacity: 0;
+  animation: sheetDevelop 16s var(--ease-out-soft) infinite;
+}
+@keyframes sheetDevelop {
+  0%, 8% { opacity: 0; }
+  20%, 42% { opacity: 0.28; }
+  58%, 100% { opacity: 0; }
+}
+
+/* ------------------------------------------------------------------
+   Étoiles d'avis : elles se remplissent une à une à l'arrivée.
+   ------------------------------------------------------------------ */
+.stars { display: inline-flex; gap: 3px; }
+.stars svg { display: block; }
+.star {
+  color: var(--color-rule);
+  transition: color 0.35s var(--ease-out-soft), transform 0.35s var(--ease-out-soft);
+  transform: scale(0.86);
+}
+.is-visible .star { color: var(--color-amber); transform: scale(1); }
 
 /* Emplacement photo en attente du vrai fichier */
 .slot {
@@ -161,4 +201,6 @@
   .tick { transform: scaleY(1); }
   .unveil::after { display: none; }
   .progress { display: none; }
+  .sheet-frame { animation: none; opacity: 0.18; }
+  .star { color: var(--color-amber); transform: none; }
 }

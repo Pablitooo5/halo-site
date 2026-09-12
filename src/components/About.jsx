@@ -1,8 +1,7 @@
 import Reveal from "./Reveal.jsx";
 import Section from "./Section.jsx";
 import Photo from "./Photo.jsx";
-import CountUp from "./CountUp.jsx";
-import { portrait, facts } from "../data.js";
+import { portrait, googleFactors } from "../data.js";
 
 export default function About() {
   return (
@@ -30,18 +29,35 @@ export default function About() {
         </Reveal>
       </div>
 
-      <div className="mt-14 grid gap-8 border-t border-rule pt-9 sm:grid-cols-2">
-        {facts.map((f, i) => (
-          <Reveal key={f.num} delay={i * 120} className="flex items-baseline gap-4">
-            <CountUp value={f.num} className="font-display text-[2.6rem] leading-none text-blue-ink" />
-            <span className="max-w-[26ch] text-[0.95rem] text-muted">{f.label}</span>
-          </Reveal>
-        ))}
+      <div className="mt-14 border-t border-rule pt-9">
+        <Reveal>
+          <h3 className="max-w-[26ch] text-[1.35rem]">
+            Sur quoi Google classe une fiche
+          </h3>
+          <p className="mt-3 max-w-[54ch] text-muted">
+            Google publie lui-même les trois critères qu’il applique. Sur l’un d’eux, personne ne
+            peut rien. Sur les deux autres, vos photos et vos avis pèsent directement.
+          </p>
+        </Reveal>
+
+        <div className="mt-8 grid gap-8 sm:grid-cols-3">
+          {googleFactors.map((f, i) => (
+            <Reveal key={f.name} delay={i * 110}>
+              <span
+                className="mb-3 block h-[3px] w-12"
+                style={{ background: f.actionable ? "var(--color-blue)" : "var(--color-rule)" }}
+                aria-hidden="true"
+              />
+              <p className="font-display text-[1.2rem]">{f.name}</p>
+              <p className="mt-2 text-[0.92rem] text-muted">{f.text}</p>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="mt-7 text-[0.82rem] text-muted">
+          Source : documentation publique de Google sur le classement des fiches d’établissement.
+        </Reveal>
       </div>
-      <Reveal className="mt-6 text-[0.82rem] text-muted">
-        Études publiques sur la recherche locale. Ces chiffres décrivent le marché, pas des
-        résultats clients.
-      </Reveal>
     </Section>
   );
 }

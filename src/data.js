@@ -1,15 +1,15 @@
-// Contenu du site. Aucun faux avis, aucun faux chiffre client :
-// les seuls chiffres cités sont des chiffres de marché, pas des résultats Halo.
+// Contenu du site. Aucun faux avis, aucun faux chiffre client, et aucun
+// pourcentage sans source vérifiable.
 
 export const CONTACT_EMAIL = "halo.contact@gmail.com";
-// Remplacer par l’endpoint Formspree ; tant que "REMPLACER" est présent, repli mailto.
+// Remplacer par l'endpoint Formspree ; tant que "REMPLACER" est présent, repli mailto.
 export const FORMSPREE_ENDPOINT = "https://formspree.io/f/REMPLACER_ICI";
 
 /* ------------------------------------------------------------------
    PHOTOS — pour afficher une vraie photo, poser le fichier dans
    public/assets/photos/ et renseigner "src" (chemin SANS slash initial,
    il passe par BASE_URL). Tant que src vaut null, un emplacement
-   balisé s’affiche à la place.
+   balisé s'affiche à la place.
    ------------------------------------------------------------------ */
 export const heroPhoto = {
   src: null, // ex. "assets/photos/devanture.jpg"
@@ -26,63 +26,99 @@ export const workPhotos = [
 
 export const portrait = {
   src: null, // ex. "assets/photos/pablo.jpg"
-  alt: "Pablo, fondateur de Halo",
+  alt: "Pablo, fondateur de Halooo",
   slot: "Photo de moi",
   hint: "portrait, 4:5",
 };
 
 /* ------------------------------------------------------------------
-   OFFRE — deux choses, pas plus.
+   L'OFFRE — deux leviers, pas plus.
    ------------------------------------------------------------------ */
 export const services = [
   {
-    icon: "camera",
+    accent: "blue",
     title: "Je photographie votre commerce",
     text:
-      "Je viens sur place, 90 minutes : la façade, la salle, vos produits, vous. Je trie, je retouche, je publie sur votre fiche Google. Puis je reviens chaque trimestre.",
-    points: ["Sur place, à Bordeaux", "60 photos et plus", "Publiées par mes soins"],
+      "Prise de vue sur place, au matériel professionnel. Vous recevez les fichiers en moins de 48 heures, et ils vous appartiennent : votre fiche Google, votre site, vos affiches, vos réseaux, vous en faites ce que vous voulez.",
+    points: [
+      "Matériel professionnel",
+      "Livrées en moins de 48 heures",
+      "Libres d’emploi : Google, site web, affiches",
+      "Publiées sur votre fiche par mes soins",
+    ],
   },
   {
-    icon: "star",
-    title: "Je réponds à tous vos avis",
+    accent: "amber",
+    title: "J’optimise vos avis",
     text:
-      "Chaque avis reçoit une réponse sous 24 heures, les bons comme les mauvais — surtout les mauvais, ce sont ceux que vos futurs clients lisent en premier.",
-    points: ["100 % des avis", "Sous 24 heures", "Une plaque à votre caisse pour en recevoir plus"],
+      "Je réponds aux avis à votre place. Les mauvais, jamais sans vous : on prend rendez-vous et on décide ensemble de la réponse. Pour en recevoir davantage, je mets à votre comptoir une plaque sans contact, dans le style qui va avec votre boutique.",
+    points: [
+      "Réponses rapides à vos avis",
+      "Les avis négatifs traités avec vous",
+      "Plaques NFC, plusieurs styles au choix",
+      "Objectif : votre réputation, pas un tableau de bord",
+    ],
   },
 ];
 
 /* ------------------------------------------------------------------
-   TARIFS — informatifs. Rien ne s’achète sur ce site.
+   TARIFS — informatifs. Rien ne s'achète sur ce site.
    ------------------------------------------------------------------ */
 export const pricing = [
   {
     name: "La mise en route",
-    price: "490 €",
-    period: "une seule fois",
+    price: "490 €",
+    period: "une seule fois, au démarrage",
+    accent: "blue",
     items: [
-      "Le shooting complet sur place",
-      "Le tri et la publication des photos",
-      "La plaque de collecte d’avis posée",
-      "La réponse à vos avis des trois derniers mois",
+      "Le premier passage photo, sur place",
+      "Le tri, la retouche et la publication sur votre fiche",
+      "La plaque de collecte d’avis, posée et configurée",
+      "La reprise de vos avis des trois derniers mois",
     ],
   },
   {
     name: "L’abonnement",
-    price: "249 €",
+    price: "249 €",
     period: "par mois, sans engagement",
-    featured: true,
+    accent: "amber",
     items: [
       "Un passage photo chaque trimestre",
-      "La réponse à 100 % de vos avis, sous 24 h",
+      "Les réponses à vos avis, en continu",
+      "Un rendez-vous dès qu’un avis négatif arrive",
       "Vos photos publiées tout au long du mois",
       "Un rapport d’une page chaque mois",
     ],
   },
 ];
 
-/* Chiffres de marché (source : études publiques sur la recherche locale).
-   Aucun ne prétend décrire un résultat obtenu par Halo. */
-export const facts = [
-  { num: "84 %", label: "des vues de fiche Google viennent d’un téléphone." },
-  { num: "95 %", label: "des gens lisent la réponse du gérant avant de choisir." },
+/* Précisions tarifaires — uniquement des faits déjà établis, rien d'inventé. */
+export const pricingNotes = [
+  "La mise en route se règle une seule fois, au moment du premier passage.",
+  "L’abonnement est sans engagement : vous l’arrêtez quand vous le décidez.",
+  "Les photos vous appartiennent, y compris si vous arrêtez.",
+  "Prix nets, TVA non applicable (article 293 B du CGI).",
+  "Rien ne se paie sur ce site : on en parle d’abord, vous décidez ensuite.",
+];
+
+/* ------------------------------------------------------------------
+   Les trois critères de classement d'une fiche, tels que Google les
+   publie dans sa propre documentation. Aucun pourcentage inventé.
+   ------------------------------------------------------------------ */
+export const googleFactors = [
+  {
+    name: "La pertinence",
+    text: "À quel point votre fiche correspond à ce que la personne cherche. Des photos à jour et des avis récents y contribuent.",
+    actionable: true,
+  },
+  {
+    name: "La distance",
+    text: "L’éloignement entre la personne qui cherche et votre commerce. Sur ce point, personne ne peut rien.",
+    actionable: false,
+  },
+  {
+    name: "La notoriété",
+    text: "La réputation de votre établissement. Le nombre d’avis et la note comptent directement dedans.",
+    actionable: true,
+  },
 ];

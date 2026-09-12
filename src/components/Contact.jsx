@@ -47,11 +47,11 @@ export default function Contact() {
        On NE confirme PAS l’envoi : le message n’est pas parti, et si aucun
        client mail n’est configuré, il ne se passe rien du tout. */
     const openDraft = () => {
-      const subject = `Demande d’état des lieux — ${data.entreprise}`;
+      const subject = `Demande d’état des lieux : ${data.entreprise}`;
       const body =
         `Bonjour,\n\nJe souhaite recevoir un état des lieux de ma fiche Google.\n\n` +
         `Entreprise : ${data.entreprise}\nVille : ${data.ville}\nEmail : ${data.email}\n` +
-        `Téléphone : ${data.telephone || "—"}\n\nMerci !`;
+        `Téléphone : ${data.telephone || "non communiqué"}\n\nMerci !`;
       window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
         subject
       )}&body=${encodeURIComponent(body)}`;
@@ -87,14 +87,16 @@ export default function Contact() {
           <h2 className="max-w-[18ch] text-[1.8rem] md:text-[2.5rem]">
               Voyez ce que Google montre de vous.
             </h2>
-            <p className="mt-5 max-w-[44ch] text-muted">
-              Je regarde votre fiche, je la compare à trois commerces de votre rue et je vous envoie
-              par écrit ce que j’ai noté. Gratuit, sans suite obligatoire.
+            <p className="mt-5 max-w-[46ch] text-muted">
+              Je regarde vos photos et vos avis, puis je vous compare à trois commerces qui vous
+              font concurrence dans votre rue. Vous voyez noir sur blanc où vous vous situez, et ce
+              qui vous sépare d’eux.
             </p>
-            <ul className="dash-list mt-6 grid gap-1.5 text-[0.95rem] text-muted">
-              <li>Réponse sous 48 heures</li>
-              <li>Aucun appel commercial non sollicité</li>
-              <li>Vos données ne sont ni revendues ni partagées</li>
+            <ul className="mark-list mt-6 grid gap-2 text-[0.95rem] text-muted">
+              <li>L’état de vos photos et de vos avis</li>
+              <li>Le même relevé pour trois concurrents proches</li>
+              <li>Ce qu’il y a à corriger en premier</li>
+              <li>Par écrit, sous 48 heures. Aucun appel commercial.</li>
             </ul>
           </Reveal>
 

@@ -35,7 +35,7 @@ export default function Footer() {
       </div>
       <div className="border-t border-rule">
         <p className="mx-auto max-w-[1020px] px-6 py-5 text-[0.82rem] text-muted">
-          © {new Date().getFullYear()} Halooo · Sans engagement — vous restez propriétaire de votre fiche.
+          © {new Date().getFullYear()} Halooo · Sans engagement. Vous restez propriétaire de votre fiche.
         </p>
       </div>
     </footer>

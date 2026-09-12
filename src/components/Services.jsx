@@ -6,13 +6,17 @@ import { services, workPhotos } from "../data.js";
 export default function Services() {
   return (
     <Section id="travail" num="01" kicker="Le travail">
-      <Reveal as="h2" className="max-w-[22ch] text-[1.8rem] md:text-[2.5rem]">
-        Deux choses, et je m’en occupe entièrement.
+      <Reveal as="h2" className="max-w-[24ch] text-[1.8rem] md:text-[2.5rem]">
+        Ce qui décide un client avant qu’il entre : vos photos et vos avis.
+      </Reveal>
+      <Reveal delay={80} className="mt-4 max-w-[54ch] text-muted">
+        Ce sont les deux premières choses qu’on voit de vous sur Google. Je prends les deux en
+        charge, de bout en bout.
       </Reveal>
 
       <div className="mt-12 grid gap-12 md:grid-cols-2">
         {services.map((s, i) => {
-          const amber = s.icon === "star"; // le bloc « avis » porte l'ambre du logo
+          const amber = s.accent === "amber";
           return (
             <Reveal key={s.title} delay={i * 120}>
               <span
@@ -22,7 +26,7 @@ export default function Services() {
               />
               <h3 className="text-[1.35rem]">{s.title}</h3>
               <p className="mt-3 text-muted">{s.text}</p>
-              <ul className={`dash-list ${amber ? "dash-list--amber" : ""} mt-5 grid gap-1.5 text-[0.95rem] text-muted`}>
+              <ul className={`mark-list ${amber ? "mark-list--amber" : ""} mt-5 grid gap-2 text-[0.95rem] text-muted`}>
                 {s.points.map((p) => (
                   <li key={p}>{p}</li>
                 ))}
