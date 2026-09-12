@@ -100,9 +100,9 @@ export default function Contact() {
               font concurrence dans votre rue. Vous voyez noir sur blanc où vous vous situez, et ce
               qui vous sépare d’eux.
             </p>
-            <ul className="mt-7 flex flex-wrap gap-2">
+            <ul className="spec mt-8 max-w-[38ch]">
               {bullets.map((b) => (
-                <li key={b} className="chip chip--solid text-[0.82rem]">{b}</li>
+                <li key={b}>{b}</li>
               ))}
             </ul>
           </Reveal>

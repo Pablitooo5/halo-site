@@ -124,20 +124,12 @@ export const googleFactors = [
 ];
 
 /* ------------------------------------------------------------------
-   Éléments du hero
+   Le bandeau de bas de hero : trois repères, pas des pastilles.
    ------------------------------------------------------------------ */
-export const heroChips = [
-  "Photos de commerce",
-  "Avis Google",
-  "Plaques sans contact",
-  "Réponse sous 24 h",
-  "Bordeaux",
-];
-
-/* Les deux vignettes posées en bas de la carte du hero */
-export const heroTiles = [
-  { photo: { src: null, alt: "Devanture photographiée", slot: "Devanture" }, title: "La prise de vue", kicker: "Photos" },
-  { photo: { src: null, alt: "Fiche Google et avis", slot: "Avis" }, title: "Les avis, au quotidien", kicker: "Réputation" },
+export const heroMeta = [
+  { k: "Sur place", v: "Bordeaux et alentours" },
+  { k: "Photos", v: "Livrées en moins de 48 h" },
+  { k: "Avis", v: "Une réponse sous 24 h" },
 ];
 
 /* ------------------------------------------------------------------

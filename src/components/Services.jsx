@@ -27,14 +27,14 @@ export default function Services() {
                 </div>
                 <h3 className="mt-6 text-[1.3rem]">{s.title}</h3>
                 <p className="mt-3 text-[0.95rem] text-muted">{s.text}</p>
-                <ul className="mt-5 flex flex-wrap gap-2">
+                <ul className="spec mt-6">
                   {s.points.map((p) => (
-                    <li
-                      key={p}
-                      className="chip chip--solid bg-card text-[0.8rem]"
-                      style={amber ? { boxShadow: "inset 0 0 0 1px rgba(245,176,30,0.55)" }
-                                   : { boxShadow: "inset 0 0 0 1px rgba(79,147,254,0.4)" }}
-                    >
+                    <li key={p} className="flex items-baseline gap-3">
+                      <span
+                        className="h-1.5 w-1.5 flex-none rounded-full"
+                        style={{ background: amber ? "var(--color-amber)" : "var(--color-blue)" }}
+                        aria-hidden="true"
+                      />
                       {p}
                     </li>
                   ))}
