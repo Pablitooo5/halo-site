@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-/**
- * Enveloppe un bloc d'une animation discrète d'apparition au scroll
- * (fade + légère montée). Respecte prefers-reduced-motion via le CSS.
- */
+/** Apparition discrète au défilement (fondu + 14 px). Neutralisée en reduced-motion via le CSS. */
 export default function Reveal({ as: Tag = "div", className = "", delay = 0, children, ...rest }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -24,7 +21,7 @@ export default function Reveal({ as: Tag = "div", className = "", delay = 0, chi
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
     );
     io.observe(el);
     return () => io.disconnect();

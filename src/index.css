@@ -1,19 +1,18 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Tokens de design Halo (deviennent des utilitaires Tailwind :
-   bg-accent, text-dim, border-line, font-display, ...)
+   Halo — design system clair
+   Un seul accent bleu. Le doré reste réservé aux étoiles/avis.
    ============================================================ */
 @theme {
-  --color-bg0: #0b1120;
-  --color-bg1: #0f1729;
-  --color-surface: #161e2e;
-  --color-surface2: #1b2536;
-  --color-line: #233047;
-  --color-accent: #4f8fff;
+  --color-paper: #ffffff;
+  --color-ground: #f5f7fa;
+  --color-ink: #0d1b2a;
+  --color-muted: #5a6b80;
+  --color-line: #e3e8ef;
+  --color-accent: #1a56db;
+  --color-accent-soft: #eef3fd;
   --color-gold: #f0b429;
-  --color-ink: #f5f7fa;
-  --color-dim: #94a3b8;
 
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -21,325 +20,56 @@
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ============================================================
-   Base
-   ============================================================ */
 @layer base {
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    background: linear-gradient(165deg, var(--color-bg0) 0%, var(--color-bg1) 55%, var(--color-bg0) 100%);
+    background: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    overflow-x: hidden;
   }
-  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1.08; }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
   :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 6px; }
+  ::selection { background: var(--color-accent); color: #fff; }
 }
 
-/* ============================================================
-   Reveal au scroll (piloté par le composant <Reveal/>)
-   ============================================================ */
+/* Apparition discrète au défilement — la seule animation du site */
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.7s var(--ease-out-soft), transform 0.7s var(--ease-out-soft);
+  transform: translateY(14px);
+  transition: opacity 0.5s var(--ease-out-soft), transform 0.5s var(--ease-out-soft);
 }
 .reveal.is-visible { opacity: 1; transform: none; }
 
-/* ============================================================
-   Hero — badge Google 3D qui pivote + halo + étoiles
-   ============================================================ */
-.hero-stars { position: absolute; inset: -8% -6%; z-index: 0; overflow: hidden; pointer-events: none; }
-.hero-star {
-  position: absolute; border-radius: 50%; background: #fff;
-  animation: twinkle var(--tw, 3.5s) ease-in-out infinite; will-change: opacity;
-}
-@keyframes twinkle { 0%, 100% { opacity: 0.22; } 50% { opacity: 0.85; } }
-
-.shooting {
-  position: absolute; height: 2px; width: 150px; border-radius: 2px;
-  background: linear-gradient(90deg, rgba(180, 210, 255, 0) 0%, rgba(207, 224, 255, 0.9) 85%, #fff 100%);
-  opacity: 0; transform: rotate(var(--angle)) translateX(0);
-  filter: drop-shadow(0 0 4px rgba(180, 210, 255, 0.7));
-  animation: shoot var(--dur, 1.5s) linear forwards;
-}
-@keyframes shoot {
-  0% { opacity: 0; transform: rotate(var(--angle)) translateX(0); }
-  12% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { opacity: 0; transform: rotate(var(--angle)) translateX(var(--len, 520px)); }
-}
-
-.hero-halo {
-  position: absolute; z-index: 0; pointer-events: none;
-  width: 66%; aspect-ratio: 1 / 1; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  background:
-    radial-gradient(circle at 50% 40%, rgba(79, 143, 255, 0.5), rgba(79, 143, 255, 0) 60%),
-    radial-gradient(circle at 50% 74%, rgba(240, 180, 41, 0.24), rgba(240, 180, 41, 0) 62%);
-  filter: blur(30px);
-  animation: heroHaloPulse 5.5s ease-in-out infinite; will-change: opacity, transform;
-}
-@keyframes heroHaloPulse {
-  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.97); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
-}
-
-.badge-float {
-  position: relative; z-index: 1;
-  width: clamp(240px, 30vw, 380px);
-  animation: badgeFloat 4.6s ease-in-out infinite; will-change: transform;
-}
-@keyframes badgeFloat { 0%, 100% { transform: translateY(-9px); } 50% { transform: translateY(9px); } }
-
-.badge-persp { perspective: 1500px; width: 100%; }
-.badge {
-  position: relative; width: 100%; aspect-ratio: 800 / 1200;
-  transform-style: preserve-3d;
-  animation: badgeSpin 13s linear infinite; will-change: transform;
-}
-@keyframes badgeSpin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
-.badge-face {
-  position: absolute; inset: 0;
-  backface-visibility: hidden; -webkit-backface-visibility: hidden;
-  display: grid; place-items: center;
-}
-.badge-face img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 26px 48px rgba(0, 0, 0, 0.5)); }
-.badge-face--back { transform: rotateY(180deg); }
-
-/* ============================================================
-   Scrollytelling (GSAP ScrollTrigger) — arrivée + zooms réels
-   ============================================================ */
-.scrollhero-stage {
+/* Emplacement photo en attente du vrai fichier */
+.slot {
   position: relative;
-  height: 100vh;
-  overflow: hidden;
   display: grid;
   place-items: center;
-}
-.scrollhero-grid {
-  position: relative; z-index: 2;
-  display: grid; grid-template-columns: 1fr; align-items: center;
-  width: 100%; max-width: 1180px; padding: 0 24px; gap: 12px;
-}
-@media (min-width: 900px) {
-  .scrollhero-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-}
-
-/* Zone texte (les panneaux se croisent en fondu, empilés)
-   — au-dessus du badge zoomé, avec ombre pour rester lisible */
-.scrollhero-copy { position: relative; z-index: 4; min-height: 220px; order: 2; }
-/* Voile : garde le texte lisible quand le badge zoomé (blanc) passe dessous */
-.scrollhero-copy::before {
-  content: ""; position: absolute; inset: -12% -42% -12% -45%;
-  z-index: -1; pointer-events: none;
-  background: radial-gradient(72% 62% at 34% 50%,
-    rgba(7, 11, 22, 0.94) 0%, rgba(7, 11, 22, 0.86) 52%, rgba(7, 11, 22, 0) 82%);
-}
-@media (min-width: 900px) { .scrollhero-copy { order: 0; min-height: 300px; } }
-.sh-title, .sh-kicker, .sh-sub { text-shadow: 0 2px 18px rgba(7, 11, 22, 0.85), 0 0 40px rgba(7, 11, 22, 0.6); }
-.sh-text {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; justify-content: center;
   text-align: center;
+  padding: 24px;
+  border-radius: 16px;
+  border: 2px dashed #c9d3e0;
+  background:
+    repeating-linear-gradient(45deg, #fbfcfe 0 12px, #f2f5f9 12px 24px);
+  color: var(--color-muted);
 }
-@media (min-width: 900px) { .sh-text { text-align: left; } }
-.sh-kicker { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 14px; }
-.sh-title { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.06; font-size: clamp(1.9rem, 4.4vw, 3rem); }
-.sh-num { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1; display: block; margin-bottom: 8px; }
-.sh-num--gold { color: var(--color-gold); }
-.sh-num--accent { color: var(--color-accent); }
-.sh-sub { margin-top: 16px; font-size: clamp(1rem, 1.4vw, 1.18rem); color: var(--color-dim); max-width: 34ch; margin-inline: auto; }
-@media (min-width: 900px) { .sh-sub { margin-inline: 0; } }
-.sh-accent { color: var(--color-accent); }
-.intro-line { display: block; }
+/* Vignette : même encadré, resserré pour les petites tailles */
+.slot--compact { padding: 10px; border-radius: 12px; }
+.slot--compact svg { width: 22px; height: 22px; }
+.slot--compact p { font-size: 0.78rem; line-height: 1.25; }
 
-/* Badge : couches (float → zoom → perspective → faces) */
-.scrollhero-badgewrap {
-  position: relative; z-index: 2; justify-self: center; order: 1;
-  width: clamp(230px, 30vw, 360px);
-}
-@media (min-width: 900px) { .scrollhero-badgewrap { order: 0; } }
-.zoom-wrap { will-change: transform; transform-origin: 50% 50%; }
-.scrollhero-persp { position: relative; perspective: 1500px; }
-.scrollhero-badge {
-  position: relative; width: 100%; aspect-ratio: 800 / 1200;
-  container-type: inline-size;
-  will-change: transform, opacity;
-}
-.badge-face {
-  position: absolute; inset: 0;
-  display: grid; place-items: center;
-}
-.front-clip { position: absolute; inset: 0; }
-.front-filter { position: absolute; inset: 0; will-change: filter; }
-.front-filter img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 26px 48px rgba(0, 0, 0, 0.5)); }
-.front-ov { position: absolute; inset: 0; pointer-events: none; }
-
-/* Caches (patchs) qui masquent la note / le nb d'avis de l'image
-   — dans .front-filter pour subir le même filtre que la photo */
-.patch { position: absolute; border-radius: 8px; background: #f2f3f5; }
-.patch--note { left: 23.5%; top: 37.2%; width: 18%; height: 10.6%; }
-.patch--avis { left: 24%; top: 47.2%; width: 16.5%; height: 4.2%; }
-
-/* Compteurs & étoiles en overlay (au-dessus, non filtrés) */
-.ov-note {
-  position: absolute; left: 23.5%; top: 37.2%; width: 18%; height: 10.6%;
-  display: grid; place-items: center;
-  font-family: var(--font-display); font-weight: 700; color: #4173f2;
-  font-size: 12.5cqw; line-height: 1;
-}
-.ov-avis {
-  position: absolute; left: 24%; top: 47.2%; width: 16.5%; height: 4.2%;
-  display: grid; place-items: center; justify-content: start;
-  font-weight: 500; color: #62686f; font-size: 3.4cqw;
-}
-.ov-star {
-  position: absolute; width: 7.8cqw; aspect-ratio: 1;
-  color: var(--color-gold);
-  filter: drop-shadow(0 0 6px rgba(240, 180, 41, 0.65));
-}
-.ov-star svg { width: 100%; height: 100%; display: block; }
-
-/* Cadres de mise en avant : bord lumineux, sans assombrissement */
-.zone-frame {
-  position: absolute; border-radius: 12px; pointer-events: none; opacity: 0;
-  box-shadow: 0 0 0 2px rgba(79, 143, 255, 0.85), 0 0 24px 4px rgba(79, 143, 255, 0.45);
-}
-.zone-frame--stars {
-  left: 22.5%; top: 36.5%; width: 64%; height: 17%;
-  box-shadow: 0 0 0 2px rgba(240, 180, 41, 0.9), 0 0 24px 4px rgba(240, 180, 41, 0.5);
-}
-.zone-frame--photo { left: 59%; top: 55.5%; width: 28%; height: 20%; }
-.zone-frame--contact { left: 17.5%; top: 72.5%; width: 41.5%; height: 10%; }
-
-
-/* Pulsation sur l'icône d'appel (étape contact) */
-.pulse-ring {
-  position: absolute; left: 16.5%; top: 73%; width: 12cqw; aspect-ratio: 1;
-  border-radius: 50%; opacity: 0; pointer-events: none;
-}
-.pulse-ring::before, .pulse-ring::after {
-  content: ""; position: absolute; inset: 0; border-radius: 50%;
-  border: 2px solid var(--color-accent);
-  animation: pulseRing 1.6s ease-out infinite;
-}
-.pulse-ring::after { animation-delay: 0.8s; }
-@keyframes pulseRing {
-  0% { transform: scale(0.55); opacity: 0.9; }
-  100% { transform: scale(1.6); opacity: 0; }
-}
-
-/* Flash de mise sous tension (arrivée) */
-.power-flash {
-  position: absolute; left: 50%; top: 50%; width: 130%; aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%; pointer-events: none; opacity: 0; z-index: 4;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(143, 184, 255, 0.55) 28%, rgba(79, 143, 255, 0.25) 48%, transparent 70%);
-  mix-blend-mode: screen;
-}
-
-/* Indicateur de progression */
-.scrollhero-dots {
-  position: absolute; z-index: 5; right: 22px; top: 50%; transform: translateY(-50%);
-  display: flex; flex-direction: column; gap: 12px; list-style: none; margin: 0; padding: 0;
-}
-@media (max-width: 640px) {
-  /* garde les points sur le côté : le bas est occupé par le CTA permanent */
-  .scrollhero-dots { right: 10px; gap: 9px; }
-}
-.scrollhero-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-line); transition: background 0.3s, transform 0.3s; }
-.scrollhero-dot[data-on="true"] { background: var(--color-accent); transform: scale(1.35); box-shadow: 0 0 10px 1px rgba(79,143,255,0.6); }
-
-/* Sortie : badge « allumé » */
-.badge-glow {
-  position: absolute; inset: -6%; z-index: 0; pointer-events: none; border-radius: 12%;
-  background: radial-gradient(60% 60% at 50% 50%, rgba(79, 143, 255, 0.4), transparent 70%);
-  filter: blur(18px);
-}
-
-/* Fallback reduced-motion : crops recadrés sur chaque zone */
-.crop {
-  width: min(100%, 420px); aspect-ratio: 16 / 10;
-  border-radius: 16px; border: 1px solid var(--color-line);
-  background-repeat: no-repeat;
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
-}
-
-/* CTA du panneau final */
-.sh-cta {
-  display: inline-flex; align-items: center; justify-content: center;
-  margin-top: 26px; padding: 15px 30px; border-radius: 999px;
-  background: var(--color-accent); color: #06101f;
-  font-weight: 600; font-size: 1.02rem;
-  box-shadow: 0 8px 30px rgba(79, 143, 255, 0.35);
-  transition: transform 0.2s var(--ease-out-soft), box-shadow 0.2s var(--ease-out-soft);
-  align-self: center;
-}
-@media (min-width: 900px) { .sh-cta { align-self: flex-start; } }
-.sh-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(79, 143, 255, 0.5); }
-
-/* Fallback empilé (reduced-motion) */
-.scrollhero-fallback { display: grid; gap: 56px; padding: 40px 24px; place-items: center; }
-.scrollhero-fallback .sh-text { position: static; text-align: center; }
-
-/* ============================================================
-   prefers-reduced-motion : coupe rotation, lévitation, étoiles filantes
-   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   .reveal { opacity: 1; transform: none; }
-  .badge-float, .badge { animation: none !important; transform: none !important; }
-  .badge-face--back { display: none; }
-  .hero-halo { animation: none !important; opacity: 0.85; }
-  .hero-star { animation: none !important; opacity: 0.5; }
 }
-
-/* ============================================================
-   Mots-clés du scrollytelling (hors zoom : taille constante)
-   ============================================================ */
-.sh-chip-row {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  margin-top: 20px; justify-content: center;
-}
-@media (min-width: 900px) { .sh-chip-row { justify-content: flex-start; } }
-.sh-chip {
-  white-space: nowrap;
-  padding: 9px 16px; border-radius: 999px;
-  font-size: clamp(0.72rem, 1.05vw, 0.9rem); font-weight: 600; letter-spacing: 0.01em;
-  color: var(--color-ink);
-  background: rgba(22, 30, 46, 0.82);
-  border: 1px solid rgba(79, 143, 255, 0.55);
-  box-shadow: 0 0 0 1px rgba(79, 143, 255, 0.12), 0 10px 30px rgba(7, 11, 22, 0.55),
-    0 0 22px rgba(79, 143, 255, 0.22);
-  backdrop-filter: blur(6px);
-}
-.sh-chip--gold {
-  border-color: rgba(240, 180, 41, 0.6);
-  box-shadow: 0 0 0 1px rgba(240, 180, 41, 0.14), 0 10px 30px rgba(7, 11, 22, 0.55),
-    0 0 22px rgba(240, 180, 41, 0.22);
-}
-
-
-
-/* ============================================================
-   CTA permanent pendant la séquence
-   ============================================================ */
-.sh-sticky-cta {
-  position: absolute; z-index: 6; left: 50%; bottom: 20px; transform: translateX(-50%);
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 13px 26px; border-radius: 999px; white-space: nowrap;
-  background: var(--color-accent); color: #06101f;
-  font-weight: 600; font-size: clamp(0.86rem, 1.1vw, 0.98rem);
-  box-shadow: 0 8px 30px rgba(79, 143, 255, 0.4);
-  transition: box-shadow 0.25s var(--ease-out-soft), filter 0.25s var(--ease-out-soft);
-}
-.sh-sticky-cta:hover { box-shadow: 0 14px 42px rgba(79, 143, 255, 0.6); filter: brightness(1.05); }
-@media (min-width: 900px) {
-  .sh-sticky-cta { left: 24px; right: auto; bottom: 34px; transform: none; }
-}
-@media (prefers-reduced-motion: reduce) { .sh-chip { opacity: 1 !important; transform: none !important; } }

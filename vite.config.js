@@ -7,4 +7,6 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig(() => ({
   base: process.env.VITE_BASE || "/",
   plugins: [react(), tailwindcss()],
+  // Le port du serveur de dev peut être imposé par l'environnement (aperçu intégré).
+  server: process.env.PORT ? { port: Number(process.env.PORT), strictPort: true } : undefined,
 }));

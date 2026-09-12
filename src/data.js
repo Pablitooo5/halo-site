@@ -1,93 +1,88 @@
-// Contenu du site (aucun faux avis / chiffre client inventé — chiffres de marché génériques)
+// Contenu du site. Aucun faux avis, aucun faux chiffre client :
+// les seuls chiffres cités sont des chiffres de marché, pas des résultats Halo.
 
-export const stats = [
-  { num: "7×", tone: "accent", label: "plus de clics pour une fiche complète que pour une fiche incomplète." },
-  { num: "47 %", tone: "gold", label: "des gens évitent un commerce qui a moins de 20 avis." },
-  { num: "95 %", tone: "gold", label: "lisent la réponse du gérant aux avis avant de choisir." },
-  { num: "84 %", tone: "accent", label: "des vues de fiche viennent d'un téléphone mobile." },
+export const CONTACT_EMAIL = "halo.contact@gmail.com";
+// Remplacer par l'endpoint Formspree ; tant que "REMPLACER" est présent, repli mailto.
+export const FORMSPREE_ENDPOINT = "https://formspree.io/f/REMPLACER_ICI";
+
+/* ------------------------------------------------------------------
+   PHOTOS — pour afficher une vraie photo, poser le fichier dans
+   public/assets/photos/ et renseigner "src" (chemin SANS slash initial,
+   il passe par BASE_URL). Tant que src vaut null, un emplacement
+   balisé s'affiche à la place.
+   ------------------------------------------------------------------ */
+export const heroPhoto = {
+  src: null, // ex. "assets/photos/devanture.jpg"
+  alt: "Devanture d'un commerce bordelais photographiée pour sa fiche Google",
+  slot: "Photo d'une devanture",
+  hint: "Format portrait, 4:5",
+};
+
+export const workPhotos = [
+  { src: null, alt: "Intérieur d'un commerce", slot: "Intérieur", hint: "4:3" },
+  { src: null, alt: "Produits en vitrine", slot: "Produits", hint: "4:3" },
+  { src: null, alt: "Le commerçant dans sa boutique", slot: "L'équipe", hint: "4:3" },
 ];
 
-export const offers = [
+export const portrait = {
+  src: null, // ex. "assets/photos/pablo.jpg"
+  alt: "Pablo, fondateur de Halo",
+  slot: "Photo de moi",
+  hint: "Portrait, carré",
+};
+
+/* ------------------------------------------------------------------
+   OFFRE — deux choses, pas plus.
+   ------------------------------------------------------------------ */
+export const services = [
   {
     icon: "camera",
-    title: "Les photos de votre commerce",
-    text: "Je viens sur place photographier la façade, la salle, l'équipe et vos produits. Au départ, puis une fois par trimestre. C'est la seule chose qu'aucun logiciel ne fera jamais à ma place.",
-    feature: true,
-    tag: "Le cœur du service",
+    title: "Je photographie votre commerce",
+    text:
+      "Je viens sur place, 90 minutes : la façade, la salle, vos produits, vous. Je trie, je retouche, je publie sur votre fiche Google. Puis je reviens chaque trimestre.",
+    points: ["Sur place, à Bordeaux", "60 photos et plus", "Publiées par mes soins"],
   },
   {
     icon: "star",
-    title: "La réponse à tous vos avis",
-    text: "Chaque avis reçoit une réponse sous 24 heures. Les bons comme les mauvais — surtout les mauvais, parce que ce sont ceux que vos futurs clients lisent en premier.",
-    gold: true,
-  },
-  {
-    icon: "nfc",
-    title: "La collecte d'avis",
-    text: "Une petite plaque sans contact posée à l'endroit où vos clients paient. Ils approchent leur téléphone et arrivent sur votre page d'avis. Sans appli, sans effort, sans rien leur demander.",
-  },
-  {
-    icon: "chart",
-    title: "Le rapport mensuel",
-    text: "Une page, chaque mois : avis reçus, avis auxquels j'ai répondu, votre note, photos publiées. Vous voyez exactement ce que vous payez.",
+    title: "Je réponds à tous vos avis",
+    text:
+      "Chaque avis reçoit une réponse sous 24 heures, les bons comme les mauvais — surtout les mauvais, ce sont ceux que vos futurs clients lisent en premier.",
+    points: ["100 % des avis", "Sous 24 heures", "Une plaque à votre caisse pour en recevoir plus"],
   },
 ];
 
-export const compare = [
-  {
-    kicker: "Les logiciels à 50 €",
-    title: "Des posts robots",
-    text: "Générés automatiquement, sans regard humain. Et personne, jamais, pour répondre à vos avis ni pour venir vous photographier.",
-    muted: true,
-  },
-  {
-    kicker: "Les grosses agences",
-    title: "Des contrats de 12 à 36 mois",
-    text: "Engagement long, et en face un centre d'appels où vous n'êtes qu'un dossier parmi mille.",
-    muted: true,
-  },
-  {
-    kicker: "Halo",
-    title: "Un seul interlocuteur",
-    text: "Sans engagement. Qui vient photographier votre commerce quatre fois par an et répond à vos avis sous 24 heures.",
-    halo: true,
-  },
-];
-
-// Tarifs affichés à titre d'information. Aucun paiement ni souscription sur ce site.
+/* ------------------------------------------------------------------
+   TARIFS — informatifs. Rien ne s'achète sur ce site.
+   ------------------------------------------------------------------ */
 export const pricing = [
   {
     name: "La mise en route",
     price: "490 €",
-    period: "une fois",
+    period: "une seule fois",
     items: [
-      "Un shooting complet sur place, 60 photos et plus",
-      "Tri et publication des photos sur votre fiche",
-      "Pose de la plaque de collecte d'avis",
-      "Réponse à vos avis des trois derniers mois",
+      "Le shooting complet sur place",
+      "Le tri et la publication des photos",
+      "La plaque de collecte d'avis posée",
+      "La réponse à vos avis des trois derniers mois",
     ],
   },
   {
     name: "L'abonnement",
     price: "249 €",
-    period: "par mois",
+    period: "par mois, sans engagement",
     featured: true,
-    badge: "Sans engagement",
     items: [
       "Un passage photo chaque trimestre",
-      "Réponse à 100 % de vos avis, sous 24 h",
+      "La réponse à 100 % de vos avis, sous 24 h",
       "Vos photos publiées tout au long du mois",
-      "Le rapport mensuel",
+      "Un rapport d'une page chaque mois",
     ],
   },
 ];
 
-export const steps = [
-  { num: "01", title: "Je regarde votre fiche", text: "Gratuitement, comparée à trois concurrents de votre rue. Vous recevez le constat par mail, vous en faites ce que vous voulez." },
-  { num: "02", title: "Je viens photographier", text: "Une visite, 90 minutes sur place. Je repars avec de quoi alimenter votre fiche pendant des mois, et je pose la plaque à votre caisse." },
-  { num: "03", title: "Je m'occupe de vos avis", text: "Tous, sous 24 heures, tous les jours. Et je reviens vous photographier chaque trimestre. Vous n'avez rien à faire." },
+/* Chiffres de marché (source : études publiques sur la recherche locale).
+   Aucun ne prétend décrire un résultat obtenu par Halo. */
+export const facts = [
+  { num: "84 %", label: "des vues de fiche Google viennent d'un téléphone." },
+  { num: "95 %", label: "des gens lisent la réponse du gérant avant de choisir." },
 ];
-
-export const CONTACT_EMAIL = "halo.contact@gmail.com";
-// Remplacer par ton endpoint Formspree ; tant que "REMPLACER" est présent, repli mailto.
-export const FORMSPREE_ENDPOINT = "https://formspree.io/f/REMPLACER_ICI";
