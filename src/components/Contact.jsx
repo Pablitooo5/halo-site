@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Reveal from "./Reveal.jsx";
 import Arrow from "./Arrow.jsx";
-import { CONTACT_EMAIL, FORMSPREE_ENDPOINT } from "../data.js";
+import { CONTACT_EMAIL, FORM_ENDPOINT, WEB3FORMS_KEY } from "../data.js";
 
 const field = "field";
 
@@ -73,20 +73,33 @@ export default function Contact() {
       setStatus("draft");
     };
 
-    // Tant qu'aucun service de formulaire n'est branché, on passe par la messagerie
-    if (FORMSPREE_ENDPOINT.includes("REMPLACER")) {
+    // Tant qu'aucune clé n'est renseignée, on passe par la messagerie du visiteur
+    if (WEB3FORMS_KEY.includes("REMPLACER")) {
       openDraft();
       return;
     }
 
     setStatus("sending");
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(form),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Demande de rendez-vous : ${data.entreprise}`,
+          from_name: "Site Halooo",
+          replyto: data.email,
+          "Ce qui l’intéresse": data.interet,
+          Entreprise: data.entreprise,
+          Ville: data.ville,
+          Email: data.email,
+          Téléphone: data.telephone || "non communiqué",
+        }),
       });
-      if (res.ok) setStatus("sent"); // succès uniquement sur réponse 200
+      // Web3Forms répond 200 avec { success: false } quand la clé est refusée :
+      // le code HTTP ne suffit pas à conclure.
+      const out = await res.json().catch(() => ({}));
+      if (res.ok && out.success) setStatus("sent");
       else setStatus("error");
     } catch {
       setStatus("error");

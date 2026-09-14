@@ -2,8 +2,14 @@
 // pourcentage sans source vérifiable.
 
 export const CONTACT_EMAIL = "halo.contact@gmail.com";
-// Remplacer par l'endpoint Formspree ; tant que "REMPLACER" est présent, repli mailto.
-export const FORMSPREE_ENDPOINT = "https://formspree.io/f/REMPLACER_ICI";
+
+/* Envoi du formulaire via Web3Forms.
+   La clé est publique par conception : elle ne donne accès à rien, elle
+   désigne seulement la boîte de destination. Tant qu'elle vaut
+   "REMPLACER", le formulaire se replie sur un brouillon e-mail.
+   Clé à récupérer sur web3forms.com (sans compte). */
+export const WEB3FORMS_KEY = "REMPLACER";
+export const FORM_ENDPOINT = "https://api.web3forms.com/submit";
 
 /* ------------------------------------------------------------------
    PHOTOS — pour afficher une vraie photo, poser le fichier dans
