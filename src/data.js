@@ -138,10 +138,10 @@ export const heroMeta = [
 export const processSteps = [
   {
     num: "01",
-    name: "L’état des lieux",
+    name: "Le premier échange",
     body: [
-      "Je regarde vos photos et vos avis, puis je vous compare à trois commerces qui vous font concurrence dans votre rue.",
-      "Vous recevez le relevé par écrit sous 48 heures. C’est gratuit et ça ne vous engage à rien.",
+      "Vous me dites qui vous êtes. Je regarde vos photos et vos avis, et je vous compare à trois commerces qui vous font concurrence dans votre rue.",
+      "Je vous réponds sous 48 heures avec ce que j’ai relevé. C’est gratuit et ça ne vous engage à rien.",
     ],
   },
   {

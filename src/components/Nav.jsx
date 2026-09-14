@@ -29,8 +29,8 @@ export default function Nav() {
         </ul>
 
         <a href="#contact" className="btn btn--amber ml-auto shrink-0 lg:ml-0">
-          <span className="hidden sm:inline">État des lieux gratuit</span>
-          <span className="sm:hidden">État des lieux</span>
+          <span className="hidden sm:inline">Prendre rendez-vous</span>
+          <span className="sm:hidden">Rendez-vous</span>
           <span className="btn-arrow"><Arrow /></span>
         </a>
       </nav>

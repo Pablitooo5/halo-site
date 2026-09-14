@@ -29,7 +29,7 @@ export default function Hero() {
 
             <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
               <a href="#contact" className="btn btn--amber">
-                Demander un audit gratuit
+                Demander un rendez-vous
                 <span className="btn-arrow"><Arrow /></span>
               </a>
               <a href="#travail" className="text-[0.94rem] text-white/70 underline underline-offset-4 transition-colors hover:text-white">

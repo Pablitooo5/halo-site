@@ -15,7 +15,7 @@ export default function Pricing() {
               plus à la fin du mois.
             </p>
             <a href="#contact" className="btn btn--amber mt-8">
-              Demander un état des lieux
+              Demander un rendez-vous
               <span className="btn-arrow"><Arrow /></span>
             </a>
           </Reveal>
