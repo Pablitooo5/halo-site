@@ -43,3 +43,8 @@ marche/
 
 # Plan de prospection (interne)
 PROSPECTION-HALO.md
+
+# Skills installées via `npx skills add` (outillage local, pas le site)
+.agents/
+.claude/skills/
+skills-lock.json
