@@ -125,6 +125,49 @@
 }
 
 /* ------------------------------------------------------------------
+   Champs de saisie : bord bleu marine au repos, bleu du logo au focus.
+   Écrit en CSS plutôt qu'en utilitaires : deux utilitaires de même
+   propriété se départagent dans la feuille, pas dans l'ordre des classes.
+   ------------------------------------------------------------------ */
+.field {
+  width: 100%;
+  border-radius: var(--radius-inner);
+  background: var(--color-card);
+  padding: 13px 16px;
+  font: inherit;
+  font-size: 0.98rem;
+  color: var(--color-ink);
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(15, 42, 92, 0.22);
+  transition: box-shadow 0.18s var(--ease-out-soft);
+}
+.field::placeholder { color: #98a0aa; }
+.field:hover { box-shadow: inset 0 0 0 1px rgba(15, 42, 92, 0.38); }
+.field:focus {
+  box-shadow:
+    inset 0 0 0 1.5px var(--color-blue),
+    0 0 0 4px rgba(79, 147, 254, 0.16);
+}
+/* Le focus du champ se suffit à lui-même : pas de double anneau. */
+.field:focus-visible { outline: none; }
+
+/* Cases de choix : même langage, le bleu marque la sélection */
+.pick {
+  display: block; cursor: pointer;
+  border-radius: var(--radius-inner);
+  background: var(--color-card);
+  padding: 14px;
+  box-shadow: inset 0 0 0 1px rgba(15, 42, 92, 0.22);
+  transition: box-shadow 0.18s var(--ease-out-soft), background 0.18s var(--ease-out-soft);
+}
+.pick:hover { box-shadow: inset 0 0 0 1px rgba(15, 42, 92, 0.38); }
+.pick--on {
+  background: rgba(79, 147, 254, 0.07);
+  box-shadow: inset 0 0 0 1.5px var(--color-blue);
+}
+.pick:has(input:focus-visible) { box-shadow: inset 0 0 0 1.5px var(--color-blue), 0 0 0 4px rgba(79, 147, 254, 0.16); }
+
+/* ------------------------------------------------------------------
    Listes de précisions : des lignes séparées par un filet.
    (Les pastilles arrondies ont été retirées : trop « généré ».)
    ------------------------------------------------------------------ */

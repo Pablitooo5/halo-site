@@ -3,8 +3,7 @@ import Reveal from "./Reveal.jsx";
 import Arrow from "./Arrow.jsx";
 import { CONTACT_EMAIL, FORMSPREE_ENDPOINT } from "../data.js";
 
-const field =
-  "w-full rounded-[12px] bg-page px-4 py-3.5 text-[0.98rem] text-ink outline-none transition placeholder:text-muted/70 focus:shadow-[inset_0_0_0_1.5px_var(--color-blue)]";
+const field = "field";
 
 const PRIVACY = `${import.meta.env.BASE_URL}legal/confidentialite.html`;
 
@@ -155,16 +154,12 @@ export default function Contact() {
             {(status === "idle" || status === "sending") && (
               <form onSubmit={onSubmit} noValidate className="relative grid gap-4 rounded-[20px] bg-page p-6 md:p-8">
                 <fieldset className="grid gap-1.5 border-0 p-0">
-                  <legend className="label mb-1.5">Ce qui vous intéresse</legend>
+                  <legend className="label mb-1.5 text-ink">Ce qui vous intéresse</legend>
                   <div className="grid gap-2 sm:grid-cols-3">
                     {INTERETS.map((o) => (
                       <label
                         key={o.v}
-                        className={`cursor-pointer rounded-[12px] bg-card p-3.5 transition-shadow ${
-                          interet === o.v
-                            ? "shadow-[inset_0_0_0_1.5px_var(--color-blue)]"
-                            : "shadow-[inset_0_0_0_1px_var(--color-line)] hover:shadow-[inset_0_0_0_1px_var(--color-muted)]"
-                        }`}
+                        className={`pick ${interet === o.v ? "pick--on" : ""}`}
                       >
                         <input
                           type="radio"
@@ -183,26 +178,26 @@ export default function Contact() {
                 </fieldset>
 
                 <div className="grid gap-1.5">
-                  <label htmlFor="f-entreprise" className="label">Nom de l’entreprise</label>
+                  <label htmlFor="f-entreprise" className="label text-ink">Nom de l’entreprise</label>
                   <input id="f-entreprise" name="entreprise" type="text" autoComplete="organization"
-                         placeholder="Ex. Boulangerie du Port" required className={`${field} bg-card`} />
+                         placeholder="Ex. Boulangerie du Port" required className={field} />
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="grid gap-1.5">
-                    <label htmlFor="f-ville" className="label">Ville</label>
+                    <label htmlFor="f-ville" className="label text-ink">Ville</label>
                     <input id="f-ville" name="ville" type="text" autoComplete="address-level2"
-                           placeholder="Bordeaux" required className={`${field} bg-card`} />
+                           placeholder="Bordeaux" required className={field} />
                   </div>
                   <div className="grid gap-1.5">
-                    <label htmlFor="f-tel" className="label">Téléphone (optionnel)</label>
+                    <label htmlFor="f-tel" className="label text-ink">Téléphone <span className="font-normal text-muted">(optionnel)</span></label>
                     <input id="f-tel" name="telephone" type="tel" autoComplete="tel"
-                           placeholder="06 12 34 56 78" className={`${field} bg-card`} />
+                           placeholder="06 12 34 56 78" className={field} />
                   </div>
                 </div>
                 <div className="grid gap-1.5">
-                  <label htmlFor="f-email" className="label">Email</label>
+                  <label htmlFor="f-email" className="label text-ink">Email</label>
                   <input id="f-email" name="email" type="email" autoComplete="email"
-                         placeholder="vous@exemple.fr" required className={`${field} bg-card`} />
+                         placeholder="vous@exemple.fr" required className={field} />
                 </div>
 
                 {/* Leurre anti-robots : invisible et hors du parcours clavier */}
