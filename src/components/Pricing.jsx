@@ -5,7 +5,7 @@ import { pricing, pricingNotes } from "../data.js";
 export default function Pricing() {
   return (
     <section id="tarifs" className="px-4 pt-4 md:px-6 md:pt-6">
-      <div className="card on-dark mx-auto max-w-[1180px] p-6 md:p-12">
+      <div className="card on-dark mx-auto max-w-[1180px] p-7 md:p-12">
         <div className="grid gap-10 md:grid-cols-[1fr_1.25fr] md:gap-14">
           <Reveal>
             <p className="label">Le tarif</p>
@@ -25,7 +25,7 @@ export default function Pricing() {
               <Reveal
                 key={p.name}
                 delay={i * 110}
-                className="rounded-[24px] p-6"
+                className="rounded-[20px] p-6"
                 style={{ background: "rgba(255,255,255,0.06)" }}
               >
                 <span
@@ -57,7 +57,7 @@ export default function Pricing() {
           <p className="label">Les précisions</p>
           <ul className="mt-5 grid gap-3 text-[0.88rem] text-muted sm:grid-cols-2 lg:grid-cols-3">
             {pricingNotes.map((n) => (
-              <li key={n} className="rounded-[16px] p-4" style={{ background: "rgba(255,255,255,0.05)" }}>
+              <li key={n} className="rounded-[12px] p-4" style={{ background: "rgba(255,255,255,0.05)" }}>
                 {n}
               </li>
             ))}

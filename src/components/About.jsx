@@ -5,11 +5,11 @@ import { portrait, googleFactors } from "../data.js";
 export default function About() {
   return (
     <section id="moi" className="px-4 pt-4 md:px-6 md:pt-6">
-      <div className="card mx-auto max-w-[1180px] p-6 md:p-12">
+      <div className="card mx-auto max-w-[1180px] p-7 md:p-12">
         <div className="grid gap-10 md:grid-cols-[240px_1fr] md:gap-14">
           <Reveal className="max-w-[240px]">
-            <div className="unveil rounded-[24px]">
-              <Photo photo={portrait} ratio="4 / 5" rounded="rounded-[24px]" />
+            <div className="unveil rounded-[20px]">
+              <Photo photo={portrait} ratio="4 / 5" rounded="rounded-[20px]" />
             </div>
           </Reveal>
 
@@ -28,7 +28,7 @@ export default function About() {
           </Reveal>
         </div>
 
-        <div className="mt-12 rounded-[24px] bg-page p-6 md:p-9">
+        <div className="mt-12 rounded-[20px] bg-page p-6 md:p-9">
           <Reveal>
             <h3 className="text-[1.3rem]">Sur quoi Google classe une fiche</h3>
             <p className="mt-3 max-w-[58ch] text-[0.95rem] text-muted">
@@ -39,7 +39,7 @@ export default function About() {
 
           <div className="mt-7 grid gap-4 sm:grid-cols-3">
             {googleFactors.map((f, i) => (
-              <Reveal key={f.name} delay={i * 100} className="rounded-[18px] bg-card p-5">
+              <Reveal key={f.name} delay={i * 100} className="rounded-[12px] bg-card p-5">
                 <span
                   className="mb-4 block h-1 w-10 rounded-full"
                   style={{ background: f.actionable ? "var(--color-blue)" : "#cfccc5" }}

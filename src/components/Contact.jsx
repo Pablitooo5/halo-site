@@ -4,7 +4,7 @@ import Arrow from "./Arrow.jsx";
 import { CONTACT_EMAIL, FORMSPREE_ENDPOINT } from "../data.js";
 
 const field =
-  "w-full rounded-[14px] bg-page px-4 py-3.5 text-[0.98rem] text-ink outline-none transition placeholder:text-muted/70 focus:shadow-[inset_0_0_0_1.5px_var(--color-blue)]";
+  "w-full rounded-[12px] bg-page px-4 py-3.5 text-[0.98rem] text-ink outline-none transition placeholder:text-muted/70 focus:shadow-[inset_0_0_0_1.5px_var(--color-blue)]";
 
 const PRIVACY = `${import.meta.env.BASE_URL}legal/confidentialite.html`;
 
@@ -84,11 +84,11 @@ export default function Contact() {
     }
   };
 
-  const panel = "rounded-[24px] bg-page p-7";
+  const panel = "rounded-[20px] bg-page p-7";
 
   return (
     <section id="contact" className="px-4 pt-4 md:px-6 md:pt-6">
-      <div className="card mx-auto max-w-[1180px] p-6 md:p-12">
+      <div className="card mx-auto max-w-[1180px] p-7 md:p-12">
         <div className="grid gap-10 md:grid-cols-2 md:gap-14">
           <Reveal>
             <p className="label">L’état des lieux</p>
@@ -144,7 +144,7 @@ export default function Contact() {
             )}
 
             {(status === "idle" || status === "sending") && (
-              <form onSubmit={onSubmit} noValidate className="relative grid gap-4 rounded-[24px] bg-page p-6 md:p-8">
+              <form onSubmit={onSubmit} noValidate className="relative grid gap-4 rounded-[20px] bg-page p-6 md:p-8">
                 <div className="grid gap-1.5">
                   <label htmlFor="f-entreprise" className="label">Nom de l’entreprise</label>
                   <input id="f-entreprise" name="entreprise" type="text" autoComplete="organization"

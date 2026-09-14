@@ -26,7 +26,7 @@ export default function Photo({
         alt={alt}
         loading="lazy"
         decoding="async"
-        className={`${fill ? "absolute inset-0 h-full w-full" : "w-full"} object-cover ${rounded} ${className}`}
+        className={`framed ${fill ? "absolute inset-0 h-full w-full" : "w-full"} object-cover ${rounded} ${className}`}
         style={style}
       />
     );

@@ -10,7 +10,7 @@ const legal = [
 export default function Footer() {
   return (
     <footer className="px-4 py-4 md:px-6 md:py-6">
-      <div className="card mx-auto max-w-[1180px] p-6 md:p-10">
+      <div className="card mx-auto max-w-[1180px] p-7 md:p-10">
         <div className="flex flex-col gap-8 sm:flex-row sm:justify-between">
           <div>
             <div className="flex items-center gap-2.5">
@@ -18,7 +18,7 @@ export default function Footer() {
               <p className="font-display text-[1.05rem] font-semibold">HALOOO</p>
             </div>
             <p className="mt-3 text-[0.9rem] text-muted">Photos et avis Google · Bordeaux et alentours</p>
-            <a href={`mailto:${CONTACT_EMAIL}`} className="mt-1 inline-block text-[0.9rem] hover:text-blue-ink">
+            <a href={`mailto:${CONTACT_EMAIL}`} className="-mx-2 mt-1 inline-flex min-h-[44px] items-center px-2 text-[0.9rem] hover:text-blue-ink">
               {CONTACT_EMAIL}
             </a>
           </div>
@@ -26,7 +26,7 @@ export default function Footer() {
           <ul className="grid gap-2 text-[0.86rem] text-muted sm:text-right">
             {legal.map(([href, label]) => (
               <li key={href}>
-                <a href={`${import.meta.env.BASE_URL}${href}`} className="hover:text-ink">{label}</a>
+                <a href={`${import.meta.env.BASE_URL}${href}`} className="-mx-2 inline-flex min-h-[44px] items-center px-2 hover:text-ink sm:justify-end">{label}</a>
               </li>
             ))}
           </ul>

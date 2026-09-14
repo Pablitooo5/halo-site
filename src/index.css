@@ -8,7 +8,7 @@
   --color-page: #e9e7e2;
   --color-card: #ffffff;
   --color-ink: #15181c;
-  --color-muted: #6a7079;
+  --color-muted: #5b616a;
   --color-line: #e7e5e0;
 
   /* Reprises au pixel sur le logo */
@@ -19,8 +19,11 @@
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --radius-card: 30px;
+  /* Rayons concentriques : extérieur = intérieur + marge intérieure.
+     Carte 28 avec 28 px de marge sur mobile, vignette 20, contenu 12. */
+  --radius-card: 28px;
   --radius-tile: 20px;
+  --radius-inner: 12px;
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -71,6 +74,9 @@
   background: var(--color-card);
   border-radius: var(--radius-card);
   overflow: hidden;
+  box-shadow:
+    0 1px 2px rgba(21, 24, 28, 0.04),
+    0 8px 24px -12px rgba(21, 24, 28, 0.10);
 }
 .on-dark { background: var(--color-blue-ink); color: #fff; }
 .on-dark .text-muted { color: rgba(255, 255, 255, 0.66) !important; }
@@ -84,9 +90,12 @@
   padding: 8px 8px 8px 24px; border-radius: 999px;
   background: var(--color-blue-ink); color: #fff;
   font-size: 0.94rem; font-weight: 500; white-space: nowrap;
-  transition: background 0.2s var(--ease-out-soft), transform 0.2s var(--ease-out-soft);
+  cursor: pointer;
+  transition: background 0.2s var(--ease-out-soft), transform 0.15s var(--ease-out-soft);
 }
 .btn:hover { background: #163a78; transform: translateY(-1px); }
+/* Retour tactile à l'appui. 0.96 exactement : en dessous, l'effet devient théâtral. */
+.btn:active { transform: scale(0.96); }
 .btn-arrow {
   display: grid; place-items: center;
   width: 34px; height: 34px; border-radius: 999px;
@@ -151,9 +160,10 @@
   display: flex; align-items: center; gap: 16px; width: 100%;
   padding: 14px 14px 14px 18px; border-radius: 999px;
   text-align: left; cursor: pointer;
-  transition: background 0.25s var(--ease-out-soft);
+  transition: background 0.22s var(--ease-out-soft), transform 0.15s var(--ease-out-soft);
 }
 .step:hover { background: rgba(0, 0, 0, 0.025); }
+.step:active { transform: scale(0.99); }
 .step[aria-selected="true"] { background: var(--color-page); }
 .step[aria-selected="true"] .dot-arrow { background: var(--color-blue-ink); color: #fff; }
 .step-num { font-family: var(--font-display); font-size: 0.82rem; color: var(--color-muted); flex: none; width: 22px; }
@@ -163,7 +173,12 @@
    Emplacements d'image : des panneaux dessinés, pas des trous.
    À remplacer par les vraies photos (voir src/data.js).
    ------------------------------------------------------------------ */
-.ph { position: relative; overflow: hidden; background: #dcdad4; }
+.ph, .framed {
+  position: relative; overflow: hidden; background: #dcdad4;
+  /* noir pur à faible opacité : un neutre teinté se lit comme une salissure de bord */
+  outline: 1px solid rgb(0 0 0 / 0.10);
+  outline-offset: -1px;
+}
 /* Fond de carte. Classe maison : en Tailwind v4 mes règles hors couche
    l'emportent sur l'utilitaire `absolute`, qui serait donc sans effet ici. */
 .ph--fill { position: absolute; inset: 0; }

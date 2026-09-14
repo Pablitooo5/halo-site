@@ -5,7 +5,7 @@ import { services, workPhotos } from "../data.js";
 export default function Services() {
   return (
     <section id="travail" className="px-4 pt-4 md:px-6 md:pt-6">
-      <div className="card mx-auto max-w-[1180px] p-6 md:p-12">
+      <div className="card mx-auto max-w-[1180px] p-7 md:p-12">
         <Reveal className="max-w-[46rem]">
           <p className="label">Le travail</p>
           <h2 className="mt-4 text-[1.9rem] md:text-[2.8rem]">
@@ -20,12 +20,15 @@ export default function Services() {
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           {services.map((s, i) => {
             const amber = s.accent === "amber";
+            // L'image affleure les bords de la vignette : elle en hérite le rayon,
+            // ce qui évite deux courbes concentriques mal accordées.
             return (
-              <Reveal key={s.title} delay={i * 110} className="rounded-[24px] bg-page p-5 md:p-7">
-                <div className="unveil rounded-[18px]">
-                  <Photo photo={workPhotos[i]} ratio="16 / 10" rounded="rounded-[18px]" />
+              <Reveal key={s.title} delay={i * 110} className="overflow-hidden rounded-[20px] bg-page">
+                <div className="unveil">
+                  <Photo photo={workPhotos[i]} ratio="16 / 10" rounded="rounded-none" />
                 </div>
-                <h3 className="mt-6 text-[1.3rem]">{s.title}</h3>
+                <div className="p-5 md:p-7">
+                <h3 className="text-[1.3rem]">{s.title}</h3>
                 <p className="mt-3 text-[0.95rem] text-muted">{s.text}</p>
                 <ul className="spec mt-6">
                   {s.points.map((p) => (
@@ -39,6 +42,7 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
+                </div>
               </Reveal>
             );
           })}

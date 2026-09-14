@@ -11,7 +11,7 @@ export default function Process() {
 
   return (
     <section id="etapes" className="px-4 pt-4 md:px-6 md:pt-6">
-      <div className="card mx-auto max-w-[1180px] p-6 md:p-12">
+      <div className="card mx-auto max-w-[1180px] p-7 md:p-12">
         <div className="grid gap-10 md:grid-cols-2 md:gap-14">
           <div>
             <Reveal>
@@ -47,8 +47,8 @@ export default function Process() {
           </div>
 
           <Reveal delay={180}>
-            <div className="unveil rounded-[24px]">
-              <Photo photo={processPhoto} ratio="4 / 3" rounded="rounded-[24px]" />
+            <div className="unveil rounded-[20px]">
+              <Photo photo={processPhoto} ratio="4 / 3" rounded="rounded-[20px]" />
             </div>
             <div id="etape-detail" className="mt-7 grid gap-4">
               {step.body.map((t) => (
