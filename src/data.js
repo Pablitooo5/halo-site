@@ -8,7 +8,7 @@ export const CONTACT_EMAIL = "halooo.fr@outlook.fr";
    désigne seulement la boîte de destination. Tant qu'elle vaut
    "REMPLACER", le formulaire se replie sur un brouillon e-mail.
    Clé à récupérer sur web3forms.com (sans compte). */
-export const WEB3FORMS_KEY = "REMPLACER";
+export const WEB3FORMS_KEY = "9a156339-f5dc-49d2-b71c-45acb0211e90";
 export const FORM_ENDPOINT = "https://api.web3forms.com/submit";
 
 /* ------------------------------------------------------------------
