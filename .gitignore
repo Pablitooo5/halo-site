@@ -48,3 +48,4 @@ PROSPECTION-HALO.md
 .agents/
 .claude/skills/
 skills-lock.json
+.vercel
