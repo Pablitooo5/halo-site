@@ -1,7 +1,7 @@
 // Contenu du site. Aucun faux avis, aucun faux chiffre client, et aucun
 // pourcentage sans source vérifiable.
 
-export const CONTACT_EMAIL = "halo.contact@gmail.com";
+export const CONTACT_EMAIL = "halooo.fr@outlook.fr";
 
 /* Envoi du formulaire via Web3Forms.
    La clé est publique par conception : elle ne donne accès à rien, elle
