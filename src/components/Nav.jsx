@@ -12,7 +12,7 @@ export default function Nav() {
   return (
     <header className="sticky top-0 z-50 bg-page/85 backdrop-blur">
       <nav className="mx-auto flex max-w-[1180px] items-center gap-6 px-4 py-4 md:px-6">
-        <a href="#top" className="flex min-h-[44px] items-center gap-2.5" aria-label="Halooo — accueil">
+        <a href="#top" className="flex min-h-[44px] items-center gap-2.5" aria-label="Halooo, accueil">
           <Logo size={30} />
           <span className="min-w-0">
             <span className="block font-display text-[1.05rem] font-semibold leading-none">HALOOO</span>

@@ -74,7 +74,7 @@ export const services = [
    de toute façon. Ne pas réintroduire de montant sans feu vert de Pablo.
    ------------------------------------------------------------------ */
 export const pricingBody = [
-  "Mes tarifs seront affichés ici, comme le reste du site — c’est une question de principe, pas de stratégie.",
+  "Mes tarifs seront affichés ici, comme le reste du site. C’est une question de principe, pas de stratégie.",
   "Je finis de les caler sur mes premiers chantiers. En attendant, demandez-les moi : je réponds sous 24 heures, et il n’y a rien à payer sur ce site.",
 ];
 
