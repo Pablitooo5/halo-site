@@ -68,43 +68,20 @@ export const services = [
 ];
 
 /* ------------------------------------------------------------------
-   TARIFS — informatifs. Rien ne s'achète sur ce site.
+   TARIFS — montants retirés le 16/09/2026, le temps que la grille se
+   cale sur les premiers chantiers. Publier un prix puis le changer est
+   pire que de ne pas l'afficher. Aucune vente n'est possible sans SIRET
+   de toute façon. Ne pas réintroduire de montant sans feu vert de Pablo.
    ------------------------------------------------------------------ */
-export const pricing = [
-  {
-    name: "La mise en route",
-    price: "490 €",
-    period: "une seule fois, au démarrage",
-    accent: "blue",
-    items: [
-      "Le premier passage photo, sur place",
-      "Le tri, la retouche et la publication sur votre fiche",
-      "La plaque de collecte d’avis, posée et configurée",
-      "La reprise de vos avis des trois derniers mois",
-    ],
-  },
-  {
-    name: "L’abonnement",
-    price: "249 €",
-    period: "par mois, sans engagement",
-    accent: "amber",
-    items: [
-      "Un passage photo chaque trimestre",
-      "Une réponse à chacun de vos avis, sous 24 heures",
-      "Les avis négatifs, jamais publiés sans votre accord",
-      "Vos photos publiées tout au long du mois",
-      "Un rapport d’une page chaque mois",
-    ],
-  },
+export const pricingBody = [
+  "Mes tarifs seront affichés ici, comme le reste du site — c’est une question de principe, pas de stratégie.",
+  "Je finis de les caler sur mes premiers chantiers. En attendant, demandez-les moi : je réponds sous 24 heures, et il n’y a rien à payer sur ce site.",
 ];
 
-/* Précisions tarifaires — uniquement des faits déjà établis, rien d'inventé. */
 export const pricingNotes = [
-  "La mise en route se règle une seule fois, au moment du premier passage.",
-  "L’abonnement est sans engagement : vous l’arrêtez quand vous le décidez.",
-  "Les photos vous appartiennent, y compris si vous arrêtez.",
-  "Prix nets, TVA non applicable (article 293 B du CGI).",
-  "Rien ne se paie sur ce site : on en parle d’abord, vous décidez ensuite.",
+  "Un tarif unique, quelle que soit la taille du commerce",
+  "Sans engagement",
+  "Rien ne se souscrit ni ne se paie sur ce site",
 ];
 
 /* ------------------------------------------------------------------
